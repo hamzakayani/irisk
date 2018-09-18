@@ -25,8 +25,11 @@
                
             </ion-textarea>
         </div>
-        <div class="addphoto"><img src="../../assets/imgs/gal.png" alt="" style="padding-right: 15px;"> <span>Add Photos...</span></div>
-        <div class="addphoto" style="border-top: 0; "><img src="../../assets/imgs/reply1.png" alt="" style="padding-right: 15px;"><span>Camera</span> </div>
+        <div *ngIf="myimage!=''">
+            <img src="{{this.myimage}}" alt="" width="80px" height="80px" >
+        </div>
+        <div class="addphoto" (click)="opengallery()"><img src="../../assets/imgs/gal.png" alt="" style="padding-right: 15px;"> <span>Add Photos...</span></div>
+        <div class="addphoto" style="border-top: 0; " (click)="opencamera()"><img src="../../assets/imgs/reply1.png" alt="" style="padding-right: 15px;"><span>Camera</span> </div>
       </ion-col>
     </ion-row>
 

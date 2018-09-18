@@ -59,7 +59,7 @@ import { VisitoraddPage } from '../pages/visitoradd/visitoradd';
 export class MyApp {
   
   rootPage:any = LoginPage;
-  // rootPage:any = DashboardPage;  
+  // rootPage:any = CommunitywallpostPage;  
  public url:any;
  public headers:any;
  public resident_id:any;
