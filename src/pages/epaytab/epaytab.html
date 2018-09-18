@@ -16,39 +16,21 @@
 <ion-content style="background:#eaeaea;">
   <div [ngSwitch]="epay">
       <ion-list *ngSwitchCase="'invoices'" >
-        <p class="currentout">Current Outstanding <span float-right>RM574.03</span></p>
-          <ion-row class="invoicerow">
+        <p class="currentout">Current Outstanding <span float-right>{{this.currency}}{{this.outstanding}}</span></p>
+          <ion-row class="invoicerow" *ngFor="let inv of invoices_list;" >
               <ion-col col-12 class="invoicecol" (click)="invoicedetail()">
-                <p class="invoicep1">Ref#843 <span float-right style="color:red;">RM11.03</span></p>
-                <p class="invoicep2">Due: 23aug 2018</p>
-                <p class="invoicep3">status: <span style="color:red;">Unpaid</span></p>
+                <p class="invoicep1">Ref#{{inv.id}} <span *ngIf="inv.invoice_status=='UNPAID'" float-right style="color:red;">{{this.currency}}{{inv.balance_due}}</span></p>
+                <p class="invoicep2"><ion-icon name="md-calendar" ></ion-icon> Due: {{inv.due_date}}</p>
+                <p class="invoicep3" *ngIf="inv.invoice_status=='UNPAID'">Status: <span style="color:red;">{{inv.invoice_status}}</span></p>
+                <p class="invoicep3" *ngIf="inv.invoice_status=='PAID'">Status: <span style="color:#108223;">{{inv.invoice_status}}</span></p>
               </ion-col>
-              <ion-col col-12 class="invoicecol" (click)="invoicedetail()">
-                <p class="invoicep1">Ref#843 <span float-right style="color:red;">RM11.03</span></p>
-                <p class="invoicep2">Due: 23aug 2018</p>
-                <p class="invoicep3">status: <span style="color:red;">Unpaid</span></p>
-              </ion-col>
-              <ion-col col-12 class="invoicecol" (click)="invoicedetail()">
-                <p class="invoicep1">Ref#843 <span float-right style="color:red;">RM11.03</span></p>
-                <p class="invoicep2">Due: 23aug 2018</p>
-                <p class="invoicep3">status: <span style="color:red;">Unpaid</span></p>
-              </ion-col>
-              <ion-col col-12 class="invoicecol" (click)="invoicedetail()">
-                <p class="invoicep1">Ref#843 <span float-right style="color:red;">RM11.03</span></p>
-                <p class="invoicep2">Due: 23aug 2018</p>
-                <p class="invoicep3">status: <span style="color:red;">Unpaid</span></p>
-              </ion-col>
-              <ion-col col-12 class="invoicecol" (click)="invoicedetail()">
-                <p class="invoicep1">Ref#843 <span float-right style="color:red;">RM11.03</span></p>
-                <p class="invoicep2">Due: 23aug 2018</p>
-                <p class="invoicep3">status: <span style="color:red;">Unpaid</span></p>
-              </ion-col>
-              <ion-col col-12 class="invoicecol" (click)="invoicedetail()">
-                <p class="invoicep1">Ref#843 <span float-right style="color:red;">RM11.03</span></p>
-                <p class="invoicep2">Due: 23aug 2018</p>
-                <p class="invoicep3">status: <span style="color:red;">Unpaid</span></p>
-              </ion-col>
+             
           </ion-row>
+          
+          <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+        
       </ion-list>
       <ion-list *ngSwitchCase="'payments'">
           <ion-row class="invoicerow">
@@ -79,6 +61,7 @@
           </ion-row>
       </ion-list>
   </div>
+
 </ion-content>
 <ion-footer no-padding style="height: 76px;background:#FFFFFF;">
   <div class="fimage">
