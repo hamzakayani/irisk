@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
-import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { Http} from '@angular/http';
 /**
  * Generated class for the DepositedetailPage page.

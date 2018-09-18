@@ -25,8 +25,10 @@ export class HelpdestindPage {
   public detail_ticket:any;
   public comments_list:any;
   public images_list:any;
+  
   constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams) 
   {
+    
     this.post_id=navParams.get('data');
     this.images_list=[];
     this.comments_list=[];

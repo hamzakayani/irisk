@@ -53,7 +53,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { RestProvider } from '../providers/rest/rest';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { SuperTabsModule } from 'ionic2-super-tabs';
-import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 @NgModule({
   declarations: [
@@ -107,8 +106,8 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     SuperTabsModule.forRoot(),
-    IonicImageViewerModule,
-    HttpModule,
+    
+      HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
