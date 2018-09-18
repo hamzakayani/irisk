@@ -1,0 +1,90 @@
+<ion-header>
+    <ion-navbar color="dark">
+        <ion-buttons  right>
+      <button ion-button menuToggle>
+          <img src="assets/icon/side-menu.png" style="width: 50%;">
+      </button>
+        </ion-buttons>
+        <ion-title color="white" text-center>Villamas</ion-title>
+        
+    </ion-navbar>
+</ion-header>
+<ion-content style="background:#C0C0C0;font-family: 'Montserrat', sans-serif;">
+    <div class="slidr" >
+        <ion-slides loop="false">
+            <!-- <ion-slide *ngFor="let item of adds_list;"  > -->
+            <ion-slide *ngFor="let item of adds_list;" >
+                <img src="{{item.image_url}}"style="width:100%">
+                <!-- <img src="{{item.image}}"style="width:100%">                 -->
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div class="menu">
+        <ion-grid>
+            <ion-row class="rw">
+                <ion-col class="box mr5" text-center (click)="gotoepay()">
+                    <img src="assets/imgs/3.png" style="width: 50px;text-align: center;">
+                    <p>e-Pay</p>
+                </ion-col>
+                <ion-col class="box mr5" text-center (click)="gotobooking()">
+                    <img src="assets/imgs/6.png" style="width: 50px;text-align: center;">
+                    <p>Bookings</p>
+                </ion-col>
+                <ion-col class="box" text-center (click)="gotoDeposits()">
+                    <img src="assets/imgs/7.png" style="width: 50px;text-align: center;">
+                    <p>Deposits</p>
+                </ion-col>
+            </ion-row>
+            <ion-row class="rw">
+                <ion-col class="box mr5" text-center (click)="gotonotice()">
+                    <img src="assets/imgs/8.png" style="width: 50px;text-align: center;">
+                    <p>Notice Board</p>
+                </ion-col>
+                <ion-col class="box mr5" text-center (click)="gotohelp()">
+                    <img src="assets/imgs/9.png" style="width: 50px;text-align: center;">
+                    <p>Help Desk</p>
+                </ion-col>
+                <ion-col class="box" text-center (click)="gotocommunitywall()">
+                    <img src="assets/imgs/10.png" style="width: 50px;text-align: center;">
+                    <p>Community Wall</p>
+                </ion-col>
+            </ion-row>
+            <ion-row class="rw">
+                <ion-col class="box mr5" text-center (click)="gotousefullinks()">
+                    <img src="assets/imgs/11.png" style="width: 50px;text-align: center;">
+                    <p>Useful Links</p>
+                </ion-col>
+                <ion-col class="box mr5" text-center (click)="gotovisitor()">
+                    <img src="assets/imgs/12.png" style="width: 50px;text-align: center;">
+                    <p>Visitor</p>
+                </ion-col>
+                <ion-col class="box" text-center (click)="alert()">
+                    <img src="assets/imgs/13.png" style="width: 50px;text-align: center;">
+                    <p>SOS</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>
+<ion-footer no-padding style="height: 76px;background:#FFFFFF;">
+    <div class="fimage">
+        <img src="../../assets/imgs/4.png" >
+    </div>
+    <ion-grid>
+        <ion-row>
+            <ion-col no-padding style="text-align: center;" (click)="dashboard()">
+                &nbsp;<img src="assets/imgs/5.png" style="width: 45%;margin-top: -4px;">
+            </ion-col>
+            <ion-col no-padding style="text-align: center;" (click)="epay()">
+                &nbsp;<img src="assets/imgs/14.png" style="width: 45%;margin-top: -4px">
+
+            </ion-col>
+            <ion-col no-padding style="text-align: center;" (click)="services()">
+                &nbsp;<img src="assets/imgs/15.png" style="width: 45%;margin-top: -4px;">
+            </ion-col>
+            <ion-col no-padding style="text-align: center;" (click)="promo()">
+                &nbsp;<img src="assets/imgs/16.png" style="width: 45%;margin-top: -4px;">
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer>

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar color="dark">
+      <ion-title color="white" class="mytitle">DEPOSITS</ion-title>
+      <!-- <button class = "button icon ion-menu"></button> -->
+  </ion-navbar>
+</ion-header>
+<ion-content style="background:#eaeaea;font-family: 'Montserrat', sans-serif;" >
+    <ion-select placeholder="All " [(ngModel)]="mystatus" interface="popover" >
+        <ion-option value="-1">Select </ion-option>
+        <ion-option selected="true" value="0">All Tickets</ion-option>
+        <ion-option value="1">Resolved             </ion-option>
+        <ion-option value="2">Work In Progress     </ion-option>
+        <ion-option value="3">Pending              </ion-option>
+        <ion-option value="4">Waiting Reply        </ion-option>
+      </ion-select>
+  <ion-row  *ngFor="let tick of tickets_list;"  (click)="gotohelpdetail(tick.id)">
+      <ion-col>
+          <p class="info">
+              {{tick.ticket_number}} <span>{{tick.reported_date}}</span>
+          </p>
+          <p class="para2">
+              Category: {{tick.category}} <br>
+              Ticket No: {{tick.ticket_number}}
+          </p>
+          <button ion-button class="noti_btn">{{tick.priority}}</button>
+      </ion-col>
+  </ion-row>
+  <ion-infinite-scroll (ionInfinite)="get_all_tickets($event)" >
+    <ion-infinite-scroll-content  *ngIf="pagingEnabled"></ion-infinite-scroll-content >
+  </ion-infinite-scroll>
+  <div *ngIf="!pagingEnabled"> No more data is available.</div>
+  
+  
+  <!-- <ion-tabs>
+      <ion-tab [root]="tab1Root" tabTiTle="Home" tabIcon="Home"></ion-tab>
+      <ion-tab [root]="tab2Root" tabTiTle="About" ></ion-tab>
+  </ion-tabs> -->
+</ion-content>
+<ion-footer no-padding style="height: 76px;background:#FFFFFF;">
+  <div class="fimage">
+      <img src="../../assets/imgs/4.png" >
+  </div>
+  <ion-grid>
+      <ion-row>
+          <ion-col no-padding style="text-align: center;" >
+              &nbsp;<img src="assets/imgs/5.png" style="width: 45%;margin-top: -4px;">
+          </ion-col>
+          <ion-col no-padding style="text-align: center;">
+              &nbsp;<img src="assets/imgs/14.png" style="width: 45%;margin-top: -4px">
+          </ion-col>
+          <ion-col no-padding style="text-align: center;">
+              &nbsp;<img src="assets/imgs/15.png" style="width: 45%;margin-top: -4px;">
+          </ion-col>
+          <ion-col no-padding style="text-align: center;">
+              &nbsp;<img src="assets/imgs/16.png" style="width: 45%;margin-top: -4px;">
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-footer>
