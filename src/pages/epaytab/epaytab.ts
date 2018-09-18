@@ -24,12 +24,16 @@ export class EpaytabPage {
   public headers:any;
   public page_number:any;
   public invoices_list:any;
+  public payments_list:any;
   public outstanding:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
     this.page_number=0;
     this.outstanding=0;
+   
     this.invoices_list=[];
+    this.payments_list=[];
     this.currency=window.localStorage.getItem('currency');
     this.url='http://staging.irisk.my/api/v3/';
     this.resident_id=window.localStorage.getItem('resident_id');
@@ -38,6 +42,7 @@ export class EpaytabPage {
     this.condo_id=window.localStorage.getItem('condo_id');
     platform.ready().then(() => {  
       this.get_invoices_detail();
+      this.get_payments_detail();
      
     });
 
@@ -56,14 +61,14 @@ export class EpaytabPage {
         if(data.json().errorCode==0)
         {
           console.log("SUCCESS");
-          console.log(data.json().data);
+         
           this.invoices_list=data.json().data;
           this.outstanding=data.json().oustanding;
           this.noneresult = false;
           loading.dismiss();
         }else if(data.json().errorCode==1){
           console.log("FAILED");
-          console.log(data.json().data);
+          
           this.noneresult = true;
           loading.dismiss();
           console.log("No Data Found");
@@ -94,7 +99,7 @@ export class EpaytabPage {
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
       return new Promise(resolve=>{
         this.http.get(this.url + 'get_my_invoices/'+ this.resident_id+'/'+ this.condo_id+'/'+this.unit_id+'/'+this.key+'/'+this.page_number,{headers: this.headers}).subscribe(data=>{
-          console.log(data.json());
+         
           if(data.json().errorCode==0)
           {
         
@@ -122,7 +127,7 @@ export class EpaytabPage {
              {
                text: 'Close',
                handler: () => {
-              this.navCtrl.setRoot();
+              this.navCtrl.setRoot(LoginPage);
                }
              }
            ]
@@ -152,10 +157,63 @@ export class EpaytabPage {
        alert.present();
     
     }
+    //====================================Get Payments Details=================
+    get_payments_detail(){
+      let loading = this.loadingCtrl.create({
+        content: 'Loading payments ...'
+      });
+      loading.present();
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      return new Promise(resolve=>{
+        this.http.get(this.url + 'get_epay_list/'+ this.resident_id+'/'+ this.condo_id+'/'+this.unit_id+'/'+this.key,{headers: this.headers}).subscribe(data=>{
+          console.log(data.json());
+          if(data.json().errorCode==0)
+          {
+         
+            console.log(data.json());
+            this.payments_list=data.json().data.payments_list;
+      
+            this.noneresult = false;
+            loading.dismiss();
+          }else if(data.json().errorCode==1){
+            
+            console.log(data.json().data);
+            this.noneresult = true;
+            loading.dismiss();
+            console.log("No Data Found");
+          }
+          else if(data.json().errorCode==2){
+            loading.dismiss();
+            this.show_errorkey_alert("Invalid key");
+            console.log("ERROR IN SERVER");
+            this.noneresult = true;
+          }
+         else
+         resolve(false);
+  },
+          err=>{
+   
+         //console.log(err);
+         loading.dismiss();
+         this.show_error_alert("ERROR IN SERVER");
+         console.log("ERROR IN SERVER");
+         this.noneresult = true;
+         });
+   
+     });
+      }
+ 
+
+
+
+    //========================================================================
   paymentdetail(){
     this.navCtrl.push(EpaypaymentdetailPage);
   }
-  invoicedetail(){
-    this.navCtrl.push(EpayinvoicedetailPage);
+  invoicedetail(post_id){
+    this.navCtrl.push(EpayinvoicedetailPage,{
+      data:post_id
+    });
   }
 }

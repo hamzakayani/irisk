@@ -1,54 +1,61 @@
 <ion-header>
     <ion-navbar color="dark">
-        <ion-title color="white" class="mytitle">Deposit Detail</ion-title>
+        <ion-title color="white" class="mytitle">Invoice Detail</ion-title>
     </ion-navbar>
     <div class="top_recipt">
       <p class="para1">
-        REF#884
+        REF#{{this.post_id}}
       </p>
-      <p class="para2">Amount Due &nbsp;&nbsp;&nbsp; RM11.00</p>
+      <p class="para2">Amount Due &nbsp;&nbsp;&nbsp;{{this.currency}}{{this.invoice_deail.net_total_amount}}</p>
     </div>
   </ion-header>
   <ion-content style="background:#eaeaea;">
       <div class="Statusinvoice">
         <ion-col col-6 float-left>
-            <button ion-button >Unpaid</button>
+            <button *ngIf="this.invoice_deail.Invoice_status=='UNPAID'" style=" background: red;" ion-button >{{this.invoice_deail.Invoice_status}}</button>
+            <button *ngIf="this.invoice_deail.Invoice_status=='PAID'" style=" background: #108223;" ion-button >{{this.invoice_deail.Invoice_status}}</button>
         </ion-col>
         <ion-col col-6 float-left>
-            <p text-right>Download Details </p>
-            <img src="../../assets/imgs/pdficon.png" alt="" float-left width="30px">
+            <p text-right>Download Details <a href="{{this.invoice_deail.pdf_link}}"><img src="../../assets/imgs/pdficon.png" alt=""  width="20px"></a></p>
+           
         </ion-col>
         
       </div>
       <div  class="user_info">
           <div class="invoicedate">
               <p class="para1">Invoice Date</p>
-              <p class="para2">13 aug 2018</p>
+              <p class="para2">{{this.item_deail.due_date}}</p>
           </div>
           <div class="invoicedate">
               <p class="para1">Due Date</p>
-              <p class="para2">13 aug 2018</p>
+              <p class="para2">{{this.item_deail.due_date}}</p>
           </div>
         <div style="background: #eaeaea; float: left; width: 100%;    padding: 10px;">
-            <p class="para1">Dani Hussain</p>
-            <p class="para2">A-08-07 , Villamas,alan A-08-07 , Villamas,alan A-08-07 , Villamas,alan </p>
+            <p class="para1">{{this.item_deail.resident_name}}</p>
+            <p class="para2">{{this.invoice_deail.condo_address}} </p>
         </div>
-        <div float-left style="padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid grey;width: 100%;">
-            <p style="width: 70%;float: left;">Late paymebnt chargesfor car </p>
-            <p style="width: 30%;float: left;text-align: right;">RM1.0</p>
+        <div  *ngFor="let inv of this.invoice_deail.items_list;"  float-left style="padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid grey;width: 100%;">
+            <p style="width: 70%;float: left;">{{inv.name_with_date}} </p>
+            <p style="width: 30%;float: left;text-align: right;">{{this.currency}}{{inv.amount}}</p>
         </div>
-        <div float-left style="padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid grey;width: 100%;">
-            <p style="width: 70%;float: left;">Late paymebnt chargesfor car </p>
-            <p style="width: 30%;float: left;text-align: right;">RM1.0</p>
+
+        <div float-left style="width: 100%;background-color: grey;color:black">
+            <p text-right style="padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid grey;">Total &nbsp;&nbsp;{{this.currency}}{{this.invoice_deail.items_list_total_amount}}</p>
+            <p *ngIf="this.invoice_deail.items_list_total_amount!=this.invoice_deail.net_total_amount" text-right style="padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid grey;">Discount &nbsp;&nbsp;{{this.invoice_deail.discount}}</p>
+            <p  *ngIf="this.invoice_deail.items_list_total_amount!=this.invoice_deail.net_total_amount" text-right style="padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid grey;">Net Total &nbsp;&nbsp;{{this.currency}}{{this.invoice_deail.net_total_amount}}</p>
         </div>
-        <div float-left style="width: 100%;">
-            <p text-right style="padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid grey;">Total &nbsp;&nbsp; RM11.0</p>
-        </div>
-        <button float-right style="color:white;background:green;margin-top:10px;margin-bottom: 10px; padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid grey;padding: 10px">PROCEED TO PAYMENT</button>
-        <div class="paymenthistory">
+        <button   *ngIf="this.invoice_deail.Invoice_status=='UNPAID'" float-right style="color:white;background:green;margin-top:10px;margin-bottom: 10px; padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid grey;padding: 10px">PROCEED TO PAYMENT</button>
+        <div class="paymenthistory"  *ngIf="this.invoice_deail.Invoice_status=='PAID'">
             <p class="p1">Payment History</p>
-            <p class="p2">ID#A1533267122</p>
-            <p class="p3"> Online Payment <span>RM9.90</span></p>
+                <ion-row class="invoicerow"  *ngFor="let pay of this.invoice_deail.invoice_payment_history;"  >
+                    <ion-col col-12 class="invoicecol" (click)="invoicedetail(inv.id)">
+                      <p class="invoicep1">ID#{{pay.system_transaction_id}} <span  float-right >{{this.currency}}{{pay.amount_paid}}</span></p>
+                      <p class="invoicep2"><ion-icon name="md-card" ></ion-icon> {{pay.payment_channel_name}}</p>
+                      
+                    </ion-col>
+               
+                </ion-row>
+            
         </div>
       </div>
 </ion-content>
