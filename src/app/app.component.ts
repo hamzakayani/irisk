@@ -82,7 +82,8 @@ export class MyApp {
            if(data.json().status=="success"){
             window.localStorage.clear();
             this.menuCtrl.close();
-            this.app.getRootNav().push(LoginPage);
+            this.app.getRootNav().setRoot(LoginPage);
+            
            }
            else
            resolve(false);

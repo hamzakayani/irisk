@@ -26,8 +26,10 @@ export class HelpdestmytckPage {
   public status:any;
   public pagenumber:any;
    public pagingEnabled: boolean = true;
+   public condo_name:any;
   constructor(public navCtrl: NavController, public http: Http, public platform:Platform)
    {
+    this.condo_name=window.localStorage.getItem('condo_name');
     this.status=0;
     this.pagenumber=0;
     this.url='http://staging.irisk.my/api/v3/';

@@ -16,15 +16,17 @@ export class NoticboardPage {
   public resident_id:any;
   public notices_list:any;
   public url:any;
+  public condo_name:any;
   constructor(public navCtrl: NavController, public http: Http, public platform:Platform) 
   {
-
+    this.condo_name=window.localStorage.getItem('condo_name');
     this.key=window.localStorage.getItem('token');
     this.condo_id=window.localStorage.getItem('condo_id');
     this.resident_id=window.localStorage.getItem('resident_id');
     this.url='http://staging.irisk.my/api/v3/';
     this.notices_list=[];
     this.get_all_notices();
+    
 
   }
  

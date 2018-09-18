@@ -29,8 +29,10 @@ export class DashboardPage {
   public modules_list:any;
   public adds_list:any;
   public url:any;
+  public condo_name:any;
   constructor(public navCtrl: NavController, public http: Http, public platform:Platform) 
   {
+    
     this.key=window.localStorage.getItem('token');
     this.condo_id=window.localStorage.getItem('condo_id');
     this.modules_list=[];
@@ -39,14 +41,17 @@ export class DashboardPage {
     this.getModules();
     this.getadimages(); 
     this.getCommunitySettings();
+    this.condo_name=window.localStorage.getItem('condo_name');
   }
   getModules(){
     return new Promise(resolve=>{
        this.http.get(this.url + 'get_condo_modules/'+ this.condo_id +'/'+this.key).subscribe(data=>{
         if(data.json().status=="success"){
+         
         for (var i of data.json().data) {
             this.modules_list.push(i);
         }
+        console.log(data.json());
         console.log(this.modules_list);
                 }else
                 resolve(false);
@@ -60,7 +65,7 @@ export class DashboardPage {
     return new Promise(resolve=>{
        this.http.get(this.url + 'get_community_settings/'+ this.condo_id +'/'+this.key).subscribe(data=>{
         if(data.json().status=="success"){
-          console.log(data.json().data['currency']);
+          console.log(data.json());
           window.localStorage.setItem('merchant_id', data.json().data['merchant_id']);
           window.localStorage.setItem('verify_key', data.json().data['verify_key']);
           window.localStorage.setItem('invoice_notes', data.json().data['invoice_notes']);

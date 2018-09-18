@@ -40,13 +40,14 @@ export class UnitsPage {
     return new Promise(resolve=>{
        this.http.get(this.url + 'get_user_units/'+ this.resident_id +'/'+this.condo_id + '/' + this.key).subscribe(data=>{
         if(data.json().status=="success"){
+         
          data.json().units_list;
          console.log(data.json().units_list);
 for (var i of data.json().units_list) {
     this.units_list.push(i);
        // console.log(i.condo_id + i.condo_name);
 }
-
+window.localStorage.setItem('condo_name',data.json().condo_name);
         }else
         resolve(false);
 },
