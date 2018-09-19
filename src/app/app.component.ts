@@ -143,6 +143,8 @@ export class MyApp {
   }
   gotoswitch(){
     this.menuCtrl.close();
-
+    
+    this.app.getRootNav().setRoot(CommunityPage);
+    
   }
 }

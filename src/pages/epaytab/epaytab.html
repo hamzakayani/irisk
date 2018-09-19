@@ -18,7 +18,7 @@
       <ion-list *ngSwitchCase="'invoices'" >
         <p class="currentout">Current Outstanding <span float-right>{{this.currency}}{{this.outstanding}}</span></p>
           <ion-row class="invoicerow" *ngFor="let inv of invoices_list;" >
-              <ion-col col-12 class="invoicecol" (click)="invoicedetail()">
+              <ion-col col-12 class="invoicecol" (click)="invoicedetail(inv.id)">
                 <p class="invoicep1">Ref#{{inv.id}} <span *ngIf="inv.invoice_status=='UNPAID'" float-right style="color:red;">{{this.currency}}{{inv.balance_due}}</span></p>
                 <p class="invoicep2"><ion-icon name="md-calendar" ></ion-icon> Due: {{inv.due_date}}</p>
                 <p class="invoicep3" *ngIf="inv.invoice_status=='UNPAID'">Status: <span style="color:red;">{{inv.invoice_status}}</span></p>
@@ -30,35 +30,29 @@
           <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
             <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
           </ion-infinite-scroll>
+          <div *ngIf="noneresult==true"> 
         
+            <p style=" width: 100%; text-align: center; display: block; padding-top:10px;"><ion-icon name="md-warning" style="color:#339e45;font-size: 48px;"></ion-icon></p>
+        <p style="color: #000000; width: 100%; text-align: center; display: block; padding-top:5px; font-size:16px;font-weight:bold;">You have no invoices</p>
+        </div>
       </ion-list>
       <ion-list *ngSwitchCase="'payments'">
-          <ion-row class="invoicerow">
-              <ion-col col-12 class="invoicecol" (click)="paymentdetail()">
-                <p class="invoicep1">Ref#A15332692847 <span float-right>RM11.03</span></p>
-                <p class="invoicep3">03 Aud 2018 <span float-right>Online Payment</span></p>
+           
+          <ion-row class="invoicerow" *ngFor="let pays of payments_list;" >
+              <ion-col col-12 class="invoicecol" (click)="paymentdetail(pays.id)">
+                <p class="invoicep1">Ref#{{pays.system_transaction_id}} <span float-right>{{this.currency}}{{pays.payment_amount}}</span></p>
+                <p class="invoicep3">{{pays.payment_date}} <span float-right>{{pays.payment_channel}}</span></p>
               </ion-col>
-              <ion-col col-12 class="invoicecol" (click)="paymentdetail()">
-                  <p class="invoicep1">Ref#A15332692847 <span float-right>RM11.03</span></p>
-                  <p class="invoicep3">03 Aud 2018 <span float-right>Online Payment</span></p>
-              </ion-col>
-              <ion-col col-12 class="invoicecol" (click)="paymentdetail()">
-                  <p class="invoicep1">Ref#A15332692847 <span float-right>RM11.03</span></p>
-                  <p class="invoicep3">03 Aud 2018 <span float-right>Online Payment</span></p>
-              </ion-col>
-              <ion-col col-12 class="invoicecol" (click)="paymentdetail()">
-                  <p class="invoicep1">Ref#A15332692847 <span float-right>RM11.03</span></p>
-                  <p class="invoicep3">03 Aud 2018 <span float-right>Online Payment</span></p>
-              </ion-col>
-              <ion-col col-12 class="invoicecol" (click)="paymentdetail()">
-                  <p class="invoicep1">Ref#A15332692847 <span float-right>RM11.03</span></p>
-                  <p class="invoicep3">03 Aud 2018 <span float-right>Online Payment</span></p>
-              </ion-col>
-              <ion-col col-12 class="invoicecol" (click)="paymentdetail()">
-                  <p class="invoicep1">Ref#A15332692847 <span float-right>RM11.03</span></p>
-                  <p class="invoicep3">03 Aud 2018 <span float-right>Online Payment</span></p>
-              </ion-col>
+           
           </ion-row>
+          <ion-infinite-scroll (ionInfinite)="doInfinite2($event)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+          <div *ngIf="noneresult2==true"> 
+        
+            <p style=" width: 100%; text-align: center; display: block; padding-top:10px;"><ion-icon name="md-warning" style="color:#339e45;font-size: 48px;"></ion-icon></p>
+        <p style="color: #000000; width: 100%; text-align: center; display: block; padding-top:5px; font-size:16px;font-weight:bold;">You have no payments</p>
+        </div>
       </ion-list>
   </div>
 

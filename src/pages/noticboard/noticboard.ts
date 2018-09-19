@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController,Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { NoticboarddetailPage } from '../noticboarddetail/noticboarddetail';
+import { LoginPage } from '../login/login';
 
 
 import { Http} from '@angular/http';
@@ -17,44 +18,112 @@ export class NoticboardPage {
   public notices_list:any;
   public url:any;
   public condo_name:any;
-  constructor(public navCtrl: NavController, public http: Http, public platform:Platform) 
+  public headers:any;
+  public noneresult:any;
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
+    this.noneresult='';
     this.condo_name=window.localStorage.getItem('condo_name');
     this.key=window.localStorage.getItem('token');
     this.condo_id=window.localStorage.getItem('condo_id');
     this.resident_id=window.localStorage.getItem('resident_id');
     this.url='http://staging.irisk.my/api/v3/';
     this.notices_list=[];
-    this.get_all_notices();
-    
+  
+    platform.ready().then(() => {  
+      this.get_all_notices();
+     
+    });
 
   }
  
-  get_all_notices(){
-    return new Promise(resolve=>{
-      this.http.get(this.url + 'notice_board/'+ this.resident_id+'/'+ this.condo_id+'/'+this.key).subscribe(data=>{
-       if(data.json().status=="success"){
-         var data1=data.json().data;
-       console.log('noticboard data', data1);
   
-for (var i of data.json().notices_list) {
-   this.notices_list.push(i);
-   var data2=i.condo_id + i.condo_name;
-      console.log( 'noticboard data', i.condo_id + i.condo_name);
-}
-
-       }else
-       resolve(false);
-},
-        err=>{
- 
-       console.log(err);
-       
- 
-       });
- 
-   });
-    }
+    get_all_notices(){
+      let loading = this.loadingCtrl.create({
+        content: 'Loading notices ...'
+      });
+      loading.present();
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      return new Promise(resolve=>{
+        this.http.get(this.url + 'notice_board/'+ this.resident_id+'/'+ this.condo_id+'/'+this.key,{headers: this.headers}).subscribe(data=>{
+          console.log(data.json());
+          if(data.json().errorCode==0)
+          {
+            console.log("SUCCESS");      
+            this.notices_list=data.json().notices_list;
+            this.noneresult = false;
+            loading.dismiss();
+          }else if(data.json().errorCode==1){
+            console.log("FAILED");    
+            this.noneresult = true;
+            loading.dismiss();
+            console.log("No Data Found");
+          }
+          else if(data.json().errorCode==2){
+            loading.dismiss();
+            this.show_errorkey_alert("Invalid key");
+            console.log("ERROR IN SERVER");
+            this.noneresult = true;
+          }
+         else
+         resolve(false);
+  },
+          err=>{
+   
+         //console.log(err);
+         loading.dismiss();
+         this.show_error_alert("ERROR IN SERVER");
+         console.log("ERROR IN SERVER");
+         this.noneresult = true;
+         });
+   
+     });
+      }
+      show_error_alert(des)
+      {
+        let alert = this.alertCtrl.create({
+          
+          //subTitle: "PURPOSE OF DEPOSIT",
+          message: des,
+        //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
+          buttons: [
+               {
+                 text: 'Close',
+                 handler: () => {
+  
+                this.navCtrl.setRoot(LoginPage);
+  
+                 }
+               }
+             ]
+         });
+                       
+         alert.present();
+      
+      }
+      show_errorkey_alert(des)
+      {
+        let alert = this.alertCtrl.create({
+          
+          //subTitle: "PURPOSE OF DEPOSIT",
+          message: des,
+        //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
+          buttons: [
+               {
+                 text: 'Close',
+                 handler: () => {
+                  window.localStorage.clear();
+                  this.app.getRootNav().setRoot(LoginPage);
+                 }
+               }
+             ]
+         });
+                       
+         alert.present();
+      
+      }
 gotopage(post_id){
 this.navCtrl.push(NoticboarddetailPage,{
   data: post_id

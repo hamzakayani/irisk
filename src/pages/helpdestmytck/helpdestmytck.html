@@ -5,7 +5,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content style="background:#eaeaea;font-family: 'Montserrat', sans-serif;" >
-    <ion-select placeholder="All " [(ngModel)]="mystatus" interface="popover" >
+    <ion-select placeholder="All " [(ngModel)]="mystatus" interface="popover" (ionChange)="get_all_tickets()" >
         <ion-option value="-1">Select </ion-option>
         <ion-option selected="true" value="0">All Tickets</ion-option>
         <ion-option value="1">Resolved             </ion-option>
@@ -16,19 +16,26 @@
   <ion-row  *ngFor="let tick of tickets_list;"  (click)="gotohelpdetail(tick.id)">
       <ion-col>
           <p class="info">
-              {{tick.ticket_number}} <span>{{tick.reported_date}}</span>
+              {{tick.title}} <span>{{tick.reported_date}}</span>
           </p>
           <p class="para2">
               Category: {{tick.category}} <br>
               Ticket No: {{tick.ticket_number}}
           </p>
-          <button ion-button class="noti_btn">{{tick.priority}}</button>
+          <button ion-button *ngIf="tick.status==3" style="background-color:red" class="noti_btn">Pending</button>
+          <button ion-button *ngIf="tick.status==1" style="background-color:#108223" class="noti_btn">Resolved</button>
+          <button ion-button *ngIf="tick.status==2" style="background-color:#488aff" class="noti_btn">Work in progress</button>
       </ion-col>
   </ion-row>
-  <ion-infinite-scroll (ionInfinite)="get_all_tickets($event)" >
-    <ion-infinite-scroll-content  *ngIf="pagingEnabled"></ion-infinite-scroll-content >
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  <div *ngIf="!pagingEnabled"> No more data is available.</div>
+  <div *ngIf="noneresult==true"> 
+        
+    <p style=" width: 100%; text-align: center; display: block; padding-top:10px;"><ion-icon name="md-warning" style="color:#339e45;font-size: 48px;"></ion-icon></p>
+<p style="color: #000000; width: 100%; text-align: center; display: block; padding-top:5px; font-size:16px;font-weight:bold;">You have no data</p>
+</div>
   
   
   <!-- <ion-tabs>

@@ -1,6 +1,7 @@
+<!-- {{this.condo_name}}-->
 <ion-header>
   <ion-navbar color="dark">
-      <ion-title color="white" text-center>{{this.condo_name}}</ion-title>
+      <ion-title color="white" text-center>Noticeboard</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content style="background:#eaeaea" >
@@ -34,7 +35,14 @@
           </ion-row>
          
       </ion-grid>
+ 
+      <div *ngIf="noneresult==true"> 
+        
+        <p style=" width: 100%; text-align: center; display: block; padding-top:10px;"><ion-icon name="md-warning" style="color:#339e45;font-size: 48px;"></ion-icon></p>
+    <p style="color: #000000; width: 100%; text-align: center; display: block; padding-top:5px; font-size:16px;font-weight:bold;">You have no data</p>
+    </div>
   </div>
+  
 </ion-content>
 <ion-footer no-padding style="height: 76px;background:#FFFFFF;">
   <div class="fimage">
