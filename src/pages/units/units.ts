@@ -12,7 +12,7 @@ import { Http} from '@angular/http';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-units',
   templateUrl: 'units.html',

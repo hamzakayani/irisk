@@ -127,7 +127,10 @@ export class EpaytabPage {
              {
                text: 'Close',
                handler: () => {
+<<<<<<< HEAD
               this.navCtrl.setRoot(LoginPage);
+=======
+>>>>>>> d91d44579639104297a547a3bd77dfd5567755a1
                }
              }
            ]

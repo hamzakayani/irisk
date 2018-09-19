@@ -11,7 +11,7 @@ import {UnitsPage} from '../units/units';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-community',
   templateUrl: 'community.html',
