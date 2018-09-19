@@ -50,8 +50,13 @@
                 <ion-row class="invoicerow"  *ngFor="let pay of this.invoice_deail.invoice_payment_history;"  >
                     <ion-col col-12 class="invoicecol" (click)="invoicedetail(inv.id)">
                       <p class="invoicep1">ID#{{pay.system_transaction_id}} <span  float-right >{{this.currency}}{{pay.amount_paid}}</span></p>
+<<<<<<< HEAD
                   <p class="invoicep2"><ion-icon name="md-card" ></ion-icon> {{pay.payment_channel_name}}</p>
                     
+=======
+                      <p class="invoicep2"><ion-icon name="md-card" ></ion-icon> {{pay.payment_channel_name}}</p>
+                      
+>>>>>>> 570b74dc538217d56e94b3ed1952886a2c301741
                     </ion-col>
                
                 </ion-row>
