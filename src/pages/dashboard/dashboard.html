@@ -11,10 +11,10 @@
 </ion-header>
 <ion-content style="background:#C0C0C0;font-family: 'Montserrat', sans-serif;">
     <div class="slidr" >
-        <ion-slides loop="true">
+        <ion-slides  loop="true" autoplay="1" speed="3000">
             <!-- <ion-slide *ngFor="let item of adds_list;"  > -->
             <ion-slide *ngFor="let item of adds_list;" >
-                <img src="{{item.image_url}}"style="width:100%">
+                <img src="{{item.image}}" style="width:100%"> 
                 <!-- <img src="{{item.image}}"style="width:100%">                 -->
             </ion-slide>
         </ion-slides>

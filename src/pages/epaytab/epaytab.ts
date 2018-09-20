@@ -130,16 +130,10 @@ export class EpaytabPage {
              {
                text: 'Close',
                handler: () => {
-<<<<<<< HEAD
 
               this.navCtrl.setRoot(LoginPage);
 
-=======
-<<<<<<< HEAD
-              this.navCtrl.setRoot(LoginPage);
-=======
->>>>>>> d91d44579639104297a547a3bd77dfd5567755a1
->>>>>>> 570b74dc538217d56e94b3ed1952886a2c301741
+
                }
              }
            ]
@@ -178,34 +172,17 @@ export class EpaytabPage {
       var headers = new Headers();
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
       return new Promise(resolve=>{
-<<<<<<< HEAD
         this.http.get(this.url + 'get_my_payments_list/'+ this.resident_id+'/'+ this.condo_id+'/'+this.unit_id+'/'+this.key+'/'+this.page_number2,{headers: this.headers}).subscribe(data=>{
-=======
-        this.http.get(this.url + 'get_epay_list/'+ this.resident_id+'/'+ this.condo_id+'/'+this.unit_id+'/'+this.key,{headers: this.headers}).subscribe(data=>{
->>>>>>> 570b74dc538217d56e94b3ed1952886a2c301741
           console.log(data.json());
           if(data.json().errorCode==0)
           {
-         
             console.log(data.json());
-<<<<<<< HEAD
-            this.payments_list=data.json().data;
-      
             this.noneresult2 = false;
-=======
-            this.payments_list=data.json().data.payments_list;
-      
-            this.noneresult = false;
->>>>>>> 570b74dc538217d56e94b3ed1952886a2c301741
+            this.payments_list=data.json().data;
             loading.dismiss();
-          }else if(data.json().errorCode==1){
-            
+          }else if(data.json().errorCode==1){   
             console.log(data.json().data);
-<<<<<<< HEAD
             this.noneresult2 = true;
-=======
-            this.noneresult = true;
->>>>>>> 570b74dc538217d56e94b3ed1952886a2c301741
             loading.dismiss();
             console.log("No Data Found");
           }
@@ -213,11 +190,8 @@ export class EpaytabPage {
             loading.dismiss();
             this.show_errorkey_alert("Invalid key");
             console.log("ERROR IN SERVER");
-<<<<<<< HEAD
             this.noneresult2 = true;
-=======
-            this.noneresult = true;
->>>>>>> 570b74dc538217d56e94b3ed1952886a2c301741
+
           }
          else
          resolve(false);
@@ -228,12 +202,11 @@ export class EpaytabPage {
          loading.dismiss();
          this.show_error_alert("ERROR IN SERVER");
          console.log("ERROR IN SERVER");
-         this.noneresult = true;
+         this.noneresult2 = true;
          });
    
      });
       }
-<<<<<<< HEAD
       doInfinite2(infiniteScroll:any) {
         this.page_number2++;
       var headers = new Headers();
@@ -242,18 +215,14 @@ export class EpaytabPage {
         this.http.get(this.url + 'get_my_payments_list/'+ this.resident_id+'/'+ this.condo_id+'/'+this.unit_id+'/'+this.key+'/'+this.page_number2,{headers: this.headers}).subscribe(data=>{
          
           if(data.json().errorCode==0)
-          {
-        
+          {      
             this.payments_list = (this.payments_list).concat(data.json().data);
             infiniteScroll.complete();
                   }
-                  else
-                     
+                  else          
               infiniteScroll.enable(false);
               },onerror=>{ 
-
-          infiniteScroll.complete();
-       
+          infiniteScroll.complete(); 
         });
           });
   }
@@ -266,16 +235,6 @@ export class EpaytabPage {
       data:post_id
     });
   }
-=======
- 
-
-
-
-    //========================================================================
-  paymentdetail(){
-    this.navCtrl.push(EpaypaymentdetailPage);
-  }
->>>>>>> 570b74dc538217d56e94b3ed1952886a2c301741
   invoicedetail(post_id){
     this.navCtrl.push(EpayinvoicedetailPage,{
       data:post_id

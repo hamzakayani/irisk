@@ -39,13 +39,8 @@
       <ion-list *ngSwitchCase="'payments'">
            
           <ion-row class="invoicerow" *ngFor="let pays of payments_list;" >
-<<<<<<< HEAD
               <ion-col col-12 class="invoicecol" (click)="paymentdetail(pays.id)">
                 <p class="invoicep1">Ref#{{pays.system_transaction_id}} <span float-right>{{this.currency}}{{pays.payment_amount}}</span></p>
-=======
-              <ion-col col-12 class="invoicecol" (click)="paymentdetail()">
-                <p class="invoicep1">Ref#{{pays.system_transaction_id}} <span float-right>{{this.currency}}{{pays.amount_paid}}</span></p>
->>>>>>> 570b74dc538217d56e94b3ed1952886a2c301741
                 <p class="invoicep3">{{pays.payment_date}} <span float-right>{{pays.payment_channel}}</span></p>
               </ion-col>
            
