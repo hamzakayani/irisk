@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController,Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController } from 'ionic-angular';
 import { DepositsPage } from '../deposits/deposits';
 import { RestProvider } from '../../providers/rest/rest';
 import { HelpdestmytckPage } from '../helpdestmytck/helpdestmytck';
 import { NoticboardPage } from '../noticboard/noticboard';
 import { CommunitywallpostPage } from '../communitywallpost/communitywallpost';
-
+import { LoginPage } from '../login/login';
 
 import { Http} from '@angular/http';
 
@@ -17,103 +17,112 @@ import { Http} from '@angular/http';
 export class CommunitywallPage {
   public condo_id:any;
   public key:any;
-  public modules_list:any;
-  public adds_list:any;
+  public resident_id:any;
+  public unit_id:any;
+  public post_list:any;
   public url:any;
-  constructor(public navCtrl: NavController, public http: Http, public platform:Platform) 
+  public noneresult: any;
+  public headers:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
 
     this.key=window.localStorage.getItem('token');
     this.condo_id=window.localStorage.getItem('condo_id');
-    this.modules_list=[];
-    this.adds_list=[];
+    this.resident_id=window.localStorage.getItem('resident_id');
+    this.unit_id=window.localStorage.getItem('unit_id');
+    this.post_list=[];
     this.url='http://staging.irisk.my/api/v3/';
-    this.getModules();
-    this.getadimages(); 
-    this.getCommunitySettings();
+    platform.ready().then(() => {
+    this.getCommunityposts();  
+    });
 
   }
-  getModules(){
-	
+  getCommunityposts(){
+    let loading = this.loadingCtrl.create({
+      content: 'Loading data ...'
+    });
+    loading.present();
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
     return new Promise(resolve=>{
-       this.http.get(this.url + 'get_condo_modules/'+ this.condo_id +'/'+this.key).subscribe(data=>{
-        if(data.json().status=="success"){
-          //console.log(data.json().data);
-         // modules_list=data.json().data;   
-         //data.json().units_list;
-         //console.log(data.json().units_list);
-for (var i of data.json().data) {
-    this.modules_list.push(i);
-        
+      this.http.get(this.url + 'community_posts_list/'+ this.resident_id +'/'+ this.condo_id +'/'+ this.unit_id+'/'+ this.key,{headers: this.headers}).subscribe(data=>{
+        console.log(data.json());
+        if(data.json().errorCode==0)
+        {
+          console.log(data.json());
+          this.post_list=data.json().data;
+          this.noneresult = false;
+          loading.dismiss();
+        }else if(data.json().errorCode==1){
+          console.log("FAILED");
+          this.noneresult = true;
+          loading.dismiss();
+          console.log("No Data Found");
+        }
+        else if(data.json().errorCode==2){
+          loading.dismiss();
+          this.show_errorkey_alert("Invalid key");
+          console.log("ERROR IN SERVER");
+          this.noneresult = true;
+        }
+       else
+       resolve(false);
+},
+        err=>{
+ 
+       //console.log(err);
+       loading.dismiss();
+       this.show_error_alert("ERROR IN SERVER");
+       console.log("ERROR IN SERVER");
+       this.noneresult = true;
+       });
+ 
+   });
+    }
+show_error_alert(des)
+{
+  let alert = this.alertCtrl.create({
+    
+    //subTitle: "PURPOSE OF DEPOSIT",
+    message: des,
+  //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
+    buttons: [
+         {
+           text: 'Close',
+           handler: () => {
+
+          this.navCtrl.setRoot(LoginPage);
+
+
+           }
+         }
+       ]
+   });
+                 
+   alert.present();
 
 }
- console.log(this.modules_list);
-        }else
-        resolve(false);
-},
-         err=>{
-  
-        console.log(err);
-        
-  
-        });
-  
-    });
-  }
-  getCommunitySettings(){
-	
-    return new Promise(resolve=>{
-       this.http.get(this.url + 'get_community_settings/'+ this.condo_id +'/'+this.key).subscribe(data=>{
-        if(data.json().status=="success"){
-          console.log(data.json().data['currency']);
-          window.localStorage.setItem('merchant_id', data.json().data['merchant_id']);
-          window.localStorage.setItem('verify_key', data.json().data['verify_key']);
-          window.localStorage.setItem('invoice_notes', data.json().data['invoice_notes']);
-          window.localStorage.setItem('currency', data.json().data['currency']);
-          window.localStorage.setItem('country',data.json().data['country']);
-          window.localStorage.setItem('community_bank_info', data.json().data['community_bank_info']);
-          window.localStorage.setItem('invoice_notes', data.json().data['invoice_notes']);
-          window.localStorage.setItem('address_format', data.json().data['address_format']);
+show_errorkey_alert(des)
+{
+  let alert = this.alertCtrl.create({
     
+    //subTitle: "PURPOSE OF DEPOSIT",
+    message: des,
+  //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
+    buttons: [
+         {
+           text: 'Close',
+           handler: () => {
+            window.localStorage.clear();
+            this.app.getRootNav().setRoot(LoginPage);
+           }
+         }
+       ]
+   });
+                 
+   alert.present();
 
-        }else
-        resolve(false);
-},
-         err=>{
-  
-        console.log(err);
-        
-  
-        });
-  
-    });
-  }
-  getadimages(){
-	
-    return new Promise(resolve=>{
-       this.http.get(this.url + 'get_condo_images/'+ this.condo_id +'/2').subscribe(data=>{
-        if(data.json().status=="success"){
-          //console.log(data.json().data);
-         // modules_list=data.json().data;   
-         //data.json().units_list;
-         //console.log(data.json().units_list);
-/*for (var i of data.json().data) {
-    this.adds_list.push(i);
-        
-
-}*/
-
- this.adds_list=data.json().images_list;
- console.log(this.adds_list);
-        }else
-        resolve(false);
-},
-         err=>{
-        console.log(err);
-        });
-  
-    });
-  }
+}
 gotoDeposits()
 {
 this.navCtrl.push(DepositsPage);

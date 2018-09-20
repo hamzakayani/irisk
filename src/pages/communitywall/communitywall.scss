@@ -1,8 +1,13 @@
 page-communitywall {
-    .slidr{
-        width: 100%;
-        height: 32%;
-        background:url('assets/imgs/2.png');
+    .swiper-container{
+        overflow:none !important;
+        width: 496px;
+    }
+    .swiper-slide img {
+        width: 80px !important;
+        /* max-width: 100%; */
+        height: auto !important;
+        max-height: 100% !important;
     }
     .box{
         background-color:white;

@@ -4,8 +4,8 @@
     </ion-navbar>
     <div class="slidr" >
         <ion-slides loop="true" autoplay="1" speed="3000">
-            <ion-slide *ngFor="let item of adds_list;" >
-                <img src="{{item.image_url}}"style="width:100%">                
+            <ion-slide *ngFor="let item of slideData;" >
+                <img src="{{item.image}}"style="width:100%">                
             </ion-slide>
         </ion-slides>
     </div>
