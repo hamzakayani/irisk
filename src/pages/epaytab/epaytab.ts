@@ -130,7 +130,14 @@ export class EpaytabPage {
              {
                text: 'Close',
                handler: () => {
+<<<<<<< HEAD
               this.navCtrl.setRoot(LoginPage);
+=======
+
+              this.navCtrl.setRoot(LoginPage);
+
+
+>>>>>>> 0ad5dc4cb3e7e91210f2278472503c7e4e253e63
                }
              }
            ]
@@ -160,7 +167,7 @@ export class EpaytabPage {
        alert.present();
     
     }
-    //====================================Get Payments Details=================
+   
     get_payments_detail(){
       let loading = this.loadingCtrl.create({
         content: 'Loading payments ...'
@@ -169,20 +176,31 @@ export class EpaytabPage {
       var headers = new Headers();
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
       return new Promise(resolve=>{
+<<<<<<< HEAD
         this.http.get(this.url + 'get_epay_list/'+ this.resident_id+'/'+ this.condo_id+'/'+this.unit_id+'/'+this.key,{headers: this.headers}).subscribe(data=>{
+=======
+        this.http.get(this.url + 'get_my_payments_list/'+ this.resident_id+'/'+ this.condo_id+'/'+this.unit_id+'/'+this.key+'/'+this.page_number2,{headers: this.headers}).subscribe(data=>{
+>>>>>>> 0ad5dc4cb3e7e91210f2278472503c7e4e253e63
           console.log(data.json());
           if(data.json().errorCode==0)
           {
-         
             console.log(data.json());
+<<<<<<< HEAD
             this.payments_list=data.json().data.payments_list;
       
             this.noneresult = false;
+=======
+            this.noneresult2 = false;
+            this.payments_list=data.json().data;
+>>>>>>> 0ad5dc4cb3e7e91210f2278472503c7e4e253e63
             loading.dismiss();
-          }else if(data.json().errorCode==1){
-            
+          }else if(data.json().errorCode==1){   
             console.log(data.json().data);
+<<<<<<< HEAD
             this.noneresult = true;
+=======
+            this.noneresult2 = true;
+>>>>>>> 0ad5dc4cb3e7e91210f2278472503c7e4e253e63
             loading.dismiss();
             console.log("No Data Found");
           }
@@ -190,7 +208,12 @@ export class EpaytabPage {
             loading.dismiss();
             this.show_errorkey_alert("Invalid key");
             console.log("ERROR IN SERVER");
+<<<<<<< HEAD
             this.noneresult = true;
+=======
+            this.noneresult2 = true;
+
+>>>>>>> 0ad5dc4cb3e7e91210f2278472503c7e4e253e63
           }
          else
          resolve(false);
@@ -201,13 +224,42 @@ export class EpaytabPage {
          loading.dismiss();
          this.show_error_alert("ERROR IN SERVER");
          console.log("ERROR IN SERVER");
-         this.noneresult = true;
+         this.noneresult2 = true;
          });
    
      });
       }
+<<<<<<< HEAD
   paymentdetail(){
     this.navCtrl.push(EpaypaymentdetailPage);
+=======
+      doInfinite2(infiniteScroll:any) {
+        this.page_number2++;
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      return new Promise(resolve=>{
+        this.http.get(this.url + 'get_my_payments_list/'+ this.resident_id+'/'+ this.condo_id+'/'+this.unit_id+'/'+this.key+'/'+this.page_number2,{headers: this.headers}).subscribe(data=>{
+         
+          if(data.json().errorCode==0)
+          {      
+            this.payments_list = (this.payments_list).concat(data.json().data);
+            infiniteScroll.complete();
+                  }
+                  else          
+              infiniteScroll.enable(false);
+              },onerror=>{ 
+          infiniteScroll.complete(); 
+        });
+          });
+  }
+
+
+
+  paymentdetail(post_id){
+    this.navCtrl.push(EpaypaymentdetailPage,{
+      data:post_id
+    });
+>>>>>>> 0ad5dc4cb3e7e91210f2278472503c7e4e253e63
   }
   invoicedetail(post_id){
     this.navCtrl.push(EpayinvoicedetailPage,{
