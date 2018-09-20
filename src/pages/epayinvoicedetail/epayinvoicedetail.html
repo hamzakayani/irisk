@@ -39,7 +39,7 @@
             <p style="width: 30%;float: left;text-align: right;">{{this.currency}}{{inv.amount}}</p>
         </div>
 
-        <div float-left style="width: 100%;background-color: grey;color:black">
+        <div float-left style="width: 100%;background-color: grey;color:black;padding-right: 10px;">
             <p text-right style="padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid grey;">Total &nbsp;&nbsp;{{this.currency}}{{this.invoice_deail.items_list_total_amount}}</p>
             <p *ngIf="this.invoice_deail.items_list_total_amount!=this.invoice_deail.net_total_amount" text-right style="padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid grey;">Discount &nbsp;&nbsp;{{this.invoice_deail.discount}}</p>
             <p  *ngIf="this.invoice_deail.items_list_total_amount!=this.invoice_deail.net_total_amount" text-right style="padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid grey;">Net Total &nbsp;&nbsp;{{this.currency}}{{this.invoice_deail.net_total_amount}}</p>
@@ -50,13 +50,8 @@
                 <ion-row class="invoicerow"  *ngFor="let pay of this.invoice_deail.invoice_payment_history;"  >
                     <ion-col col-12 class="invoicecol" (click)="invoicedetail(inv.id)">
                       <p class="invoicep1">ID#{{pay.system_transaction_id}} <span  float-right >{{this.currency}}{{pay.amount_paid}}</span></p>
-<<<<<<< HEAD
-                  <p class="invoicep2"><ion-icon name="md-card" ></ion-icon> {{pay.payment_channel_name}}</p>
-                    
-=======
                       <p class="invoicep2"><ion-icon name="md-card" ></ion-icon> {{pay.payment_channel_name}}</p>
                       
->>>>>>> 570b74dc538217d56e94b3ed1952886a2c301741
                     </ion-col>
                
                 </ion-row>
