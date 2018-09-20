@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BookingaddPage } from '../bookingadd/bookingadd';
 
 /**
  * Generated class for the BookingPage page.
@@ -20,6 +21,9 @@ export class BookingPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BookingPage');
+  }
+  gotobookingadd(){
+    this.navCtrl.push(BookingaddPage);
   }
 
 }

@@ -19,28 +19,29 @@ page-epayinvoicedetail {
         }
         .Statusinvoice {
             background: white;
-            padding: 15px 20px;
+            padding: 5px 5px;
             margin-top: 10px;
             float: left;
             width: 100%;
         }
         .Statusinvoice p{
-            font-size: 14px;
+            font-size: 13px;
             color: grey;
             font-style: italic;
             margin: 0;
-            float: left;
-            padding-top: 10px;
-            padding-right: 5px;
         }
         .Statusinvoice button{
-           
-            padding: 10px;
-            border-radius: 5px;
+            padding: 10px 15px;
+            border-radius: 10px;
             height: auto;
+            font-size: 12px;
+            box-shadow: none;
         }
         .invoicerow{
             padding: 10px 5px;
+        }
+        .user_info p.para2 {
+            color: grey;
         }
         .invoicep1{
             margin: 0;

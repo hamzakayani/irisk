@@ -23,7 +23,7 @@
       <div  [innerHtml]="nt.description"></div>
       <ion-row>
         <ion-col col-4 class="padr padl0"  *ngFor="let detal of notice_images;" >
-          <img src="{{detal.image_url}}" alt="" style="height: 75px;">
+          <img src="{{detal.image_url}}" alt="" style="width: 100%;object-fit: cover;height: 100px;" imageViewer>
         </ion-col>
      
       </ion-row>
