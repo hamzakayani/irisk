@@ -23,6 +23,7 @@ export class CommunitywallPage {
   public url:any;
   public noneresult: any;
   public headers:any;
+  public comment_name:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
 
@@ -78,6 +79,13 @@ export class CommunitywallPage {
        });
  
    });
+    }
+    post_comment(post_id){
+      this.comment_name=this.comment_name;
+console.log(post_id);
+
+console.log(this.comment_name);
+
     }
 show_error_alert(des)
 {

@@ -2,12 +2,16 @@ page-communitywall {
     .swiper-container{
         overflow:none !important;
         width: 496px;
+       
+        float: left;
     }
     .swiper-slide img {
         width: 80px !important;
         /* max-width: 100%; */
-        height: auto !important;
+        height: 80px !important;
         max-height: 100% !important;
+        float: left;
+       
     }
     .box{
         background-color:white;
@@ -48,7 +52,7 @@ page-communitywall {
     .col_7{
         float: left;
         background: white;
-        width: 80%;
+        width: 90%;
         height: 40px;
     }
     .col_7 ion-input{

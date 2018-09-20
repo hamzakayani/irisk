@@ -7,16 +7,20 @@
 <ion-content style="background:#d8d8d8;font-family: 'Montserrat', sans-serif;">
   
   <ion-row style="background: white;padding: 10px 20px;margin-bottom: 10px;"  *ngFor="let post of post_list;">
+   
     <ion-col col-12 class="community_top">
       <img src="{{post.image_url}}" alt="" style="border-radius: 100%;height: 68px;width: 68px;">
       <p class="para1">{{post.posted_by}} <br><span>{{post.post_time}}</span></p>
-      <p class="para2">{{post.post_detail}}</p>
+     
     </ion-col>
+    <ion-col col-12 style="margin-top: -9px" class="community_top">
+    <p class="para2">{{post.post_detail}}</p>
+</ion-col>
     <ion-col col-12 >
             
                     <ion-slides style="width:auto">
                         <ion-slide >
-                                <img   imageViewer  src="{{pi.post_image}}" style="width: 158px;display:inline-block" *ngFor="let pi of post.post_images_list;">
+                                <img   imageViewer  src="{{pi.post_image}}" style="width: 158px;height: 80px;display:inline-block" *ngFor="let pi of post.post_images_list;">
                         </ion-slide>
                     </ion-slides>
                 
@@ -24,20 +28,25 @@
     </ion-col>
     
     <div class="para3">
-        <p><img src="../../assets/imgs/comment.png" alt=""> <span>10 Comments</span></p>
+        <p><img src="../../assets/imgs/comment.png" alt=""> <span>{{post.post_comments_list.length}} Comments</span></p>
+    </div>
+    <div class="notireplyy" *ngFor="let com of post.post_comments_list;">
+      <div class="sect1">
+        <img src="{{com.commented_by_imge}}" style="width:54px;height:48px" alt="">
+        <p>{{com.commented_by}} <span>{{com.insert_date}}</span> <br>{{com.comment}}</p>
+      </div>
+
     </div>
     <div class="notireplyy">
-      <div class="sect1">
-        <img src="../../assets/imgs/dani.png" alt="">
-        <p>Dani Hussain <span>16 hrs ago</span> <br>Yes, I want to join nice sharing</p>
-      </div>
-      <div class="col_1"><img src="../../assets/imgs/reply1.png" alt=""></div>
-      <div class="col_7" >
-          <ion-input placeholder="Comment Here......." clearInput></ion-input>
-      </div>
-      <div class="col_3"><button ion-button><img src="../../assets/imgs/replyblack.png" alt=""></button></div>
+   
+    <div class="col_7" >
+        <ion-input [ngModel]="comment_name"  placeholder="Comment Here......." clearInput></ion-input>
+ 
     </div>
-  </ion-row>
+    <div class="col_3"><button ion-button (click)="post_comment(post.post_id)" ><img src="../../assets/imgs/replyblack.png" alt=""></button></div>
+
+</div>
+</ion-row>
  
 </ion-content>
 <ion-footer no-padding style="height: 76px;background:#FFFFFF;">
