@@ -93,7 +93,6 @@ showdepositalert(des)
    });
                  
    alert.present();
-
 }
     getdepList(){
    var headers = new Headers();
@@ -112,7 +111,6 @@ showdepositalert(des)
 console.log(onerror["data"])
   resolve('http_error')});
 });
-
     }
     getadimages(){
       let loading = this.loadingCtrl.create({
@@ -156,12 +154,10 @@ console.log(onerror["data"])
    
      });
       }
-  
     gotoadd_deposit(){
       this.navCtrl.push(AdddepositsPage);
 
     }
-    
     depositedetail(post_id){
       this.navCtrl.push(DepositedetailPage,{
         data:post_id

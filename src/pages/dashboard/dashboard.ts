@@ -16,7 +16,6 @@ import { UsefulinfotabPage } from '../usefulinfotab/usefulinfotab';
 import { VisitortabPage } from '../visitortab/visitortab';
 import { ServicesPage } from '../services/services';
 import { PromoPage } from '../promo/promo';
-import { DepositetabPage } from '../depositetab/depositetab';
 import { LoginPage } from '../login/login';
 
 
@@ -28,7 +27,7 @@ export class DashboardPage {
   public condo_id:any;
   public key:any;
   public modules_list:any;
-  public adds_list:any;
+  public adds_list:any='';
   public url:any;
   public condo_name:any;
   public noneresult: any;
@@ -228,8 +227,6 @@ export class DashboardPage {
     
     }
  
- 
- 
   gotoepay(){
     this.navCtrl.push(EpaytabPage);
   }
@@ -267,5 +264,4 @@ export class DashboardPage {
   promo(){
     this.navCtrl.push(PromoPage);
   }
-  slideData = [{ image: "../../assets/imgs/2.jpg" },{ image: "../../assets/imgs/1.jpg" }]
 }
