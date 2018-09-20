@@ -53,7 +53,7 @@ export class DashboardPage {
   }
   getModules(){
     let loading = this.loadingCtrl.create({
-      content: 'Loading modules ...'
+      content: 'Loading data ...'
     });
     loading.present();
     var headers = new Headers();
@@ -95,7 +95,7 @@ export class DashboardPage {
     }
     getCommunitySettings(){
       let loading = this.loadingCtrl.create({
-        content: 'Loading settings ...'
+        content: 'Loading data ...'
       });
       loading.present();
       var headers = new Headers();
@@ -143,16 +143,17 @@ export class DashboardPage {
       }
       getadimages(){
         let loading = this.loadingCtrl.create({
-          content: 'Loading images ...'
+          content: 'Loading data ...'
         });
         loading.present();
         var headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return new Promise(resolve=>{
-          this.http.get(this.url + 'get_condo_images/'+ this.condo_id +'/5',{headers: this.headers}).subscribe(data=>{
+          this.http.get(this.url + 'get_condo_images/'+ this.condo_id +'/2',{headers: this.headers}).subscribe(data=>{
             console.log(data.json());
             if(data.json().errorCode==0)
             {
+              console.log(data.json().images_list);
               this.adds_list=data.json().images_list;
               this.noneresult = false;
               loading.dismiss();
@@ -266,5 +267,5 @@ export class DashboardPage {
   promo(){
     this.navCtrl.push(PromoPage);
   }
-  
+  slideData = [{ image: "../../assets/imgs/2.jpg" },{ image: "../../assets/imgs/1.jpg" }]
 }

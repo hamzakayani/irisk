@@ -163,7 +163,7 @@ export class EpaytabPage {
        alert.present();
     
     }
-    //====================================Get Payments Details=================
+   
     get_payments_detail(){
       let loading = this.loadingCtrl.create({
         content: 'Loading payments ...'
@@ -229,7 +229,6 @@ export class EpaytabPage {
 
 
 
-    //========================================================================
   paymentdetail(post_id){
     this.navCtrl.push(EpaypaymentdetailPage,{
       data:post_id

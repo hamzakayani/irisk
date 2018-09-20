@@ -22,6 +22,7 @@ export class DepositsPage {
   public unit_id:any;
   public resident_id:any;
   public deposits_list:any;
+  public adds_list:any;
   public currency:any;
   public url:any;
   public noneresult: any;
@@ -39,10 +40,13 @@ export class DepositsPage {
     this.unit_id=window.localStorage.getItem('unit_id');
     this.condo_id=window.localStorage.getItem('condo_id');
     this.deposits_list=[];
+    this.adds_list=[];
     this.noneresult='';
     platform.ready().then(() => {  
+      this.getadimages();
       this.get_all_deposits();
-      console.log("checking"+this.noneresult);
+      
+      
     });
    
   }
@@ -110,7 +114,48 @@ console.log(onerror["data"])
 });
 
     }
-
+    getadimages(){
+      let loading = this.loadingCtrl.create({
+        content: 'Loading data ...'
+      });
+      loading.present();
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      return new Promise(resolve=>{
+        this.http.get(this.url + 'get_condo_images/'+ this.condo_id +'/2',{headers: this.headers}).subscribe(data=>{
+          console.log(data.json());
+          if(data.json().errorCode==0)
+          {
+           
+            this.adds_list=data.json().images_list;
+            this.noneresult = false;
+            loading.dismiss();
+          }else if(data.json().errorCode==1){
+            console.log("FAILED");
+            this.noneresult = true;
+            loading.dismiss();
+            console.log("No Data Found");
+          }
+          else if(data.json().errorCode==2){
+            loading.dismiss();
+            this.show_errorkey_alert("Invalid key");
+            console.log("ERROR IN SERVER");
+            this.noneresult = true;
+          }
+         else
+         resolve(false);
+  },
+          err=>{
+   
+         //console.log(err);
+         loading.dismiss();
+         this.show_error_alert("ERROR IN SERVER");
+         console.log("ERROR IN SERVER");
+         this.noneresult = true;
+         });
+   
+     });
+      }
   
     gotoadd_deposit(){
       this.navCtrl.push(AdddepositsPage);
