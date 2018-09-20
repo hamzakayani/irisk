@@ -58,8 +58,8 @@ import { VisitoraddPage } from '../pages/visitoradd/visitoradd';
 })
 export class MyApp {
   
-  // rootPage:any = LoginPage;
-  rootPage:any = UsefulinfotabPage;  
+  rootPage:any = LoginPage;
+  // rootPage:any = UsefulinfotabPage;  
  public url:any;
  public headers:any;
  public resident_id:any;
