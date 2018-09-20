@@ -5,21 +5,24 @@
   </ion-navbar>
 </ion-header>
 <ion-content style="background:#d8d8d8;font-family: 'Montserrat', sans-serif;">
-  <ion-row style="background: white;padding: 10px 20px;margin-bottom: 10px;">
+  
+  <ion-row style="background: white;padding: 10px 20px;margin-bottom: 10px;"  *ngFor="let post of post_list;">
     <ion-col col-12 class="community_top">
-      <img src="../../assets/imgs/defaultpicc.png" alt="">
-      <p class="para1">Marcuss Lim <br><span>16 hrs</span></p>
-      <p class="para2">Who wants to be healthy to join me for swimming? We have an active group every Sat 9am-11am. see you there!</p>
+      <img src="{{post.image_url}}" alt="" style="border-radius: 100%;height: 68px;width: 68px;">
+      <p class="para1">{{post.posted_by}} <br><span>{{post.post_time}}</span></p>
+      <p class="para2">{{post.post_detail}}</p>
     </ion-col>
-    <ion-col col-4>
-        <img src="../../assets/imgs/imgg.png" alt="">
+    <ion-col col-12 >
+            
+                    <ion-slides style="width:auto">
+                        <ion-slide >
+                                <img    src="{{pi.post_image}}" style="width: 158px;display:inline-block" *ngFor="let pi of post.post_images_list;">
+                        </ion-slide>
+                    </ion-slides>
+                
+
     </ion-col>
-    <ion-col col-4>
-        <img src="../../assets/imgs/imgg.png" alt="">
-    </ion-col>
-    <ion-col col-4>
-        <img src="../../assets/imgs/imgg.png" alt="">
-    </ion-col>
+    
     <div class="para3">
         <p><img src="../../assets/imgs/comment.png" alt=""> <span>10 Comments</span></p>
     </div>
@@ -35,66 +38,7 @@
       <div class="col_3"><button ion-button><img src="../../assets/imgs/replyblack.png" alt=""></button></div>
     </div>
   </ion-row>
-  <ion-row style="background: white;padding: 10px 20px;margin-bottom: 10px;">
-    <ion-col col-12 class="community_top">
-      <img src="../../assets/imgs/defaultpicc.png" alt="">
-      <p class="para1">Marcuss Lim <br><span>16 hrs</span></p>
-      <p class="para2">Who wants to be healthy to join me for swimming? We have an active group every Sat 9am-11am. see you there!</p>
-    </ion-col>
-    <ion-col col-4>
-        <img src="../../assets/imgs/imgg.png" alt="">
-    </ion-col>
-    <ion-col col-4>
-        <img src="../../assets/imgs/imgg.png" alt="">
-    </ion-col>
-    <ion-col col-4>
-        <img src="../../assets/imgs/imgg.png" alt="">
-    </ion-col>
-    <div class="para3">
-        <p><img src="../../assets/imgs/comment.png" alt=""> <span>10 Comments</span></p>
-    </div>
-    <div class="notireplyy">
-      <div class="sect1">
-        <img src="../../assets/imgs/dani.png" alt="">
-        <p>Dani Hussain <span>16 hrs ago</span> <br>Yes, I want to join nice sharing</p>
-      </div>
-      <div class="col_1"><img src="../../assets/imgs/reply1.png" alt=""></div>
-      <div class="col_7" >
-          <ion-input placeholder="Comment Here......." clearInput></ion-input>
-      </div>
-      <div class="col_3"><button ion-button><img src="../../assets/imgs/replyblack.png" alt=""></button></div>
-    </div>
-  </ion-row>
-  <ion-row style="background: white;padding: 10px 20px;margin-bottom: 10px;">
-    <ion-col col-12 class="community_top">
-      <img src="../../assets/imgs/defaultpicc.png" alt="">
-      <p class="para1">Marcuss Lim <br><span>16 hrs</span></p>
-      <p class="para2">Who wants to be healthy to join me for swimming? We have an active group every Sat 9am-11am. see you there!</p>
-    </ion-col>
-    <ion-col col-4>
-        <img src="../../assets/imgs/imgg.png" alt="">
-    </ion-col>
-    <ion-col col-4>
-        <img src="../../assets/imgs/imgg.png" alt="">
-    </ion-col>
-    <ion-col col-4>
-        <img src="../../assets/imgs/imgg.png" alt="">
-    </ion-col>
-    <div class="para3">
-        <p><img src="../../assets/imgs/comment.png" alt=""> <span>10 Comments</span></p>
-    </div>
-    <div class="notireplyy">
-      <div class="sect1">
-        <img src="../../assets/imgs/dani.png" alt="">
-        <p>Dani Hussain <span>16 hrs ago</span> <br>Yes, I want to join nice sharing</p>
-      </div>
-      <div class="col_1"><img src="../../assets/imgs/reply1.png" alt=""></div>
-      <div class="col_7" >
-          <ion-input placeholder="Comment Here......." clearInput></ion-input>
-      </div>
-      <div class="col_3"><button ion-button><img src="../../assets/imgs/replyblack.png" alt=""></button></div>
-    </div>
-  </ion-row>
+ 
 </ion-content>
 <ion-footer no-padding style="height: 76px;background:#FFFFFF;">
   <div class="penabs" (click)="communitypost();">
