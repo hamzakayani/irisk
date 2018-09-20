@@ -15,9 +15,15 @@
       </ion-select>
   <ion-row  *ngFor="let tick of tickets_list;"  (click)="gotohelpdetail(tick.id)">
       <ion-col>
-          <p class="info">
-              {{tick.title}} <span>{{tick.reported_date}}</span>
-          </p>
+          <div style="width:100%; float: left;">
+                <p class="info" style="width:50%;  float: left;">
+                    {{tick.title}} 
+                </p>
+                <p class="info" style="width:50%;  float: left;">
+                    <span>{{tick.reported_date}}</span>
+                </p> 
+          </div>
+          
           <p class="para2">
               Category: {{tick.category}} <br>
               Ticket No: {{tick.ticket_number}}

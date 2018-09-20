@@ -150,6 +150,7 @@ page-helpdestind {
         float: left;
         width: 100%;
         padding: 10px 15px;
+        // background: white;
     }
     .col_7{
         float: left;
@@ -196,5 +197,29 @@ page-helpdestind {
         background: #339e45;
         vertical-align: middle;
         border-radius: 50px;
+    }
+    .segment_tab{
+        padding: 0;
+        width: 100%;
+        height: 50px;
+        float: left;
+    }
+    .segment_tab ion-segment {
+        height: 50px;
+        background: grey;
+        color: black;
+    }
+    .segment_tab ion-segment .segment-button {
+        height: 50px !important;
+        color: black !important;
+        font-size: 13px !important;
+        font-weight: bold;
+        padding: 12px;
+        border: 0 !important;
+        line-height: 27px;
+    }
+    .segment_tab ion-segment .segment-button.segment-activated {
+        background: #108223 !important;
+        color: white !important;
     }
 }
