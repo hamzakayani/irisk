@@ -1,20 +1,20 @@
 page-communitywall {
-    .swiper-container{
-        overflow:none !important;
-        width: 230%;
+    // .swiper-container{
+    //     overflow:none !important;
+    //     width: 230%;
        
-        float: left;
-    }
-    .swiper-container-horizontal {
-        width: 273px;
-    }
+    //     float: left;
+    // }
+    // .swiper-container-horizontal {
+    //     width: 273px;
+    // }
     .swiper-slide img {
-        width: 80px !important;
-        /* max-width: 100%; */
         height: 80px !important;
-        max-height: 100% !important;
         float: left;
        
+    }
+    .swiper-slide {
+        width: 25% !important;
     }
     .box{
         background-color:white;
@@ -50,7 +50,7 @@ page-communitywall {
     .notireplyy{
         float: left;
         width: 100%;
-        padding: 10px 15px;
+        padding: 10px 10px 5px 10px;
     }
     .col_7{
         float: left;
@@ -107,11 +107,13 @@ page-communitywall {
         font-size: 16px;
         font-weight: 700;
         padding-left: 10px;
+        margin-top: 5px;
     }
     .community_top p.para2{
-        font-size: 11px;
-        font-weight: 500;
-        padding-left: 10px;
+        font-size: 16px;
+        padding-left: 0;
+        color: grey;
+        margin: 0;
     }
     .community_top p.para1 span{
         font-size: 14px;
@@ -141,7 +143,7 @@ page-communitywall {
     .sect1{
         float: left;
         width: 100%;
-        padding-bottom: 12px;
+        // padding-bottom: 12px;
     }
     .sect1 img {
         float: left;
