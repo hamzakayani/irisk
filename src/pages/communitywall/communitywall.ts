@@ -6,6 +6,7 @@ import { RestProvider } from '../../providers/rest/rest';
 import { HelpdestmytckPage } from '../helpdestmytck/helpdestmytck';
 import { NoticboardPage } from '../noticboard/noticboard';
 import { CommunitywallpostPage } from '../communitywallpost/communitywallpost';
+import { CommunitywallPage } from '../communitywall/communitywall';
 import { LoginPage } from '../login/login';
 
 import { Http} from '@angular/http';
@@ -155,8 +156,8 @@ export class CommunitywallPage {
            text: 'Close',
            handler: () => {
 
-          this.navCtrl.setRoot(CommunitywallpostPage);
-
+          this.navCtrl.pop(CommunitywallPage);
+          this.navCtrl.push(CommunitywallPage);
 
            }
          }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
-import { BigimagePage} from '../bigimage/bigimage';
 import { Http} from '@angular/http';
+import { LoginPage } from '../login/login';
 /**
  * Generated class for the HelpdestindPage page.
  *
@@ -26,49 +26,115 @@ export class HelpdestindPage {
   public comments_list:any;
   public images_list:any;
   helpdesk:string='details';
-  constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams) 
+  public noneresult: any;
+  public headers:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
     
     this.post_id=navParams.get('data');
     this.images_list=[];
     this.comments_list=[];
     this.detail_ticket=[];
-    
-    console.log("POST ID:"+this.post_id);
     this.url='http://staging.irisk.my/api/v3/';
     this.resident_id=window.localStorage.getItem('resident_id');
     this.key=window.localStorage.getItem('token');
-    this.get_complete_tcket_details();
+    platform.ready().then(() => {
+      this.get_complete_tcket_details();
+      });
+ 
   }
 
-  get_complete_tcket_details(){
+ 
+    get_complete_tcket_details(){
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait'
+        });
+        loading.present();
+        this.headers = new Headers();
+        this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        
     return new Promise(resolve=>{
       this.http.get(this.url + 'get_singleticket/'+ this.resident_id +'/'+ this.post_id +'/'+ this.key).subscribe(data=>{
-        console.log(data.json());
-        if(data.json().status=="success"){
-          this.detail_ticket=data.json().data[0];
-          console.log(this.detail_ticket);
-          this.comments_list=data.json().help_desk_comments;
-          this.images_list=data.json().help_desk_images
-       }else
-       resolve(false);
-},
-        err=>{
- 
-       console.log(err);
-       
- 
-       });
- 
-   });
-  
+      console.log(data.json());
+      if(data.json().errorCode==0)
+      {
+        this.detail_ticket=data.json().data[0];
+        this.comments_list=data.json().help_desk_comments;
+        this.images_list=data.json().help_desk_images
+        this.noneresult = false;
+        loading.dismiss();
+      }else if(data.json().errorCode==1){
+        console.log("FAILED");    
+        this.noneresult = true;
+        loading.dismiss();
+        this.show_error_alert(data.json().message);
+      }
+      else if(data.json().errorCode==2){
+        loading.dismiss();
+        this.show_errorkey_alert(data.json().message);
+        console.log("ERROR IN SERVER");
+        this.noneresult = true;
+      }
+     else
+     resolve(false);
+    },
+      err=>{
+    
+     //console.log(err);
+     loading.dismiss();
+     this.show_error_alert("PLease check your internet connection");
+     console.log("ERROR IN SERVER");
+     this.noneresult = true;
+     });
+    
+    });
+    
     }
-    showbigimage(imagess,id){
-this.navCtrl.setRoot(BigimagePage,{
-  data:imagess,
-  data2:id
-});
+   
+show_error_alert(des)
+{
+  let alert = this.alertCtrl.create({
+    
+    //subTitle: "PURPOSE OF DEPOSIT",
+    message: des,
+  //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
+    buttons: [
+         {
+           text: 'Close',
+           handler: () => {
 
-    }
+          this.navCtrl.setRoot(LoginPage);
+
+
+           }
+         }
+       ]
+   });
+                 
+   alert.present();
+
+}
+show_errorkey_alert(des)
+{
+  let alert = this.alertCtrl.create({
+    
+    //subTitle: "PURPOSE OF DEPOSIT",
+    message: des,
+  //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
+    buttons: [
+         {
+           text: 'Close',
+           handler: () => {
+            window.localStorage.clear();
+            this.app.getRootNav().setRoot(LoginPage);
+           }
+         }
+       ]
+   });
+                 
+   alert.present();
+
+}
+
 
 }

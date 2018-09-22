@@ -23,20 +23,13 @@
   <ion-content style="background:#eaeaea;">
     <div [ngSwitch]="usefulinfo">
         <ion-list *ngSwitchCase="'contacts'" >
-          <p class="currentout"> <span class="bigtxt">B</span> Balai Police</p>
-          <p class="currentout"> <span class="bigtxt">S</span>Security</p>
-          <p class="currentout"> <span class="bigtxt">P</span>Pizza Hut</p>
-          <p class="currentout"> <span class="bigtxt">P</span>Post Office</p>
-          <p class="currentout"> <span class="bigtxt">O</span>Post Office</p>
-          <p class="currentout"> <span class="bigtxt">A</span>Post Office</p>
+        
+          <p *ngFor="let cont of contact_list;" class="currentout"> <span class="bigtxt">{{cont.name_alias}}</span> {{cont.name}}</p>
+        
         </ion-list>
         <ion-list *ngSwitchCase="'documents'">
-            <p class="currentout">Committe List <span float-right><img src="../../assets/imgs/pdfusefullinks.png" alt=""></span></p>
-            <p class="currentout">House Rules and By-Laws <span float-right><img src="../../assets/imgs/pdfusefullinks.png" alt=""></span></p>
-            <p class="currentout">AGM Report 2017<span float-right><img src="../../assets/imgs/pdfusefullinks.png" alt=""></span></p>
-            <p class="currentout">Current Outstanding<span float-right><img src="../../assets/imgs/pdfusefullinks.png" alt=""></span></p>
-            <p class="currentout">Tenant Registration Form<span float-right><img src="../../assets/imgs/pdfusefullinks.png" alt=""></span></p>
-            <p class="currentout">Access Card Replacement Form<span float-right><img src="../../assets/imgs/pdfusefullinks.png" alt=""></span></p>
+            <p *ngFor="let doc of document_list;" class="currentout">{{doc.name}} <span float-right><a href="{{doc.image_url}}"><img src="../../assets/imgs/pdfusefullinks.png" alt=""></a></span></p>
+
         </ion-list>
     </div>
   

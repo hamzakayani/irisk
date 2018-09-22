@@ -25,12 +25,12 @@
             <div class="notidd">
                 <div class="notidetail">
                     <div  [innerHtml]="detail_ticket.description"></div> 
-                    <p>
+                    <p *ngIf="images_list">
                         Attachments:
                     </p>
                     <ion-row >
                     <ion-col col-4 class="padr padl0"  *ngFor="let im of images_list;" >
-                        <img src="{{im.image_url}}"   (click)="showbigimage(im.image_url,detail_ticket.id)"  alt="" style="height: 75px;">
+                        <img src="{{im.image_url}}"   imageViewer  alt="" style="height: 75px;">
                     </ion-col>
                     
                     </ion-row>
