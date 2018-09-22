@@ -94,7 +94,7 @@ export class HelpdestmytckPage {
    
          //console.log(err);
          loading.dismiss();
-         this.show_error_alert("ERROR IN SERVER");
+         this.show_error_alert("PLease check your internet connection");
          console.log("ERROR IN SERVER");
          this.noneresult = true;
          });

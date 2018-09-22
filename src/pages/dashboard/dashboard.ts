@@ -52,7 +52,7 @@ export class DashboardPage {
   }
   getModules(){
     let loading = this.loadingCtrl.create({
-      content: 'Loading data ...'
+      content: 'Please wait'
     });
     loading.present();
     var headers = new Headers();
@@ -85,7 +85,7 @@ export class DashboardPage {
  
        //console.log(err);
        loading.dismiss();
-       this.show_error_alert("ERROR IN SERVER");
+       this.show_error_alert("PLease check your internet connection");
        console.log("ERROR IN SERVER");
        this.noneresult = true;
        });
@@ -133,7 +133,7 @@ export class DashboardPage {
    
          //console.log(err);
          loading.dismiss();
-         this.show_error_alert("ERROR IN SERVER");
+         this.show_error_alert("PLease check your internet connection");
          console.log("ERROR IN SERVER");
          this.noneresult = true;
          });
@@ -175,7 +175,7 @@ export class DashboardPage {
      
            //console.log(err);
            loading.dismiss();
-           this.show_error_alert("ERROR IN SERVER");
+           this.show_error_alert("PLease check your internet connection");
            console.log("ERROR IN SERVER");
            this.noneresult = true;
            });

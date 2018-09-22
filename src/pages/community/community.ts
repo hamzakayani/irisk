@@ -42,7 +42,7 @@ constructor(public navCtrl: NavController, public navParams: NavParams, public p
  
   getCondos(){
         let loading = this.loadingCtrl.create({
-            content: 'Loading ...'
+          content: 'Please wait'
           });
           loading.present();
           this.headers = new Headers();
@@ -79,7 +79,7 @@ constructor(public navCtrl: NavController, public navParams: NavParams, public p
  
        //console.log(err);
        loading.dismiss();
-       this.show_error_alert("ERROR IN SERVER");
+       this.show_error_alert("PLease check your internet connection");
        console.log("ERROR IN SERVER");
        this.noneresult = true;
        });

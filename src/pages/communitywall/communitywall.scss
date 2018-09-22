@@ -1,9 +1,12 @@
 page-communitywall {
     .swiper-container{
         overflow:none !important;
-        width: 496px;
+        width: 230%;
        
         float: left;
+    }
+    .swiper-container-horizontal {
+        width: 273px;
     }
     .swiper-slide img {
         width: 80px !important;

@@ -43,7 +43,7 @@ public noneresult:any;
   
   getUnits(){
     let loading = this.loadingCtrl.create({
-        content: 'Loading ...'
+      content: 'Please wait'
       });
       loading.present();
       this.headers = new Headers();
@@ -70,7 +70,7 @@ return new Promise(resolve=>{
     }
     else if(data.json().errorCode==2){
       loading.dismiss();
-      this.show_errorkey_alert("Invalid key");
+      this.show_errorkey_alert(data.json().message);
       console.log("ERROR IN SERVER");
       this.noneresult = true;
     }
@@ -81,7 +81,7 @@ return new Promise(resolve=>{
 
    //console.log(err);
    loading.dismiss();
-   this.show_error_alert("ERROR IN SERVER");
+   this.show_error_alert("PLease check your internet connection");
    console.log("ERROR IN SERVER");
    this.noneresult = true;
    });

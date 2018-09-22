@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { DepositsPage } from '../deposits/deposits';
 import { RestProvider } from '../../providers/rest/rest';
 import { HelpdestmytckPage } from '../helpdestmytck/helpdestmytck';
 import { NoticboardPage } from '../noticboard/noticboard';
 import { CommunitywallpostPage } from '../communitywallpost/communitywallpost';
+import { CommunitywallPage } from '../communitypost/communitypost';
 import { LoginPage } from '../login/login';
 
 import { Http} from '@angular/http';
@@ -15,6 +17,9 @@ import { Http} from '@angular/http';
   templateUrl: 'communitywall.html',
 })
 export class CommunitywallPage {
+
+  private todo : FormGroup;
+
   public condo_id:any;
   public key:any;
   public resident_id:any;
@@ -24,9 +29,13 @@ export class CommunitywallPage {
   public noneresult: any;
   public headers:any;
   public comment_name:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
+  public post_id:any;
+  constructor(private formBuilder: FormBuilder,public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
-
+    this.todo = this.formBuilder.group({
+      comment_name: ['', Validators.required],
+    });
+   
     this.key=window.localStorage.getItem('token');
     this.condo_id=window.localStorage.getItem('condo_id');
     this.resident_id=window.localStorage.getItem('resident_id');
@@ -73,20 +82,91 @@ export class CommunitywallPage {
  
        //console.log(err);
        loading.dismiss();
-       this.show_error_alert("ERROR IN SERVER");
+       this.show_error_alert("PLease check your internet connection");
        console.log("ERROR IN SERVER");
        this.noneresult = true;
        });
  
    });
     }
-    post_comment(post_id){
-      this.comment_name=this.comment_name;
-console.log(post_id);
-
-console.log(this.comment_name);
-
+    postcomment(post_id){
+      this.comment_name=this.todo.value['comment_name'];
+      this.post_id=post_id;
+      console.log(this.comment_name);
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait'
+        });
+        loading.present();
+        this.headers = new Headers();
+        this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+          var creds = {
+            resident_id:this.resident_id,
+            condo_id:this.condo_id,
+            unit_id:this.unit_id,
+            post_id:this.post_id,
+            comment:this.comment_name,
+            token:this.key,
+        };
+    return new Promise(resolve=>{
+      this.http.post(this.url + 'submit_community_wall_post_comment' ,creds,this.headers).subscribe(data => {
+      console.log(data.json());
+      if(data.json().errorCode==0)
+      {
+        console.log("SUCCESS");      
+        console.log(data.json().data);
+      this.show_success_alert('Successfully posted');
+        this.noneresult = false;
+        loading.dismiss();
+      }else if(data.json().errorCode==1){
+        console.log("FAILED");    
+        this.noneresult = true;
+        loading.dismiss();
+        this.show_error_alert(data.json().message);
+      }
+      else if(data.json().errorCode==2){
+        loading.dismiss();
+        this.show_errorkey_alert(data.json().message);
+        console.log("ERROR IN SERVER");
+        this.noneresult = true;
+      }
+     else
+     resolve(false);
+    },
+      err=>{
+    
+     //console.log(err);
+     loading.dismiss();
+     this.show_error_alert("PLease check your internet connection");
+     console.log("ERROR IN SERVER");
+     this.noneresult = true;
+     });
+    
+    });
+    
     }
+    show_success_alert(des)
+{
+  let alert = this.alertCtrl.create({
+    
+    //subTitle: "PURPOSE OF DEPOSIT",
+    message: des,
+  //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
+    buttons: [
+         {
+           text: 'Close',
+           handler: () => {
+
+          this.navCtrl.setRoot(CommunitywallpostPage);
+
+
+           }
+         }
+       ]
+   });
+                 
+   alert.present();
+
+}
 show_error_alert(des)
 {
   let alert = this.alertCtrl.create({
@@ -131,6 +211,8 @@ show_errorkey_alert(des)
    alert.present();
 
 }
+
+
 gotoDeposits()
 {
 this.navCtrl.push(DepositsPage);

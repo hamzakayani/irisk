@@ -57,7 +57,8 @@ save_deposit(){
             resolve(false)
       },onerror=>{ 
         loading.dismiss();
-        this.showdepositalert('Internal Server Error');
+        
+        this.showdepositalert('Please check your internet connection');
     });
       });
   

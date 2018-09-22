@@ -28,7 +28,7 @@ export class LoginPage {
  
     sendPostRequest(){
             let loading = this.loadingCtrl.create({
-                content: 'Loading ...'
+                content: 'Please wait'
               });
               loading.present();
               this.headers = new Headers();
