@@ -25,7 +25,7 @@ export class HelpdestindPage {
   public detail_ticket:any;
   public comments_list:any;
   public images_list:any;
-  helpdesk:string='details';
+  helpdesk:string='messages';
   constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams) 
   {
     

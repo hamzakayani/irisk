@@ -33,9 +33,7 @@ import { EpaypaymentdetailPage } from '../pages/epaypaymentdetail/epaypaymentdet
 import { EpayinvoicedetailPage } from '../pages/epayinvoicedetail/epayinvoicedetail';
 import { HelpdestmytckPage } from '../pages/helpdestmytck/helpdestmytck';
 import { HelpdestindPage} from '../pages/helpdestind/helpdestind';
-import { HelpdestinddetailPage } from '../pages/helpdestinddetail/helpdestinddetail';
 import { HelpdestcreatePage } from '../pages/helpdestcreate/helpdestcreate';
-import { HelpdesttickettabPage } from '../pages/helpdesttickettab/helpdesttickettab';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { NoticboardPage } from '../pages/noticboard/noticboard';
@@ -58,8 +56,8 @@ import { VisitoraddPage } from '../pages/visitoradd/visitoradd';
 })
 export class MyApp {
   
-  rootPage:any = LoginPage;
-  // rootPage:any = UsefulinfotabPage;  
+  // rootPage:any = LoginPage;
+  rootPage:any = HelpdestcreatePage;  
  public url:any;
  public headers:any;
  public resident_id:any;

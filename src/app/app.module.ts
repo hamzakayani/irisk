@@ -28,9 +28,7 @@ import { EpaypaymentdetailPage } from '../pages/epaypaymentdetail/epaypaymentdet
 import { EpayinvoicedetailPage } from '../pages/epayinvoicedetail/epayinvoicedetail';
 import { HelpdestmytckPage } from '../pages/helpdestmytck/helpdestmytck';
 import { HelpdestindPage} from '../pages/helpdestind/helpdestind';
-import { HelpdestinddetailPage } from '../pages/helpdestinddetail/helpdestinddetail';
 import { HelpdestcreatePage } from '../pages/helpdestcreate/helpdestcreate';
-import { HelpdesttickettabPage } from '../pages/helpdesttickettab/helpdesttickettab';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { NoticboardPage } from '../pages/noticboard/noticboard';
@@ -72,12 +70,10 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     NoticboarddetailPage,
     HelpdestmytckPage,
     HelpdestindPage,
-    HelpdestinddetailPage,
     HelpdestcreatePage,
     CommunitywallPage,
     CommunitywallpostPage,
     DepositetabPage,
-    HelpdesttickettabPage,
     UsefulinfotabPage,
     ContactsPage,
     DocumentsPage,
@@ -127,12 +123,10 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     NoticboarddetailPage,
     HelpdestmytckPage,
     HelpdestindPage,
-    HelpdestinddetailPage,
     HelpdestcreatePage,
     CommunitywallPage,
     CommunitywallpostPage,
     DepositetabPage,
-    HelpdesttickettabPage,
     UsefulinfotabPage,
     ContactsPage,
     DocumentsPage,

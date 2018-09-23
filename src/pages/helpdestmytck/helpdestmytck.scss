@@ -41,8 +41,15 @@ page-helpdestmytck {
         .plusicon {
             position: absolute;
             right: 20px;
-            top: -40px;
-            float: right;
+            top: -70px;
+            width: 50px;
+            height: 50px;
+            padding: 5px;
+            text-align: center;
+            display: table-cell;
+            background: #108223;
+            vertical-align: middle;
+            border-radius: 50px;
         }
         ion-content ion-row{
             background: white;

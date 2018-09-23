@@ -14,6 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'usefulinfotab.html',
 })
 export class UsefulinfotabPage {
+  topclick:number=0;
   usefulinfo: string = "contacts";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -22,4 +23,12 @@ export class UsefulinfotabPage {
     console.log('ionViewDidLoad UsefulinfotabPage');
   }
   slideData = [{ image: "../../assets/imgs/1.jpg" },{ image: "../../assets/imgs/1.jpg" }] 
+  topclickbtn(){
+    if(this.topclick==0){
+      this.topclick=1;
+    }
+    else{
+      this.topclick=0;
+    }
+  }
 }

@@ -4,6 +4,7 @@ import { RestProvider } from '../../providers/rest/rest';
 import { HelpdestindPage} from '../helpdestind/helpdestind';
 import { Http} from '@angular/http';
 import { LoginPage } from '../login/login';
+import { HelpdestcreatePage } from '../helpdestcreate/helpdestcreate';
 
 /**
  * Generated class for the HelpdestmytckPage page.
@@ -175,5 +176,7 @@ export class HelpdestmytckPage {
       data: id
     });
   }
-
+  gotocreatehelp(){
+    this.navCtrl.push(HelpdestcreatePage);
+  }
 }

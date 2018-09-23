@@ -12,15 +12,32 @@
     </div>
     <div class="segment_tab">
         <ion-segment [(ngModel)]="helpdesk">
-            <ion-segment-button value="details">
-                Details
-            </ion-segment-button>
             <ion-segment-button value="messages">
                 Messages
+            </ion-segment-button>
+            <ion-segment-button value="details">
+                Details
             </ion-segment-button>
         </ion-segment>
     </div>
     <div [ngSwitch]="helpdesk">
+        <ion-list *ngSwitchCase="'messages'">
+            <div class="notidd" >
+                <div class="notidetail1"   *ngFor="let com of comments_list;" >
+                    <img src="{{com.comment_by_image}}" alt="" style="float: left;padding-right: 20px;width:57px;height:57px">
+                    <p>{{com.commented_by}}</p>
+                    <div  [innerHtml]="com.comment" style="color: #969596;"></div>
+                </div>
+            </div>
+            <div class="notireplyy">
+                <div class="col_7" >
+                    <ion-input placeholder="Comment Here......." clearInput></ion-input>
+                </div>
+                <div class="col_1"><img src="../../assets/imgs/reply1.png" alt=""></div>
+                <div class="col_1"><img src="../../assets/imgs/reply3.png" alt=""></div>
+                <div class="col_3"><button ion-button><img src="../../assets/imgs/reply2.png" alt=""></button></div>
+            </div>
+        </ion-list>
         <ion-list *ngSwitchCase="'details'">
             <div class="notidd">
                 <div class="notidetail">
@@ -37,48 +54,6 @@
                 </div>
             </div>
         </ion-list>
-        <ion-list *ngSwitchCase="'messages'">
-            <div class="notidd" >
-                <div class="notidetail1"   *ngFor="let com of comments_list;" >
-                    <img src="{{com.comment_by_image}}" alt="" style="float: left;padding-right: 20px;width:57px;height:57px">
-                    <p>{{com.commented_by}}</p>
-                    <div  [innerHtml]="com.comment" style="color: #969596;"></div>
-                </div>
-            </div>
-            <div class="notireplyy">
-                <div class="col_7" >
-                    <ion-input placeholder="Reply Here......." clearInput></ion-input>
-                </div>
-                <div class="col_1"><img src="../../assets/imgs/reply1.png" alt=""></div>
-                <div class="col_1"><img src="../../assets/imgs/reply3.png" alt=""></div>
-                <div class="col_3"><button ion-button><img src="../../assets/imgs/reply2.png" alt=""></button></div>
-            </div>
-        </ion-list>
+        
     </div>
   </ion-content>
-  <ion-footer no-padding style="height: 76px;background:#FFFFFF;">
-      <div class="plusicon">
-          <ion-icon name="ios-add" (click)="gotoadd_deposit()" style="color: white;font-size: 40px;"></ion-icon>
-      <!-- <img src="../../assets/imgs/20.png" alt="" (click)="gotoadd_deposit()">  -->
-  </div>
-    <div class="fimage">
-        <img src="../../assets/imgs/4.png" >
-    </div>
-    <ion-grid>
-        <ion-row>
-            <ion-col no-padding style="text-align: center;" >
-                &nbsp;<img src="assets/imgs/5.png" style="width: 45%;margin-top: -4px;">
-            </ion-col>
-            <ion-col no-padding style="text-align: center;">
-                &nbsp;<img src="assets/imgs/14.png" style="width: 45%;margin-top: -4px">
-  
-            </ion-col>
-            <ion-col no-padding style="text-align: center;">
-                &nbsp;<img src="assets/imgs/15.png" style="width: 45%;margin-top: -4px;">
-            </ion-col>
-            <ion-col no-padding style="text-align: center;">
-                &nbsp;<img src="assets/imgs/16.png" style="width: 45%;margin-top: -4px;">
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-  </ion-footer>
