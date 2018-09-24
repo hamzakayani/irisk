@@ -3,19 +3,7 @@ import { NavController, NavParams, Platform, AlertController, LoadingController,
 import { RestProvider } from '../../providers/rest/rest';
 import { Http} from '@angular/http';
 import { LoginPage } from '../login/login';
-<<<<<<< HEAD
-import { CallNumber } from '@ionic-native/call-number';
-=======
 
->>>>>>> a40281df9c13b343d7fd9f3e3a5f9611fc828688
-/**
- * Generated class for the ContactsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-// @IonicPage()
 @Component({
   selector: 'page-usefulinfotab',
   templateUrl: 'usefulinfotab.html',
@@ -33,7 +21,7 @@ export class UsefulinfotabPage {
   usefulinfo:string='contacts';
   public noneresult: any;
   public headers:any;
-  constructor(public navCtrl: NavController,private callNumber: CallNumber, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
+  constructor(public navCtrl: NavController,public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
     this.condo_id=window.localStorage.getItem('condo_id');
     this.resident_id=window.localStorage.getItem('resident_id');
@@ -189,11 +177,11 @@ topclickbtn(id){
     this.topclick=0;
   }
 }
-callnumber(number){
-  this.callNumber.callNumber("18001010101", true)
-  .then(res => console.log('Launched dialer!', res))
-  .catch(err => console.log('Error launching dialer', err));
-}
+// callnumber(number){
+//   this.callNumber.callNumber("18001010101", true)
+//   .then(res => console.log('Launched dialer!', res))
+//   .catch(err => console.log('Error launching dialer', err));
+// }
 slideData = [{ image: "../../assets/imgs/1.jpg" },{ image: "../../assets/imgs/1.jpg" }] 
 
 }

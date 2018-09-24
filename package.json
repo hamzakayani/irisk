@@ -65,12 +65,7 @@
       "cordova-plugin-camera": {},
       "cordova-plugin-file": {},
       "cordova-plugin-file-transfer": {},
-<<<<<<< HEAD
-      "mx.ferreyra.callnumber": {},
-      "cordova-plugin-email-composer": {}
-=======
       "mx.ferreyra.callnumber": {}
->>>>>>> a40281df9c13b343d7fd9f3e3a5f9611fc828688
     },
     "platforms": [
       "android"

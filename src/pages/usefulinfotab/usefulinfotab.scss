@@ -67,9 +67,14 @@ page-usefulinfotab {
         .coladjust{
             width: 20%;
         }
+        .coladjust a{
+            text-decoration: none;
+        }
         .coladjust p{
             font-size: 14px;
             font-weight: 500;
+            color: black;
+            text-decoration: none;
         
         }
         .coladjust img{
