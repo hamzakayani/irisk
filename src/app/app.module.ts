@@ -52,6 +52,7 @@ import { RestProvider } from '../providers/rest/rest';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { SuperTabsModule } from 'ionic2-super-tabs';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { CallNumber } from '@ionic-native/call-number';
 
 @NgModule({
   declarations: [
@@ -157,7 +158,8 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     SplashScreen,
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
+    CallNumber
   ]
 })
 export class AppModule {}
