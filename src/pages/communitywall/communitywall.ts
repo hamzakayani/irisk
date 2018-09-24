@@ -155,9 +155,8 @@ export class CommunitywallPage {
          {
            text: 'Close',
            handler: () => {
-
-          this.navCtrl.pop(CommunitywallPage);
-          this.navCtrl.push(CommunitywallPage);
+            this.post_list=[];
+      this.getCommunityposts();
 
            }
          }
