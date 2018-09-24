@@ -41,9 +41,8 @@ export class DashboardPage {
     this.adds_list=[];
     this.url='http://staging.irisk.my/api/v3/';
     platform.ready().then(() => {
-        
-      this.getModules();
-    this.getadimages(); 
+    this.getadimages();   
+    this.getModules();
     this.getCommunitySettings();
     this.condo_name=window.localStorage.getItem('condo_name');
      
