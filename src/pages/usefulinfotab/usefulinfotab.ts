@@ -10,7 +10,7 @@ import { LoginPage } from '../login/login';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-usefulinfotab',
   templateUrl: 'usefulinfotab.html',
@@ -22,7 +22,7 @@ export class UsefulinfotabPage {
   public resident_id:any;
   public url:any;
   public post_id:any;
-
+  public topclick:number=0;
   public contact_list:any;
   public document_list:any;
   usefulinfo:string='contacts';
@@ -175,6 +175,14 @@ show_errorkey_alert(des)
                  
    alert.present();
 
+}
+topclickbtn(id){
+  if(this.topclick==0){
+    this.topclick=id;
+  }
+  else{
+    this.topclick=0;
+  }
 }
 slideData = [{ image: "../../assets/imgs/1.jpg" },{ image: "../../assets/imgs/1.jpg" }] 
 

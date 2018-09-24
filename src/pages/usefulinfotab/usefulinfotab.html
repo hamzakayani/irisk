@@ -24,7 +24,7 @@
     <div [ngSwitch]="usefulinfo">
         <ion-list *ngSwitchCase="'contacts'" >
             <div class="currentout" *ngFor="let cont of contact_list;">
-                <div class="topshow" (click)="topclickbtn()">
+                <div class="topshow" (click)="topclickbtn(cont.id)">
                     <div class="textcircle bigtxt">
                         {{cont.name_alias}}
                     </div>
@@ -32,9 +32,9 @@
                         <p>{{cont.name}}</p>
                     </div>
                 </div>
-                <div class="bottomtoggle" *ngIf="topclick=='1'">
+                <div class="bottomtoggle" *ngIf="topclick==cont.id">
                     <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/call.png" alt=""><p>Call</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/msg.png" alt=""><p>Message</p></ion-col>
+                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/msg.png" alt=""><p>Mobile</p></ion-col>
                     <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/email.png" alt=""><p>Email</p></ion-col>
                     <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/loc.png" alt=""><p>Location</p></ion-col>
                     <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/web.png" alt=""><p>Website</p></ion-col>
