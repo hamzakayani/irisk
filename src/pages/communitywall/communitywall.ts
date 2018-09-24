@@ -6,6 +6,10 @@ import { RestProvider } from '../../providers/rest/rest';
 import { HelpdestmytckPage } from '../helpdestmytck/helpdestmytck';
 import { NoticboardPage } from '../noticboard/noticboard';
 import { CommunitywallpostPage } from '../communitywallpost/communitywallpost';
+<<<<<<< HEAD
+=======
+
+>>>>>>> a40281df9c13b343d7fd9f3e3a5f9611fc828688
 import { LoginPage } from '../login/login';
 
 import { Http} from '@angular/http';

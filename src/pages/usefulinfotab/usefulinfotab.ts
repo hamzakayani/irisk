@@ -3,7 +3,11 @@ import { NavController, NavParams, Platform, AlertController, LoadingController,
 import { RestProvider } from '../../providers/rest/rest';
 import { Http} from '@angular/http';
 import { LoginPage } from '../login/login';
+<<<<<<< HEAD
 import { CallNumber } from '@ionic-native/call-number';
+=======
+
+>>>>>>> a40281df9c13b343d7fd9f3e3a5f9611fc828688
 /**
  * Generated class for the ContactsPage page.
  *

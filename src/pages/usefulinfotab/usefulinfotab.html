@@ -35,11 +35,11 @@
                     <a href="mailto:someone@example.com">email</a>
                 </div>
                 <div class="bottomtoggle" *ngIf="topclick==cont.id">
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/call.png" alt=""><p>Call</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/msg.png" alt=""><p>Mobile</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/email.png" alt=""><p>Email</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/loc.png" alt=""><p>Location</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/web.png" alt=""><p>Website</p></ion-col>
+                    <ion-col  float-left text-center no-padding class="coladjust"><a href="tel:{{cont.phone}}"><img src="../../assets/icon/call.png" alt=""><p>call</p></a></ion-col>
+                    <ion-col  float-left text-center no-padding class="coladjust"><a href="tel:{{cont.mobile}}"><img src="../../assets/icon/msg.png" alt=""><p>mobile</p></a></ion-col>
+                    <ion-col float-left text-center no-padding class="coladjust"><a href="mailto:{{cont.email}}"><img src="../../assets/icon/email.png" alt=""><p>email</p></a></ion-col>
+                    <ion-col float-left text-center no-padding class="coladjust"><a href="{{cont.location}}"><img src="../../assets/icon/loc.png" alt=""><p>address</p></a></ion-col>
+                    <ion-col float-left text-center no-padding class="coladjust"><a href="{{cont.website}}"><img src="../../assets/icon/web.png" alt=""><p>website</p></a></ion-col>
                 </div>    
             </div>
         </ion-list>
