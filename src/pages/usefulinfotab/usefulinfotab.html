@@ -23,18 +23,13 @@
   <ion-content style="background:#eaeaea;">
     <div [ngSwitch]="usefulinfo">
         <ion-list *ngSwitchCase="'contacts'" >
-<<<<<<< HEAD
-        
-          <p *ngFor="let cont of contact_list;" class="currentout"> <span class="bigtxt">{{cont.name_alias}}</span> {{cont.name}}</p>
-        
-=======
-            <div class="currentout">
+            <div class="currentout" *ngFor="let cont of contact_list;">
                 <div class="topshow" (click)="topclickbtn()">
                     <div class="textcircle bigtxt">
-                            B
+                        {{cont.name_alias}}
                     </div>
                     <div class="personname">
-                        <p>Balai Police</p>
+                        <p>{{cont.name}}</p>
                     </div>
                 </div>
                 <div class="bottomtoggle" *ngIf="topclick=='1'">
@@ -45,83 +40,6 @@
                     <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/web.png" alt=""><p>Website</p></ion-col>
                 </div>    
             </div>
-
-
-            <div class="currentout">
-                <div class="topshow" (click)="topclickbtn()">
-                    <div class="textcircle bigtxt">
-                            S
-                    </div>
-                    <div class="personname">
-                        <p>Security</p>
-                    </div>
-                </div>
-                <div class="bottomtoggle" *ngIf="topclick=='1'">
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/call.png" alt=""><p>Call</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/msg.png" alt=""><p>Message</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/email.png" alt=""><p>Email</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/loc.png" alt=""><p>Location</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/web.png" alt=""><p>Website</p></ion-col>
-                </div>    
-            </div>
-
-
-            <div class="currentout">
-                <div class="topshow" (click)="topclickbtn()">
-                    <div class="textcircle bigtxt">
-                            P
-                    </div>
-                    <div class="personname">
-                        <p>Pizza Hut</p>
-                    </div>
-                </div>
-                <div class="bottomtoggle" *ngIf="topclick=='1'">
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/call.png" alt=""><p>Call</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/msg.png" alt=""><p>Message</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/email.png" alt=""><p>Email</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/loc.png" alt=""><p>Location</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/web.png" alt=""><p>Website</p></ion-col>
-                </div>    
-            </div>
-
-
-            <div class="currentout">
-                <div class="topshow" (click)="topclickbtn()">
-                    <div class="textcircle bigtxt">
-                            B
-                    </div>
-                    <div class="personname">
-                        <p>Balai Police</p>
-                    </div>
-                </div>
-                <div class="bottomtoggle" *ngIf="topclick=='1'">
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/call.png" alt=""><p>Call</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/msg.png" alt=""><p>Message</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/email.png" alt=""><p>Email</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/loc.png" alt=""><p>Location</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/web.png" alt=""><p>Website</p></ion-col>
-                </div>    
-            </div>
-
-
-            <div class="currentout">
-                <div class="topshow" (click)="topclickbtn()">
-                    <div class="textcircle bigtxt">
-                           O
-                    </div>
-                    <div class="personname">
-                        <p>Pizza Office</p>
-                    </div>
-                </div>
-                <div class="bottomtoggle" *ngIf="topclick=='1'">
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/call.png" alt=""><p>Call</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/msg.png" alt=""><p>Message</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/email.png" alt=""><p>Email</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/loc.png" alt=""><p>Location</p></ion-col>
-                    <ion-col float-left text-center no-padding class="coladjust"><img src="../../assets/icon/web.png" alt=""><p>Website</p></ion-col>
-                </div>    
-            </div>
->>>>>>> 3411ef6337b68244e3243be5102e2fdc2e8cfcae
         </ion-list>
         <ion-list *ngSwitchCase="'documents'">
             <p *ngFor="let doc of document_list;" class="currentout">{{doc.name}} <span float-right><a href="{{doc.image_url}}"><img src="../../assets/imgs/pdfusefullinks.png" alt=""></a></span></p>

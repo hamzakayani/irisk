@@ -25,15 +25,10 @@ export class HelpdestindPage {
   public detail_ticket:any;
   public comments_list:any;
   public images_list:any;
-<<<<<<< HEAD
-  helpdesk:string='details';
+  helpdesk:string='messages';
   public noneresult: any;
   public headers:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
-=======
-  helpdesk:string='messages';
-  constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams) 
->>>>>>> 3411ef6337b68244e3243be5102e2fdc2e8cfcae
   {
     
     this.post_id=navParams.get('data');

@@ -21,25 +21,6 @@
         </ion-segment>
     </div>
     <div [ngSwitch]="helpdesk">
-<<<<<<< HEAD
-        <ion-list *ngSwitchCase="'details'">
-            <div class="notidd">
-                <div class="notidetail">
-                    <div  [innerHtml]="detail_ticket.description"></div> 
-                    <p *ngIf="images_list">
-                        Attachments:
-                    </p>
-                    <ion-row >
-                    <ion-col col-4 class="padr padl0"  *ngFor="let im of images_list;" >
-                        <img src="{{im.image_url}}"   imageViewer  alt="" style="height: 75px;">
-                    </ion-col>
-                    
-                    </ion-row>
-                </div>
-            </div>
-        </ion-list>
-=======
->>>>>>> 3411ef6337b68244e3243be5102e2fdc2e8cfcae
         <ion-list *ngSwitchCase="'messages'">
             <div class="notidd" >
                 <div class="notidetail1"   *ngFor="let com of comments_list;" >
