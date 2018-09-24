@@ -3,6 +3,7 @@ import { NavController, NavParams, Platform, AlertController, LoadingController,
 import { RestProvider } from '../../providers/rest/rest';
 import { Http} from '@angular/http';
 import { LoginPage } from '../login/login';
+
 /**
  * Generated class for the ContactsPage page.
  *
