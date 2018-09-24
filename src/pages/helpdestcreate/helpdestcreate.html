@@ -1,18 +1,49 @@
-<!--
-  Generated template for the HelpdestcreatePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>helpdestcreate</ion-title>
-  </ion-navbar>
-
+    <ion-navbar color="dark">
+        <ion-title color="white" text-center>Create Ticket</ion-title>
+    </ion-navbar>
 </ion-header>
-
-
-<ion-content padding>
-
+<ion-content padding style="background-color:#EEEEEE">
+    <ion-select placeholder="All " [(ngModel)]="mystatus" interface="popover" (ionChange)="get_all_tickets()" >
+        <ion-option value="-1">Select </ion-option>
+        <ion-option selected="true" value="0">Select Category</ion-option>
+        <ion-option value="1">Resolved             </ion-option>
+        <ion-option value="2">Work In Progress     </ion-option>
+        <ion-option value="3">Pending              </ion-option>
+        <ion-option value="4">Waiting Reply        </ion-option>
+    </ion-select>
+    <p class="txt-color"><b>Subject:</b></p>
+    <input type="text" [(ngModel)]="reason" placeholder="Enter Subject" style="padding: 7px;width: 100%;border: none;border-bottom: 1px solid #6D6D6D !important;background: transparent" >    
+    <br>
+    <p class="txt-color"><b>Description:</b></p>
+    <input type="number" [(ngModel)]="amount" placeholder="Enter Description" style="padding: 7px;width: 100%;border: none;border-bottom: 1px solid #6D6D6D !important;background: transparent" >
+    <div class="file" style="background:white;margin-top: 20px;">
+        <ion-grid >
+            <ion-row (click)="camerafn()">
+                <ion-col col-2 text-center>
+                  <ion-icon  name="attach" class="txt-color" style="padding-left: 0px;font-size: 34px;transform: rotate(-45deg);text-align: right;padding-right: 15px;"></ion-icon>
+                </ion-col>
+                <ion-col col-10>
+                    <p class="txt-color"><b>Attach File:</b></p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div class="text">
+        <div *ngIf="imgurl!=''">
+                <img src="{{this.myimage}}" alt="" width="80px" height="80px" imageViewer >
+        </div>
+    </div>
+    <ion-buttons>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-6>
+                    <button (click)="click_on_cancel_button()" ion-button color="graish" block outline class="txt-color">CANCEL</button>
+                </ion-col>
+                <ion-col col-6>
+                    <button  ion-button full  class="savbtn" (click)="save_deposit()">Create</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-buttons>
 </ion-content>

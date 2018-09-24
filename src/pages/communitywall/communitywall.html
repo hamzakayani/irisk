@@ -14,19 +14,16 @@
             <p class="para2">{{post.post_detail}}</p>
         </ion-col>
         <ion-col col-12>
-            <ion-slides>
+            <ion-slides slidesPerView="4">
                 <ion-slide  *ngFor="let pi of post.post_images_list;">
                     <img   imageViewer  src="{{pi.post_image}}">
                 </ion-slide>
             </ion-slides>
         </ion-col>
-        <!-- <div class="para3">
-            <p><img src="../../assets/imgs/comment.png" alt=""> <span>{{post.post_comments_list.length}} Comments</span></p>
-        </div> -->
         <div class="notireplyy" *ngFor="let com of post.post_comments_list;">
         <div class="sect1">
             <img src="{{com.commented_by_imge}}" style="    width: 35px;height: 35px;border-radius: 100%;padding: 0;" alt="">
-            <p style="margin-top: 0;padding-left: 10px;width: 88%;font-weight: 700;">{{com.commented_by}} <span>{{com.insert_date}}</span> <br><span style="float:left;">{{com.comment}}</span></p>
+            <p style="margin-top: 0;padding-left: 10px;width: 85%;font-weight: 700;">{{com.commented_by}} <span>{{com.insert_date}}</span> <br><span style="float:left;">{{com.comment}}</span></p>
         </div>
         </div>
         <div class="notireplyy">

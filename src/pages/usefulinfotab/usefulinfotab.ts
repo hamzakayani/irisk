@@ -16,6 +16,7 @@ import { LoginPage } from '../login/login';
   templateUrl: 'usefulinfotab.html',
 })
 export class UsefulinfotabPage {
+<<<<<<< HEAD
   public condo_id:any;
   public key:any;
   public unit_id:any;
@@ -178,4 +179,22 @@ show_errorkey_alert(des)
 }
 slideData = [{ image: "../../assets/imgs/1.jpg" },{ image: "../../assets/imgs/1.jpg" }] 
 
+=======
+  topclick:number=0;
+  usefulinfo: string = "contacts";
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad UsefulinfotabPage');
+  }
+  slideData = [{ image: "../../assets/imgs/1.jpg" },{ image: "../../assets/imgs/1.jpg" }] 
+  topclickbtn(){
+    if(this.topclick==0){
+      this.topclick=1;
+    }
+    else{
+      this.topclick=0;
+    }
+  }
+>>>>>>> 3411ef6337b68244e3243be5102e2fdc2e8cfcae
 }
