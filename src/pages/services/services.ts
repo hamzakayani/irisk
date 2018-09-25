@@ -1,25 +1,19 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController } from 'ionic-angular';
+import { Http} from '@angular/http';
+import { ServicesdetailPage } from '../servicesdetail/servicesdetail';
 
-/**
- * Generated class for the ServicesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-services',
   templateUrl: 'services.html',
 })
 export class ServicesPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
+  {
+   
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ServicesPage');
+  servicedetail(){
+    this.navCtrl.push(ServicesdetailPage);
   }
-
 }

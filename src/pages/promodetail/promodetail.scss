@@ -1,4 +1,4 @@
-page-servicesdetailvendor {
+page-promodetail {
     .service_detail_row{
         padding: 10px;
     }
@@ -8,7 +8,7 @@ page-servicesdetailvendor {
         margin-bottom: 10px;
     }
     ion-row.service_detail_row2.row {
-        padding: 10px;
+        padding: 0 10px;
     }
     ion-col.service_detail_col2.col {
         background: white;
@@ -19,11 +19,11 @@ page-servicesdetailvendor {
         font-size: 17px;
         font-weight: 700;
         margin: 0;
-        padding: 10px 0;
-        border-bottom: 1px solid;
     }
     p.para2 {
         color: darkslategrey;
+        font-size: 14px;
+        font-weight: 500;
     }
     ion-col.service_detail_col1.col p {
         font-size: 14px;

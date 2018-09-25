@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { PromodetailPage } from '../promodetail/promodetail';
 
-/**
- * Generated class for the PromoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -21,5 +17,7 @@ export class PromoPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PromoPage');
   }
-
+  servicedetail(){
+    this.navCtrl.push(PromodetailPage);
+  }
 }

@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ServicesdetailvendorPage } from '../servicesdetailvendor/servicesdetailvendor';
 
-/**
- * Generated class for the ServicesdetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -21,5 +16,7 @@ export class ServicesdetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServicesdetailPage');
   }
-
+  servicedetailvendor(){
+    this.navCtrl.push(ServicesdetailvendorPage);
+  }
 }

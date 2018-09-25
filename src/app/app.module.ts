@@ -34,6 +34,7 @@ import { LoginPage } from '../pages/login/login';
 import { NoticboardPage } from '../pages/noticboard/noticboard';
 import { NoticboarddetailPage } from '../pages/noticboarddetail/noticboarddetail';
 import { PromoPage } from '../pages/promo/promo';
+import { PromodetailPage } from '../pages/promodetail/promodetail';
 import { ServicesPage } from '../pages/services/services';
 import { ServicesdetailPage } from '../pages/servicesdetail/servicesdetail';
 import { ServicesdetailvendorPage } from '../pages/servicesdetailvendor/servicesdetailvendor';
@@ -98,7 +99,8 @@ import { CallNumber } from '@ionic-native/call-number';
     ServicesdetailPage,
     ServicesdetailvendorPage,
     PromoPage,
-    DepositedetailPage
+    DepositedetailPage,
+    PromodetailPage
   ],
   imports: [
     BrowserModule,
@@ -151,7 +153,8 @@ import { CallNumber } from '@ionic-native/call-number';
     ServicesdetailPage,
     ServicesdetailvendorPage,
     PromoPage,
-    DepositedetailPage
+    DepositedetailPage,
+    PromodetailPage
   ],
   providers: [
     StatusBar,
