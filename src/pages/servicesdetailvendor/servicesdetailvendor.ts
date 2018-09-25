@@ -18,18 +18,21 @@ import { LoginPage } from '../login/login';
 })
 export class ServicesdetailvendorPage {
   public path:any;
-  public key:any;
-  public resident_id:any;
-  public condo_id:any;
-  public post_id:any;
-  public url:any;
-  public service_items:any;
-  public noneresult: any;
+  public phone:any;
+  public email:any;
+  public image:any;
+  public address:any;
+  public description:any;
   public headers:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {  
-    this.post_id=navParams.get('data');
-    console.log("POST ID"+ this.post_id);
+    
+    this.phone=navParams.get('phone');
+    this.email=navParams.get('email');
+    this.address=navParams.get('address');
+    this.image=navParams.get('image');
+    this.description=navParams.get('description');
+    this.path=navParams.get('path');
     
  
   }

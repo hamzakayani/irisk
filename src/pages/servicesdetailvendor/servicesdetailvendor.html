@@ -8,20 +8,20 @@
 <ion-content style="background:#eaeaea;">
   <ion-row class="service_detail_row" >
     <ion-col col-12 class="service_detail_col">
-      <img src="../../assets/imgs/servender.png" alt="">
+      <img src="{{this.path}}{{this.image}}" alt="">
     </ion-col>
   </ion-row>
   <ion-row class="service_detail_row1">
     <ion-col col-12 class="service_detail_col1">
-      <p>Kuala Lumpur and Selangor</p>
-      <p>marcuss.lim@gmail.com</p>
-      <p>019-23892993</p>
+      <p>{{this.address}}</p>
+      <p>{{this.email}}</p>
+      <p>{{this.phone}}</p>
     </ion-col>
   </ion-row>
   <ion-row class="service_detail_row2">
     <ion-col col-12 class="service_detail_col2">
       <p class="para1">Overview</p>
-      <p class="para2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+      <p class="para2" [innerHtml]="this.description"></p>
     </ion-col>
   </ion-row>
 </ion-content>

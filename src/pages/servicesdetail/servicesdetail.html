@@ -7,7 +7,7 @@
 
 <ion-content padding style="background:#eaeaea;">
 <ion-row class="service_detail_row"    *ngFor="let item of service_items; " >
-  <ion-col col-12 class="service_detail_col"  (click)="vendordetail(item.id);">
+  <ion-col col-12 class="service_detail_col"  (click)="vendordetail(item.address,item.phone,item.email,item.image_url,item.description);">
     <div class="divtop">
       <img src="{{this.path}}{{item.image_url}}" alt="">
       <p>{{item.company_name}}</p>

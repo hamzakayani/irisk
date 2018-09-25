@@ -132,9 +132,14 @@ show_errorkey_alert(des)
 
 }
 
-vendordetail(post_id){
+vendordetail(address,phone,email,image,description){
   this.navCtrl.push(ServicesdetailvendorPage,{
-    data:post_id
+    address:address,
+    phone:phone,
+    email:email,
+    image:image,
+    description:description,
+    path:this.path
   });
 }
 }
