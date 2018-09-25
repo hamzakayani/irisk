@@ -1,18 +1,90 @@
-<!--
-  Generated template for the PromoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>promo</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+    <ion-navbar color="dark">
+        <ion-buttons  right>
+      <button ion-button menuToggle>
+          <img src="assets/icon/side-menu.png" style="width: 50%;">
+      </button>
+        </ion-buttons>
+        <ion-title color="white" text-center>Offers and Promos</ion-title>
+        
+    </ion-navbar>
+  </ion-header>
+  <ion-content style="background:#fff;">
+    <p class="para1">Featured Advertisement</p>
+      <ion-row class="services_row">
+        <ion-col col-6 class="services_col" (click)="servicedetail();">
+          <div>
+              <img src="../../assets/imgs/promoimg.png" alt="">
+              <p text-center>Foodpanda Malaysia</p>
+          </div>
+        </ion-col>
+        <ion-col col-6 class="services_col" (click)="servicedetail();">
+          <div>
+              <img src="../../assets/imgs/promoimg.png" alt="">
+              <p text-center>Grab Car</p>
+          </div>
+        </ion-col>
+        <ion-col col-6 class="services_col" (click)="servicedetail();">
+          <div>
+              <img src="../../assets/imgs/promoimg.png" alt="">
+              <p text-center>Jaya Grocer</p>
+          </div>
+        </ion-col>
+        <ion-col col-6 class="services_col" (click)="servicedetail();">
+          <div>
+              <img src="../../assets/imgs/promoimg.png" alt="">
+              <p text-center>Tesco Home Delivery</p>
+          </div>
+        </ion-col>
+      </ion-row>
+      <p class="para1">Others</p>
+      <ion-row class="services_row">
+        <ion-col col-6 class="services_col" (click)="servicedetail();">
+          <div>
+              <img src="../../assets/imgs/promoimg.png" alt="">
+              <p text-center>Yoga Classes</p>
+          </div>
+        </ion-col>
+        <ion-col col-6 class="services_col" (click)="servicedetail();">
+          <div>
+              <img src="../../assets/imgs/promoimg.png" alt="">
+              <p text-center>Home Catering</p>
+          </div>
+        </ion-col>
+        <ion-col col-6 class="services_col" (click)="servicedetail();">
+          <div>
+              <img src="../../assets/imgs/promoimg.png" alt="">
+              <p text-center>Home Catering</p>
+          </div>
+        </ion-col>
+        <ion-col col-6 class="services_col" (click)="servicedetail();">
+          <div>
+              <img src="../../assets/imgs/promoimg.png" alt="">
+              <p text-center>Home Catering</p>
+          </div>
+        </ion-col>
+      </ion-row>
+  </ion-content>
+  <ion-footer no-padding style="height: 76px;background:#FFFFFF;">
+    <div class="fimage">
+        <img src="../../assets/imgs/4.png" >
+    </div>
+    <ion-grid>
+        <ion-row>
+            <ion-col no-padding style="text-align: center;" (click)="dashboard()">
+                &nbsp;<img src="assets/imgs/5.png" style="width: 45%;margin-top: -4px;">
+            </ion-col>
+            <ion-col no-padding style="text-align: center;" (click)="epay()">
+                &nbsp;<img src="assets/imgs/14.png" style="width: 45%;margin-top: -4px">
+  
+            </ion-col>
+            <ion-col no-padding style="text-align: center;" (click)="services()">
+                &nbsp;<img src="assets/imgs/15.png" style="width: 45%;margin-top: -4px;">
+            </ion-col>
+            <ion-col no-padding style="text-align: center;" (click)="promo()">
+                &nbsp;<img src="assets/imgs/16.png" style="width: 45%;margin-top: -4px;">
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+  </ion-footer>
+  

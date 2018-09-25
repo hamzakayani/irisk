@@ -39,6 +39,7 @@ import { LoginPage } from '../pages/login/login';
 import { NoticboardPage } from '../pages/noticboard/noticboard';
 import { NoticboarddetailPage } from '../pages/noticboarddetail/noticboarddetail';
 import { PromoPage } from '../pages/promo/promo';
+import { PromodetailPage } from '../pages/promodetail/promodetail';
 import { ServicesPage } from '../pages/services/services';
 import { ServicesdetailPage } from '../pages/servicesdetail/servicesdetail';
 import { ServicesdetailvendorPage } from '../pages/servicesdetailvendor/servicesdetailvendor';
@@ -56,8 +57,8 @@ import { VisitoraddPage } from '../pages/visitoradd/visitoradd';
 })
 export class MyApp {
   
-  rootPage:any = LoginPage;
-  // rootPage:any = HelpdestcreatePage;  
+  // rootPage:any = LoginPage;
+  rootPage:any = PromodetailPage;  
  public url:any;
  public headers:any;
  public resident_id:any;
