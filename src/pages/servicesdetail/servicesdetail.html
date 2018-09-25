@@ -6,16 +6,21 @@
 
 
 <ion-content padding style="background:#eaeaea;">
-<ion-row class="service_detail_row" (click)="servicedetailvendor();">
-  <ion-col col-12 class="service_detail_col">
+<ion-row class="service_detail_row"    *ngFor="let item of service_items; " >
+  <ion-col col-12 class="service_detail_col"  (click)="vendordetail(item.id);">
     <div class="divtop">
-      <img src="../../assets/imgs/serdetail.png" alt="">
-      <p>house cleaning Service</p>
+      <img src="{{this.path}}{{item.image_url}}" alt="">
+      <p>{{item.company_name}}</p>
     </div>
     <div  class="divbottom">
-      <p>Address:<span> No. 85, Jalan 1, Taman</span></p>
-      <p>Phone No:<span> +60 19-317 4861</span></p>
+      <p>Address:<span> {{item.address}}</span></p>
+      <p>Phone No:<span> {{item.phone}}</span></p>
     </div>
   </ion-col>
-</ion-row>
+</ion-row><br>
+<div *ngIf="noneresult==true"> 
+        
+    <p style=" width: 100%; text-align: center; display: block; padding-top:10px;"><ion-icon name="md-warning" style="color:#339e45;font-size: 48px;"></ion-icon></p>
+<p style="color: #000000; width: 100%; text-align: center; display: block; padding-top:5px; font-size:16px;font-weight:bold;">You have no data</p>
+</div> 
 </ion-content>
