@@ -14,27 +14,17 @@ import { BookingPage } from '../pages/booking/booking';
 import { BookingaddPage } from '../pages/bookingadd/bookingadd';
 import { BookingaddselectionPage } from '../pages/bookingaddselection/bookingaddselection';
 import { CommunityPage } from '../pages/community/community';
-import { ContactPage } from '../pages/contact/contact';
 import { CommunitywallPage } from '../pages/communitywall/communitywall';
 import { CommunitywallpostPage } from '../pages/communitywallpost/communitywallpost';
-import { ContactsPage } from '../pages/contacts/contacts';
 import { DashboardPage } from '../pages/dashboard/dashboard';
-import { DeliveryPage } from '../pages/delivery/delivery';
-import { DepositetabPage } from '../pages/depositetab/depositetab';
 import { DepositsPage } from '../pages/deposits/deposits';
-import { DocumentsPage } from '../pages/documents/documents';
-import { DeliveryaddPage } from '../pages/deliveryadd/deliveryadd';
-import { DeposithowtopayPage } from '../pages/deposithowtopay/deposithowtopay';
 import { DepositedetailPage } from '../pages/depositedetail/depositedetail';
 import { EpaytabPage } from '../pages/epaytab/epaytab';
-import { EpayinvoicePage } from '../pages/epayinvoice/epayinvoice';
-import { EpaypaymentPage } from '../pages/epaypayment/epaypayment';
 import { EpaypaymentdetailPage } from '../pages/epaypaymentdetail/epaypaymentdetail';
 import { EpayinvoicedetailPage } from '../pages/epayinvoicedetail/epayinvoicedetail';
 import { HelpdestmytckPage } from '../pages/helpdestmytck/helpdestmytck';
 import { HelpdestindPage} from '../pages/helpdestind/helpdestind';
 import { HelpdestcreatePage } from '../pages/helpdestcreate/helpdestcreate';
-import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { NoticboardPage } from '../pages/noticboard/noticboard';
 import { NoticboarddetailPage } from '../pages/noticboarddetail/noticboarddetail';
@@ -43,7 +33,6 @@ import { PromodetailPage } from '../pages/promodetail/promodetail';
 import { ServicesPage } from '../pages/services/services';
 import { ServicesdetailPage } from '../pages/servicesdetail/servicesdetail';
 import { ServicesdetailvendorPage } from '../pages/servicesdetailvendor/servicesdetailvendor';
-import { TabsPage } from '../pages/tabs/tabs';
 import { UnitsPage } from '../pages/units/units';
 import { UsefulinfotabPage } from '../pages/usefulinfotab/usefulinfotab';
 import { VisitortabPage } from '../pages/visitortab/visitortab';
@@ -64,10 +53,10 @@ export class MyApp {
  public resident_id:any;
   constructor(public platform: Platform,public menuCtrl: MenuController,public http:Http,private app: App, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
+      statusBar.styleDefault();
       this.url='http://staging.irisk.my/api/v3/';
       this.resident_id=window.localStorage.getItem('resident_id');
-      // statusBar.styleDefault();
-      // splashScreen.hide();
+      splashScreen.hide();
     });
   }
   gotologout()

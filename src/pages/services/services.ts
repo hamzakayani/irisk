@@ -4,14 +4,11 @@ import { RestProvider } from '../../providers/rest/rest';
 import { Http} from '@angular/http';
 import { LoginPage } from '../login/login';
 import { ServicesdetailPage } from '../servicesdetail/servicesdetail';
-/**
- * Generated class for the Services page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { EpaytabPage } from '../epaytab/epaytab';
+import { DashboardPage } from '../dashboard/dashboard';
+import { PromoPage } from '../promo/promo';
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-services',
   templateUrl: 'services.html',
@@ -32,10 +29,7 @@ export class ServicesPage {
     platform.ready().then(() => {
       this.get_complete_services();
       });
- 
   }
-
- 
     get_complete_services(){
       let loading = this.loadingCtrl.create({
         content: 'Please wait'
@@ -43,7 +37,6 @@ export class ServicesPage {
         loading.present();
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        
     return new Promise(resolve=>{
       this.http.get(this.url + 'get_services_api/'+ this.resident_id +'/' + this.key,this.headers).subscribe(data=>{
       console.log(data.json());
@@ -57,7 +50,6 @@ export class ServicesPage {
         console.log("FAILED");    
         this.noneresult = true;
         loading.dismiss();
-       // this.show_error_alert(data.json().message);
       }
       else if(data.json().errorCode==2){
         loading.dismiss();
@@ -69,48 +61,32 @@ export class ServicesPage {
      resolve(false);
     },
       err=>{
-    
-     //console.log(err);
      loading.dismiss();
      this.show_error_alert("PLease check your internet connection");
      console.log("ERROR IN SERVER");
      this.noneresult = true;
      });
-    
     });
-    
     }
-   
 show_error_alert(des)
 {
   let alert = this.alertCtrl.create({
-    
-    //subTitle: "PURPOSE OF DEPOSIT",
     message: des,
-  //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
     buttons: [
          {
            text: 'Close',
            handler: () => {
-
-          this.navCtrl.setRoot(LoginPage);
-
-
+            this.navCtrl.setRoot(LoginPage);
            }
          }
        ]
-   });
-                 
+   });        
    alert.present();
-
 }
 show_errorkey_alert(des)
 {
   let alert = this.alertCtrl.create({
-    
-    //subTitle: "PURPOSE OF DEPOSIT",
     message: des,
-  //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
     buttons: [
          {
            text: 'Close',
@@ -120,15 +96,24 @@ show_errorkey_alert(des)
            }
          }
        ]
-   });
-                 
+   });        
    alert.present();
-
 }
-
 servicedetail(post_id){
   this.navCtrl.push(ServicesdetailPage,{
     data:post_id
   });
+}
+dashboard(){
+  this.navCtrl.push(DashboardPage);
+}
+epay(){
+  this.navCtrl.push(EpaytabPage);
+}
+services(){
+  this.navCtrl.push(ServicesPage);
+}
+promo(){
+  this.navCtrl.push(PromoPage);
 }
 }

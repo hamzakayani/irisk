@@ -5,13 +5,10 @@ import { HelpdestindPage} from '../helpdestind/helpdestind';
 import { Http} from '@angular/http';
 import { LoginPage } from '../login/login';
 import { HelpdestcreatePage } from '../helpdestcreate/helpdestcreate';
-
-/**
- * Generated class for the HelpdestmytckPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { EpaytabPage } from '../epaytab/epaytab';
+import { DashboardPage } from '../dashboard/dashboard';
+import { ServicesPage } from '../services/services';
+import { PromoPage } from '../promo/promo';
 
 // @IonicPage()
 @Component({
@@ -178,5 +175,17 @@ export class HelpdestmytckPage {
   }
   gotocreatehelp(){
     this.navCtrl.push(HelpdestcreatePage);
+  }
+  dashboard(){
+    this.navCtrl.push(DashboardPage);
+  }
+  epay(){
+    this.navCtrl.push(EpaytabPage);
+  }
+  services(){
+    this.navCtrl.push(ServicesPage);
+  }
+  promo(){
+    this.navCtrl.push(PromoPage);
   }
 }

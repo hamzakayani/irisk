@@ -4,6 +4,9 @@ import { RestProvider } from '../../providers/rest/rest';
 import { EpaypaymentdetailPage } from '../epaypaymentdetail/epaypaymentdetail';
 import { EpayinvoicedetailPage } from '../epayinvoicedetail/epayinvoicedetail';
 import { LoginPage } from '../login/login';
+import { DashboardPage } from '../dashboard/dashboard';
+import { ServicesPage } from '../services/services';
+import { PromoPage } from '../promo/promo';
 
 import { Http} from '@angular/http';
 
@@ -226,9 +229,6 @@ export class EpaytabPage {
         });
           });
   }
-
-
-
   paymentdetail(post_id){
     this.navCtrl.push(EpaypaymentdetailPage,{
       data:post_id
@@ -238,5 +238,17 @@ export class EpaytabPage {
     this.navCtrl.push(EpayinvoicedetailPage,{
       data:post_id
     });
+  }
+  dashboard(){
+    this.navCtrl.push(DashboardPage);
+  }
+  epay1(){
+    this.navCtrl.push(EpaytabPage);
+  }
+  services(){
+    this.navCtrl.push(ServicesPage);
+  }
+  promo(){
+    this.navCtrl.push(PromoPage);
   }
 }

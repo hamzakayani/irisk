@@ -3,6 +3,10 @@ import { NavController, NavParams, Platform, AlertController, LoadingController,
 import { RestProvider } from '../../providers/rest/rest';
 import { Http} from '@angular/http';
 import { LoginPage } from '../login/login';
+import { EpaytabPage } from '../epaytab/epaytab';
+import { DashboardPage } from '../dashboard/dashboard';
+import { ServicesPage } from '../services/services';
+import { PromoPage } from '../promo/promo';
 
 @Component({
   selector: 'page-usefulinfotab',
@@ -177,11 +181,18 @@ topclickbtn(id){
     this.topclick=0;
   }
 }
-// callnumber(number){
-//   this.callNumber.callNumber("18001010101", true)
-//   .then(res => console.log('Launched dialer!', res))
-//   .catch(err => console.log('Error launching dialer', err));
-// }
+dashboard(){
+  this.navCtrl.push(DashboardPage);
+}
+epay(){
+  this.navCtrl.push(EpaytabPage);
+}
+services(){
+  this.navCtrl.push(ServicesPage);
+}
+promo(){
+  this.navCtrl.push(PromoPage);
+}
 slideData = [{ image: "../../assets/imgs/1.jpg" },{ image: "../../assets/imgs/1.jpg" }] 
 
 }

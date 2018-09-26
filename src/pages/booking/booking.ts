@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BookingaddPage } from '../bookingadd/bookingadd';
-
-/**
- * Generated class for the BookingPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { EpaytabPage } from '../epaytab/epaytab';
+import { DashboardPage } from '../dashboard/dashboard';
+import { ServicesPage } from '../services/services';
+import { PromoPage } from '../promo/promo';
 
 @IonicPage()
 @Component({
@@ -25,5 +22,16 @@ export class BookingPage {
   gotobookingadd(){
     this.navCtrl.push(BookingaddPage);
   }
-
+  dashboard(){
+    this.navCtrl.push(DashboardPage);
+  }
+  epay(){
+    this.navCtrl.push(EpaytabPage);
+  }
+  services(){
+    this.navCtrl.push(ServicesPage);
+  }
+  promo(){
+    this.navCtrl.push(PromoPage);
+  }
 }

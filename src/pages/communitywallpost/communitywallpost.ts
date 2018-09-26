@@ -2,12 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-/**
- * Generated class for the CommunitywallpostPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { EpaytabPage } from '../epaytab/epaytab';
+import { DashboardPage } from '../dashboard/dashboard';
+import { ServicesPage } from '../services/services';
+import { PromoPage } from '../promo/promo';
 
 @IonicPage()
 @Component({
@@ -69,6 +67,18 @@ public myimage:any='';
       console.log('this.imgurl', this.myimage);
     }, (err) => {
     });
+  }
+  dashboard(){
+    this.navCtrl.push(DashboardPage);
+  }
+  epay(){
+    this.navCtrl.push(EpaytabPage);
+  }
+  services(){
+    this.navCtrl.push(ServicesPage);
+  }
+  promo(){
+    this.navCtrl.push(PromoPage);
   }
   
 }

@@ -8,6 +8,11 @@ import { NoticboardPage } from '../noticboard/noticboard';
 import { CommunitywallpostPage } from '../communitywallpost/communitywallpost';
 import { LoginPage } from '../login/login';
 
+import { EpaytabPage } from '../epaytab/epaytab';
+import { DashboardPage } from '../dashboard/dashboard';
+import { ServicesPage } from '../services/services';
+import { PromoPage } from '../promo/promo';
+
 import { Http} from '@angular/http';
 
 // @IonicPage()
@@ -89,7 +94,7 @@ export class CommunitywallPage {
    });
     }
     postcomment(post_id){
-      this.comment_name=this.todo.value['comment_name'];
+      // this.comment_name=this.todo.value['comment_name'];
       this.post_id=post_id;
       console.log(this.comment_name);
       let loading = this.loadingCtrl.create({
@@ -115,6 +120,7 @@ export class CommunitywallPage {
         console.log(data.json().data);
       this.show_success_alert('Successfully posted');
         this.noneresult = false;
+        this.comment_name='';
         loading.dismiss();
       }else if(data.json().errorCode==1){
         console.log("FAILED");    
@@ -223,6 +229,18 @@ gotohelp(){
 }
 communitypost(){
   this.navCtrl.push(CommunitywallpostPage);
+}
+dashboard(){
+  this.navCtrl.push(DashboardPage);
+}
+epay(){
+  this.navCtrl.push(EpaytabPage);
+}
+services(){
+  this.navCtrl.push(ServicesPage);
+}
+promo(){
+  this.navCtrl.push(PromoPage);
 }
 slideData = [{ image: "../../assets/imgs/2.jpg" },{ image: "../../assets/imgs/1.jpg" }]
 }

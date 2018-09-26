@@ -4,14 +4,8 @@ import { RestProvider } from '../../providers/rest/rest';
 import { Http} from '@angular/http';
 import { LoginPage } from '../login/login';
 import { ServicesdetailvendorPage } from '../servicesdetailvendor/servicesdetailvendor';
-/**
- * Generated class for the servicesdetail page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-servicesdetail',
   templateUrl: 'servicesdetail.html',
