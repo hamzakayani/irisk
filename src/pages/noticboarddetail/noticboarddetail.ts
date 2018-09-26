@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { LoginPage } from '../login/login';
-
+import { EpaytabPage } from '../epaytab/epaytab';
+import { DashboardPage } from '../dashboard/dashboard';
+import { ServicesPage } from '../services/services';
+import { PromoPage } from '../promo/promo';
 import { Http} from '@angular/http';
 @Component({
   selector: 'page-noticboarddetail',
@@ -116,6 +119,18 @@ export class NoticboarddetailPage {
                      
        alert.present();
     
+    }
+    dashboard(){
+      this.navCtrl.push(DashboardPage);
+    }
+    epay(){
+      this.navCtrl.push(EpaytabPage);
+    }
+    services(){
+      this.navCtrl.push(ServicesPage);
+    }
+    promo(){
+      this.navCtrl.push(PromoPage);
     }
 slideData = [{ image: "../../assets/imgs/Noticeboard1.png" },{ image: "../../assets/imgs/Noticeboard1.png" }]
 }

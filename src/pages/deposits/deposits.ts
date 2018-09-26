@@ -3,7 +3,10 @@ import { NavController, NavParams, Platform, AlertController, LoadingController,
 import { RestProvider } from '../../providers/rest/rest';
 import { AdddepositsPage } from '../adddeposits/adddeposits';
 import { DepositedetailPage } from '../depositedetail/depositedetail';
-
+import { EpaytabPage } from '../epaytab/epaytab';
+import { DashboardPage } from '../dashboard/dashboard';
+import { ServicesPage } from '../services/services';
+import { PromoPage } from '../promo/promo';
 import { Http} from '@angular/http';
 
 /**
@@ -162,6 +165,18 @@ console.log(onerror["data"])
       this.navCtrl.push(DepositedetailPage,{
         data:post_id
       });
+    }
+    dashboard(){
+      this.navCtrl.push(DashboardPage);
+    }
+    epay(){
+      this.navCtrl.push(EpaytabPage);
+    }
+    services(){
+      this.navCtrl.push(ServicesPage);
+    }
+    promo(){
+      this.navCtrl.push(PromoPage);
     }
     slideData = [{ image: "../../assets/imgs/1.jpg" },{ image: "../../assets/imgs/1.jpg" }] 
 }

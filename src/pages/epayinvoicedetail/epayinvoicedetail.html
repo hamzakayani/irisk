@@ -17,11 +17,9 @@
         </ion-col>
         <ion-col col-6 float-left>
             <p text-right>Download Details <a href="{{this.invoice_deail.pdf_link}}"><img src="../../assets/imgs/pdficon.png" alt=""  width="20px"></a></p>
-           
         </ion-col>
-        
       </div>
-      <div  class="user_info">
+      <div class="user_info">
           <div class="invoicedate">
               <p class="para1">Invoice Date</p>
               <p class="para2">{{this.item_deail.due_date}}</p>
@@ -47,15 +45,12 @@
         <button   *ngIf="this.invoice_deail.Invoice_status=='UNPAID'" float-right style="color:white;background:green;margin-top:10px;margin-bottom: 10px; padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid grey;padding: 10px">PROCEED TO PAYMENT</button>
         <div class="paymenthistory"  *ngIf="this.invoice_deail.Invoice_status=='PAID'">
             <p class="p1">Payment History</p>
-                <ion-row class="invoicerow"  *ngFor="let pay of this.invoice_deail.invoice_payment_history;"  >
-                    <ion-col col-12 class="invoicecol" (click)="invoicedetail(inv.id)">
-                      <p class="invoicep1">ID#{{pay.system_transaction_id}} <span  float-right >{{this.currency}}{{pay.amount_paid}}</span></p>
-                      <p class="invoicep2"><ion-icon name="md-card" ></ion-icon> {{pay.payment_channel_name}}</p>
-                      
-                    </ion-col>
-               
-                </ion-row>
-            
+            <ion-row class="invoicerow"  *ngFor="let pay of this.invoice_deail.invoice_payment_history;"  >
+                <ion-col col-12 class="invoicecol" (click)="invoicedetail(inv.id)">
+                    <p class="invoicep1">ID#{{pay.system_transaction_id}} <span  float-right >{{this.currency}}{{pay.amount_paid}}</span></p>
+                    <p class="invoicep2"><ion-icon name="md-card" ></ion-icon> {{pay.payment_channel_name}}</p>
+                </ion-col>
+            </ion-row> 
         </div>
       </div>
 </ion-content>

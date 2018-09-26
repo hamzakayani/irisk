@@ -7,7 +7,7 @@
   <ion-content style="background:#d8d8d8;">
     <ion-row class="disclaimer">
       <ion-col>
-        <p><span> Disclaimer:</span>  You hereby declare and acknowledge that you have read, understood, and agreed to the <span>terms</span> of this service every time you make a public post.</p>
+        <p><span  (click)="presentAlert()"> Disclaimer:</span>  You hereby declare and acknowledge that you have read, understood, and agreed to the <span (click)="presentAlert()">terms</span> of this service every time you make a public post.</p>
       </ion-col>
     </ion-row>
     <ion-row class="disclaimer1">
@@ -15,7 +15,7 @@
         <div class="topsecc">
             <img src="../../assets/imgs/imgdef.png" alt="">
             <p>Dani Hussain</p>
-            <button ion-button icon-end (click)="presentAlert()">
+            <button ion-button icon-end>
                 Post
                 <img src="../../assets/imgs/reply2.png" alt="">
             </button>
@@ -34,25 +34,24 @@
     </ion-row>
 
   </ion-content>
-  <ion-footer no-padding style="height: 76px;background:#FFFFFF;">
+<ion-footer no-padding style="height: 76px;background:#FFFFFF;">
     <div class="fimage">
         <img src="../../assets/imgs/4.png" >
     </div>
     <ion-grid>
         <ion-row>
-            <ion-col no-padding style="text-align: center;" >
+            <ion-col no-padding style="text-align: center;" (click)="dashboard()">
                 &nbsp;<img src="assets/imgs/5.png" style="width: 45%;margin-top: -4px;">
             </ion-col>
-            <ion-col no-padding style="text-align: center;">
+            <ion-col no-padding style="text-align: center;" (click)="epay()">
                 &nbsp;<img src="assets/imgs/14.png" style="width: 45%;margin-top: -4px">
-  
             </ion-col>
-            <ion-col no-padding style="text-align: center;">
+            <ion-col no-padding style="text-align: center;" (click)="services()">
                 &nbsp;<img src="assets/imgs/15.png" style="width: 45%;margin-top: -4px;">
             </ion-col>
-            <ion-col no-padding style="text-align: center;">
+            <ion-col no-padding style="text-align: center;" (click)="promo()">
                 &nbsp;<img src="assets/imgs/16.png" style="width: 45%;margin-top: -4px;">
             </ion-col>
         </ion-row>
     </ion-grid>
-  </ion-footer>
+</ion-footer>
