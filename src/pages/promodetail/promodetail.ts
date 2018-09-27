@@ -14,12 +14,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'promodetail.html',
 })
 export class PromodetailPage {
+  public path:any;
+  public image:any;
+  public title:any;
+  public description:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams)
+   {
+    this.title=navParams.get('title');
+    this.description=navParams.get('description');
+    this.image=navParams.get('image');
+    this.path=navParams.get('path');
+   
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PromodetailPage');
-  }
+ 
 
 }
