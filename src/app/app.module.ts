@@ -43,6 +43,13 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { SuperTabsModule } from 'ionic2-super-tabs';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { CallNumber } from '@ionic-native/call-number';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { IonicStorageModule } from '@ionic/storage';
+import { FilePath } from '@ionic-native/file-path';
+import { File } from '@ionic-native/file';
+import { Base64 } from '@ionic-native/base64';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 @NgModule({
   declarations: [
@@ -86,6 +93,7 @@ import { CallNumber } from '@ionic-native/call-number';
     SuperTabsModule.forRoot(),
     IonicImageViewerModule,
     HttpModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -129,7 +137,13 @@ import { CallNumber } from '@ionic-native/call-number';
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
-    CallNumber
+    CallNumber,
+    ImagePicker,
+    FilePath,
+    File,
+    Base64,
+    Base64ToGallery,
+    PhotoViewer
   ]
 })
 export class AppModule {}

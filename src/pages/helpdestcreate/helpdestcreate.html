@@ -24,14 +24,14 @@
                   <ion-icon  name="attach" class="txt-color" style="padding-left: 0px;font-size: 34px;transform: rotate(-45deg);text-align: right;padding-right: 15px;"></ion-icon>
                 </ion-col>
                 <ion-col col-10>
-                    <p class="txt-color"><b>Attach File:</b></p>
+                    <p class="txt-color" (click)="attachfiles()"><b>Attach File:</b></p>
                 </ion-col>
             </ion-row>
         </ion-grid>
     </div>
     <div class="text">
-        <div *ngIf="imgurl!=''">
-            <img src="{{this.myimage}}" alt="" width="80px" height="80px" imageViewer >
+        <div *ngFor="let store of imagebag64; let i = index" style="float:left;">
+            <img  [src]="store  || placeholder"  alt="" width="80px" height="80px" imageViewer >
         </div>
     </div>
     <ion-buttons>
