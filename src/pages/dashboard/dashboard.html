@@ -6,7 +6,6 @@
       </button>
         </ion-buttons>
         <ion-title color="white" text-center>{{this.condo_name}}</ion-title>
-        
     </ion-navbar>
 </ion-header>
 <ion-content style="background:#C0C0C0;">
@@ -20,45 +19,59 @@
     <div class="menu">
         <ion-grid>
             <ion-row class="rw">
-                <ion-col class="box mr5" text-center (click)="gotoepay()" >
-                    <img src="assets/imgs/3.png" style="width: 50px;text-align: center;">
-                    <p>e-Pay</p>
+                <ion-col class="box" text-center (click)="gotoepay()" col-4>
+                    <div>
+                        <img src="assets/imgs/3.png" style="width: 50px;text-align: center;">
+                        <p>e-Pay</p>
+                    </div>
                 </ion-col>
-                <ion-col class="box mr5" text-center (click)="gotobooking()">
-                    <img src="assets/imgs/6.png" style="width: 50px;text-align: center;">
-                    <p>Bookings</p>
+                <ion-col class="box" text-center (click)="gotobooking()" col-4>
+                    <div>
+                        <img src="assets/imgs/6.png" style="width: 50px;text-align: center;">
+                        <p>Bookings</p>
+                    </div>
                 </ion-col>
-                <ion-col class="box" text-center (click)="gotoDeposits()">
-                    <img src="assets/imgs/7.png" style="width: 50px;text-align: center;">
-                    <p>Deposits</p>
+                <ion-col class="box" text-center (click)="gotoDeposits()" col-4>
+                    <div>
+                        <img src="assets/imgs/7.png" style="width: 50px;text-align: center;">
+                        <p>Deposits</p>
+                    </div>
                 </ion-col>
-            </ion-row>
-            <ion-row class="rw">
-                <ion-col class="box mr5" text-center (click)="gotonotice()">
-                    <img src="assets/imgs/8.png" style="width: 50px;text-align: center;">
-                    <p>Notice Board</p>
+                <ion-col class="box" text-center (click)="gotonotice()" col-4>
+                    <div>
+                        <img src="assets/imgs/8.png" style="width: 50px;text-align: center;">
+                        <p>Notice Board</p>
+                    </div>
                 </ion-col>
-                <ion-col class="box mr5" text-center (click)="gotohelp()">
-                    <img src="assets/imgs/9.png" style="width: 50px;text-align: center;">
-                    <p>Help Desk</p>
+                <ion-col class="box" text-center (click)="gotohelp()" col-4>
+                    <div>
+                        <img src="assets/imgs/9.png" style="width: 50px;text-align: center;">
+                        <p>Help Desk</p>
+                    </div>
                 </ion-col>
-                <ion-col class="box" text-center (click)="gotocommunitywall()">
-                    <img src="assets/imgs/10.png" style="width: 50px;text-align: center;">
-                    <p>Community Wall</p>
+                <ion-col class="box" text-center (click)="gotocommunitywall()" col-4>
+                    <div>
+                        <img src="assets/imgs/10.png" style="width: 50px;text-align: center;">
+                        <p>Community Wall</p>
+                    </div>
                 </ion-col>
-            </ion-row>
-            <ion-row class="rw">
-                <ion-col class="box mr5" text-center (click)="gotousefullinks()">
-                    <img src="assets/imgs/11.png" style="width: 50px;text-align: center;">
-                    <p>Useful Links</p>
+                <ion-col class="box" text-center (click)="gotousefullinks()" col-4>
+                    <div>
+                        <img src="assets/imgs/11.png" style="width: 50px;text-align: center;">
+                        <p>Useful Links</p>
+                    </div>
                 </ion-col>
-                <ion-col class="box mr5" text-center (click)="gotovisitor()">
-                    <img src="assets/imgs/12.png" style="width: 50px;text-align: center;">
-                    <p>Visitor</p>
+                <ion-col class="box" text-center (click)="gotovisitor()" col-4>
+                    <div>
+                        <img src="assets/imgs/12.png" style="width: 50px;text-align: center;">
+                        <p>Visitor</p>
+                    </div>
                 </ion-col>
-                <ion-col class="box" text-center (click)="alert()">
-                    <img src="assets/imgs/13.png" style="width: 50px;text-align: center;">
-                    <p>SOS</p>
+                <ion-col class="box" text-center (click)="alert()" col-4>
+                    <div>
+                        <img src="assets/imgs/13.png" style="width: 50px;text-align: center;">
+                        <p>SOS</p>
+                    </div>
                 </ion-col>
             </ion-row>
         </ion-grid>

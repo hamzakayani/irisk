@@ -4,6 +4,7 @@ import { RestProvider } from '../../providers/rest/rest';
 import { Http} from '@angular/http';
 import { LoginPage } from '../login/login';
 import { ServicesdetailPage } from '../servicesdetail/servicesdetail';
+import { ServicesPage } from '../services/services';
 import { EpaytabPage } from '../epaytab/epaytab';
 import { DashboardPage } from '../dashboard/dashboard';
 import { PromodetailPage } from '../promodetail/promodetail';

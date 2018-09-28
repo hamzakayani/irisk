@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
 import { AdddepositsPage } from '../pages/adddeposits/adddeposits';
 import { BookingPage } from '../pages/booking/booking';
 import { BookingaddPage } from '../pages/bookingadd/bookingadd';
@@ -34,6 +33,13 @@ import { VisitortabPage } from '../pages/visitortab/visitortab';
 import { VisitorPage } from '../pages/visitor/visitor';
 import { VisitorshowPage } from '../pages/visitorshow/visitorshow';
 import { VisitoraddPage } from '../pages/visitoradd/visitoradd';
+import { ChangepasswordPage } from '../pages/changepassword/changepassword';
+import { MyprofilePage } from '../pages/myprofile/myprofile';
+import { MyprofiledetailPage } from '../pages/myprofiledetail/myprofiledetail';
+import { MyprofileinvitePage } from '../pages/myprofileinvite/myprofileinvite';
+import { MyprofilesosPage } from '../pages/myprofilesos/myprofilesos';
+import { MyprofileusermanagementPage } from '../pages/myprofileusermanagement/myprofileusermanagement';
+import { MyprofileuservehiclePage } from '../pages/myprofileuservehicle/myprofileuservehicle';
 
 import { HttpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -54,7 +60,6 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     DashboardPage,
     LoginPage,
     CommunityPage,
@@ -85,7 +90,14 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
     ServicesdetailvendorPage,
     PromoPage,
     DepositedetailPage,
-    PromodetailPage
+    PromodetailPage,
+    ChangepasswordPage,
+    MyprofilePage,
+    MyprofiledetailPage,
+    MyprofileinvitePage,
+    MyprofilesosPage,
+    MyprofileusermanagementPage,
+    MyprofileuservehiclePage
   ],
   imports: [
     BrowserModule,
@@ -98,7 +110,6 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
     DashboardPage,
     LoginPage,
     CommunityPage,
@@ -129,7 +140,14 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
     ServicesdetailvendorPage,
     PromoPage,
     DepositedetailPage,
-    PromodetailPage
+    PromodetailPage,
+    ChangepasswordPage,
+    MyprofilePage,
+    MyprofiledetailPage,
+    MyprofileinvitePage,
+    MyprofilesosPage,
+    MyprofileusermanagementPage,
+    MyprofileuservehiclePage
   ],
   providers: [
     StatusBar,

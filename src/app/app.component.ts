@@ -8,7 +8,6 @@ import { Http} from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { AboutPage } from '../pages/about/about';
 import { AdddepositsPage } from '../pages/adddeposits/adddeposits';
 import { BookingPage } from '../pages/booking/booking';
 import { BookingaddPage } from '../pages/bookingadd/bookingadd';
@@ -39,6 +38,14 @@ import { VisitortabPage } from '../pages/visitortab/visitortab';
 import { VisitorPage } from '../pages/visitor/visitor';
 import { VisitorshowPage } from '../pages/visitorshow/visitorshow';
 import { VisitoraddPage } from '../pages/visitoradd/visitoradd';
+import { ChangepasswordPage } from '../pages/changepassword/changepassword';
+import { MyprofilePage } from '../pages/myprofile/myprofile';
+import { MyprofiledetailPage } from '../pages/myprofiledetail/myprofiledetail';
+import { MyprofileinvitePage } from '../pages/myprofileinvite/myprofileinvite';
+import { MyprofilesosPage } from '../pages/myprofilesos/myprofilesos';
+import { MyprofileusermanagementPage } from '../pages/myprofileusermanagement/myprofileusermanagement';
+import { MyprofileuservehiclePage } from '../pages/myprofileuservehicle/myprofileuservehicle';
+
 
 
 @Component({
@@ -47,7 +54,7 @@ import { VisitoraddPage } from '../pages/visitoradd/visitoradd';
 export class MyApp {
   
    rootPage:any = LoginPage;
-  //rootPage:any = PromodetailPage;  
+  // rootPage:any = MyprofiledetailPage;  
  public url:any;
  public headers:any;
  public resident_id:any;
@@ -131,8 +138,10 @@ export class MyApp {
   }
   gotoswitch(){
     this.menuCtrl.close();
-    
     this.app.getRootNav().setRoot(CommunityPage);
-    
+  }
+  gotoaccount(){
+    this.menuCtrl.close();
+    this.app.getRootNav().setRoot(MyprofilePage);
   }
 }

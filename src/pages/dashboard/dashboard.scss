@@ -5,9 +5,7 @@ page-dashboard {
         background:url('assets/imgs/2.png');
         }
     .box{
-        background-color:white;
-        width: 122px;
-        height: 85px;
+        height: 100px;
     }
     .box p{
         font-size: 10px;
@@ -31,5 +29,16 @@ page-dashboard {
     ion-footer ion-grid{
         margin-top: 0px;
         background-color: #fff;
+    }
+    .box div {
+        width: 100%;
+        height: 100%;
+        float: left;
+        padding: 10px;
+        background: white;
+    }
+    ion-col.box.col {
+        padding: 3px;
+        background: transparent;
     }
 }
