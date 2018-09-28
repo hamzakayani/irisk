@@ -78,7 +78,7 @@
       "cordova-plugin-file-transfer": {},
       "mx.ferreyra.callnumber": {},
       "cordova-plugin-telerik-imagepicker": {
-        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "used for image capture"
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "your usage message"
       },
       "cordova-plugin-filepath": {},
       "cordova-sqlite-storage": {},
