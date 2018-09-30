@@ -26,71 +26,57 @@ import { LoginPage } from '../login/login';
 export class DashboardPage {
   public condo_id:any;
   public key:any;
-  public modules_list:any;
   public adds_list:any='';
   public url:any;
   public condo_name:any;
   public noneresult: any;
   public headers:any;
+  public epay_module:any;
+  public booking_module:any;
+  public deposits_module:any;
+  public noticeboard_module:any;
+  public helpdesk_module:any;
+  public community_wall_module:any;
+  public usefullink_module:any;
+  public visitors_module:any;
+  public sos_module:any;
+  public announcement_module:any;
+  public services_module:any;
+  public offerspromos_module:any;
+  public vehicles_module:any;
+  public intercom_module:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
-    
+  
+      this.epay_module=window.localStorage.getItem('e_module');
+      this.booking_module=window.localStorage.getItem('b_module');
+      this.deposits_module=window.localStorage.getItem('d_module');
+      this.noticeboard_module=window.localStorage.getItem('n_module');
+      this.helpdesk_module=window.localStorage.getItem('h_module');
+      this.community_wall_module=window.localStorage.getItem('c_module'); 
+      this.usefullink_module=window.localStorage.getItem('u_module');
+      this.visitors_module=window.localStorage.getItem('v_module');
+      this.sos_module=window.localStorage.getItem('ss_module');
+      this.announcement_module=window.localStorage.getItem('a_module');
+      this.services_module=window.localStorage.getItem('s_module');
+      this.offerspromos_module=window.localStorage.getItem('o_module');
+      this.vehicles_module=window.localStorage.getItem('vv_module');
+      this.intercom_module=window.localStorage.getItem('i_module');
+      console.log("depositst"+ this.deposits_module);     
     this.key=window.localStorage.getItem('token');
     this.condo_id=window.localStorage.getItem('condo_id');
-    this.modules_list=[];
+    
     this.adds_list=[];
     this.url='http://staging.irisk.my/api/v3/';
     platform.ready().then(() => {
     this.getadimages();   
-    this.getModules();
     this.getCommunitySettings();
     this.condo_name=window.localStorage.getItem('condo_name');
      
     });
    
   }
-  getModules(){
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait'
-    });
-    loading.present();
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return new Promise(resolve=>{
-      this.http.get(this.url + 'get_condo_modules/'+ this.condo_id +'/'+this.key,{headers: this.headers}).subscribe(data=>{
-        console.log(data.json());
-        if(data.json().errorCode==0)
-        {
-          console.log("SUCCESS");
-          this.modules_list=data.json().data;
-          this.noneresult = false;
-          loading.dismiss();
-        }else if(data.json().errorCode==1){
-          console.log("FAILED");
-          this.noneresult = true;
-          loading.dismiss();
-          console.log("No Data Found");
-        }
-        else if(data.json().errorCode==2){
-          loading.dismiss();
-          this.show_errorkey_alert("Invalid key");
-          console.log("ERROR IN SERVER");
-          this.noneresult = true;
-        }
-       else
-       resolve(false);
-},
-        err=>{
  
-       //console.log(err);
-       loading.dismiss();
-       this.show_error_alert("PLease check your internet connection");
-       console.log("ERROR IN SERVER");
-       this.noneresult = true;
-       });
- 
-   });
-    }
     getCommunitySettings(){
       let loading = this.loadingCtrl.create({
         content: 'Loading data ...'
