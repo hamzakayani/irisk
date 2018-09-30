@@ -12,8 +12,15 @@ import { PromoPage } from '../promo/promo';
   templateUrl: 'bookingaddselection.html',
 })
 export class BookingaddselectionPage {
-
+  public id:any;
+  public description:any;
+  public name:any;
+  public terms:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.id=navParams.get('id');
+    this.description=navParams.get('description');
+    this.name=navParams.get('name');
+    this.terms=navParams.get('terms');
   }
 
   ionViewDidLoad() {
