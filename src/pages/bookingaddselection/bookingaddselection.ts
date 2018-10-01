@@ -4,6 +4,7 @@ import { EpaytabPage } from '../epaytab/epaytab';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ServicesPage } from '../services/services';
 import { PromoPage } from '../promo/promo';
+import { BookingdetailPage } from '../bookingdetail/bookingdetail';
 
 
 @IonicPage()
@@ -37,5 +38,8 @@ export class BookingaddselectionPage {
   }
   promo(){
     this.navCtrl.push(PromoPage);
+  }
+  bookingdetail(){
+    this.navCtrl.push(BookingdetailPage);
   }
 }
