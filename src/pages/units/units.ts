@@ -30,6 +30,7 @@ export class UnitsPage {
   public url:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController)
   {
+    console.log("depositst"+ window.localStorage.getItem('d_module'));   
     this.modules_list=[];
     this.resident_id=window.localStorage.getItem('resident_id');
     this.key=window.localStorage.getItem('token');
@@ -38,7 +39,7 @@ export class UnitsPage {
     this.url='http://staging.irisk.my/api/v3/';
    
     platform.ready().then(() => { 
-      this.getModules(); 
+     
       this.getUnits(); 
     });
   }
@@ -163,6 +164,7 @@ return new Promise(resolve=>{
       this.units_list=data.json().units_list;
       if(this.units_list.length==1){
         window.localStorage.setItem('is_valid_unit','No');
+        this.getModules();
         this.navCtrl.setRoot(DashboardPage);
       }
       window.localStorage.setItem('condo_name',data.json().condo_name);
@@ -241,6 +243,7 @@ show_errorkey_alert(des)
   go_to_dashboard(){
    
     window.localStorage.setItem('unit_id', this.unit_id);
+    this.getModules();
     this.navCtrl.setRoot(DashboardPage);
         }
 
