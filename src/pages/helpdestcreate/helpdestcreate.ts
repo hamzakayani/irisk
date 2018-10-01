@@ -25,7 +25,13 @@ export class HelpdestcreatePage {
   subscription: any;
   slotdates:any;
   content:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera, private base64ToGallery: Base64ToGallery, private imagePicker: ImagePicker, private file: File, private photoViewer: PhotoViewer) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    private camera: Camera, 
+    private base64ToGallery: Base64ToGallery, 
+    private imagePicker: ImagePicker, 
+    private file: File, 
+    private photoViewer: PhotoViewer) {
     this.content = '';
 	  this.base64Image = '';
 	  this.burl = '';

@@ -8,43 +8,21 @@ import { Http} from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { AdddepositsPage } from '../pages/adddeposits/adddeposits';
 import { BookingPage } from '../pages/booking/booking';
-import { BookingaddPage } from '../pages/bookingadd/bookingadd';
-import { BookingaddselectionPage } from '../pages/bookingaddselection/bookingaddselection';
 import { CommunityPage } from '../pages/community/community';
 import { CommunitywallPage } from '../pages/communitywall/communitywall';
-import { CommunitywallpostPage } from '../pages/communitywallpost/communitywallpost';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { DepositsPage } from '../pages/deposits/deposits';
-import { DepositedetailPage } from '../pages/depositedetail/depositedetail';
 import { EpaytabPage } from '../pages/epaytab/epaytab';
-import { EpaypaymentdetailPage } from '../pages/epaypaymentdetail/epaypaymentdetail';
-import { EpayinvoicedetailPage } from '../pages/epayinvoicedetail/epayinvoicedetail';
 import { HelpdestmytckPage } from '../pages/helpdestmytck/helpdestmytck';
-import { HelpdestindPage} from '../pages/helpdestind/helpdestind';
-import { HelpdestcreatePage } from '../pages/helpdestcreate/helpdestcreate';
 import { LoginPage } from '../pages/login/login';
 import { NoticboardPage } from '../pages/noticboard/noticboard';
-import { NoticboarddetailPage } from '../pages/noticboarddetail/noticboarddetail';
 import { PromoPage } from '../pages/promo/promo';
-import { PromodetailPage } from '../pages/promodetail/promodetail';
 import { ServicesPage } from '../pages/services/services';
-import { ServicesdetailPage } from '../pages/servicesdetail/servicesdetail';
-import { ServicesdetailvendorPage } from '../pages/servicesdetailvendor/servicesdetailvendor';
-import { UnitsPage } from '../pages/units/units';
 import { UsefulinfotabPage } from '../pages/usefulinfotab/usefulinfotab';
 import { VisitortabPage } from '../pages/visitortab/visitortab';
-import { VisitorPage } from '../pages/visitor/visitor';
-import { VisitorshowPage } from '../pages/visitorshow/visitorshow';
-import { VisitoraddPage } from '../pages/visitoradd/visitoradd';
-import { ChangepasswordPage } from '../pages/changepassword/changepassword';
 import { MyprofilePage } from '../pages/myprofile/myprofile';
-import { MyprofiledetailPage } from '../pages/myprofiledetail/myprofiledetail';
-import { MyprofileinvitePage } from '../pages/myprofileinvite/myprofileinvite';
-import { MyprofilesosPage } from '../pages/myprofilesos/myprofilesos';
-import { MyprofileusermanagementPage } from '../pages/myprofileusermanagement/myprofileusermanagement';
-import { MyprofileuservehiclePage } from '../pages/myprofileuservehicle/myprofileuservehicle';
+import { BookingdetailPage } from '../pages/bookingdetail/bookingdetail';
 
 
 
@@ -54,7 +32,7 @@ import { MyprofileuservehiclePage } from '../pages/myprofileuservehicle/myprofil
 export class MyApp {
   
    rootPage:any = LoginPage;
-  // rootPage:any = MyprofiledetailPage;  
+  // rootPage:any = BookingdetailPage;  
  public url:any;
  public headers:any;
  public resident_id:any;

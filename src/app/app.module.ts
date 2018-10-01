@@ -7,6 +7,7 @@ import { AdddepositsPage } from '../pages/adddeposits/adddeposits';
 import { BookingPage } from '../pages/booking/booking';
 import { BookingaddPage } from '../pages/bookingadd/bookingadd';
 import { BookingaddselectionPage } from '../pages/bookingaddselection/bookingaddselection';
+import { BookingdetailPage } from '../pages/bookingdetail/bookingdetail';
 import { CommunityPage } from '../pages/community/community';
 import { CommunitywallPage } from '../pages/communitywall/communitywall';
 import { CommunitywallpostPage } from '../pages/communitywallpost/communitywallpost';
@@ -97,7 +98,8 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
     MyprofileinvitePage,
     MyprofilesosPage,
     MyprofileusermanagementPage,
-    MyprofileuservehiclePage
+    MyprofileuservehiclePage,
+    BookingdetailPage
   ],
   imports: [
     BrowserModule,
@@ -147,7 +149,8 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
     MyprofileinvitePage,
     MyprofilesosPage,
     MyprofileusermanagementPage,
-    MyprofileuservehiclePage
+    MyprofileuservehiclePage,
+    BookingdetailPage
   ],
   providers: [
     StatusBar,
