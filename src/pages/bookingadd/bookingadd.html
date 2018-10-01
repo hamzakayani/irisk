@@ -12,27 +12,17 @@
 
 <ion-content padding>
 <ion-row>
-  <ion-col float-left col-6 (click)="gotobookingaddsel()">
-    <img src="../../assets/imgs/bookingbbq.png" alt="">
-    <p>BBQ</p>
+  <ion-col float-left col-6   *ngFor="let cat of categories_list;" (click)="gotobookingaddsel(cat.id,cat.description,cat.name,cat.terms)">
+    <img src="{{this.img_path}}{{cat.image_url}}" alt="" style="height: 125px;">
+    <p style="font-size: 13px;">{{cat.name}}</p>
   </ion-col>
-  <ion-col float-left col-6 (click)="gotobookingaddsel()">
-    <img src="../../assets/imgs/bookingbbq.png" alt="">
-    <p>BBQ</p>
-  </ion-col>
-  <ion-col float-left col-6 (click)="gotobookingaddsel()">
-    <img src="../../assets/imgs/bookingbbq.png" alt="">
-    <p>BBQ</p>
-  </ion-col>
-  <ion-col float-left col-6 (click)="gotobookingaddsel()">
-    <img src="../../assets/imgs/bookingbbq.png" alt="">
-    <p>BBQ</p>
-  </ion-col>
-  <ion-col float-left col-6 (click)="gotobookingaddsel()">
-    <img src="../../assets/imgs/bookingbbq.png" alt="">
-    <p>BBQ</p>
-  </ion-col>
+  
 </ion-row>
+<div *ngIf="noneresult==true"> 
+      
+  <p style=" width: 100%; text-align: center; display: block; padding-top:10px;"><ion-icon name="md-warning" style="color:#339e45;font-size: 48px;"></ion-icon></p>
+<p style="color: #000000; width: 100%; text-align: center; display: block; padding-top:5px; font-size:16px;font-weight:bold;">You have no bookings</p>
+</div>
 </ion-content>
 <ion-footer no-padding style="height: 76px;background:#FFFFFF;">
   <div class="plusicon">

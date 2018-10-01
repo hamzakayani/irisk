@@ -25,22 +25,128 @@ export class UnitsPage {
   public key:any;
   public units_list:any;
   public headers:any;
-public noneresult:any;
+  public noneresult:any;
+  public modules_list:any;
   public url:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController)
   {
+    this.modules_list=[];
     this.resident_id=window.localStorage.getItem('resident_id');
     this.key=window.localStorage.getItem('token');
     this.condo_id=window.localStorage.getItem('condo_id');
     this.units_list=[];
     this.url='http://staging.irisk.my/api/v3/';
    
-    platform.ready().then(() => {  
+    platform.ready().then(() => { 
+      this.getModules(); 
       this.getUnits(); 
     });
   }
 
-  
+  getModules(){
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait'
+    });
+    loading.present();
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    return new Promise(resolve=>{
+      this.http.get(this.url + 'get_condo_modules/'+ this.condo_id +'/'+this.key,{headers: this.headers}).subscribe(data=>{
+        console.log(data.json());
+        if(data.json().errorCode==0)
+        {
+         
+          this.modules_list=data.json().data;
+          for(let i=0;i<this.modules_list.length;i++){
+        
+            if(this.modules_list[i].name=='Bills & Payments'){
+        
+              window.localStorage.setItem('e_module',this.modules_list[i].name);
+              }
+              if(this.modules_list[i].name=='Facility Booking'){
+         
+              window.localStorage.setItem('b_module',this.modules_list[i].name);
+              }
+              if(this.modules_list[i].name=='Deposits'){
+          
+              window.localStorage.setItem('d_module',this.modules_list[i].name);
+              }
+              if(this.modules_list[i].name=='Noticeboard'){
+             
+              window.localStorage.setItem('n_module',this.modules_list[i].name);
+              }
+              if(this.modules_list[i].name=='Help Desk'){
+            
+              window.localStorage.setItem('h_module',this.modules_list[i].name);
+              }
+              if(this.modules_list[i].name=='Community Wall'){
+          
+              window.localStorage.setItem('c_module',this.modules_list[i].name);
+              }
+              if(this.modules_list[i].name=='Useful Info'){
+            
+              window.localStorage.setItem('u_module',this.modules_list[i].name);
+              }
+              if(this.modules_list[i].name=='Visitors & Deliveries'){
+             
+              window.localStorage.setItem('v_module',this.modules_list[i].name);
+              }
+              if(this.modules_list[i].name=='SOS'){
+          
+              window.localStorage.setItem('ss_module',this.modules_list[i].name);
+              }
+              if(this.modules_list[i].name=='Announcements'){
+          
+                window.localStorage.setItem('a_module',this.modules_list[i].name);
+                }
+                if(this.modules_list[i].name=='Services'){
+              
+                  window.localStorage.setItem('s_module',this.modules_list[i].name);
+                  }
+                  if(this.modules_list[i].name=='Offers & Promos'){
+              
+                    window.localStorage.setItem('o_module',this.modules_list[i].name);
+                    }
+                    if(this.modules_list[i].name=='Vehicles'){
+                
+                      window.localStorage.setItem('vv_module',this.modules_list[i].name);
+                      }
+                      if(this.modules_list[i].name=='Intercom'){
+                      
+                        window.localStorage.setItem('i_module',this.modules_list[i].name);
+                        }
+                        
+          }
+         
+         
+         
+          loading.dismiss();
+        }else if(data.json().errorCode==1){
+          console.log("FAILED");
+         
+          loading.dismiss();
+          console.log("No Data Found");
+        }
+        else if(data.json().errorCode==2){
+          loading.dismiss();
+          this.show_errorkey_alert("Invalid key");
+          console.log("ERROR IN SERVER");
+        
+        }
+       else
+       resolve(false);
+},
+        err=>{
+ 
+       //console.log(err);
+       loading.dismiss();
+       this.show_error_alert("PLease check your internet connection");
+       console.log("ERROR IN SERVER");
+      
+       });
+ 
+   });
+    }
   getUnits(){
     let loading = this.loadingCtrl.create({
       content: 'Please wait'

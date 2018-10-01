@@ -11,21 +11,31 @@
 
 
 <ion-content padding>
-<ion-row class="booking">
+<ion-row class="booking"   *ngFor="let book of booking_list;">
   <ion-col>
     <div class="booking_top" float-left >
-      <p>BBQ</p>
-      <button ion-button rounded>Approved</button>
+      <p>{{book.facility_name}}</p>
+      <button ion-button *ngIf="book.facility_approval_status=='Approved'" rounded style="background-color:green">{{book.facility_approval_status}}</button>
+      <button ion-button *ngIf="book.facility_approval_status=='Cancelled'" rounded style="background-color:red">{{book.facility_approval_status}}</button>
+      <button ion-button *ngIf="book.facility_approval_status=='Pending'" rounded style="background-color:#488aff">{{book.facility_approval_status}}</button>
     </div>
     <div class="booking_mid"  float-left>
-      <p>20/09/2018</p>
-      <p>10:00 - 14:00</p>
+      <p>{{book.date_booked_date}}</p>
+      <p>{{book.start_time}} - {{book.end_time}}</p>
     </div>
     <div class="booking_end"  float-left>
-      <p>Booking requested on 20/08/2018</p>
+      <p>Booking requested on {{book.datetime_booked}}</p>
     </div>
   </ion-col>
 </ion-row>
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+<div *ngIf="noneresult==true"> 
+      
+  <p style=" width: 100%; text-align: center; display: block; padding-top:10px;"><ion-icon name="md-warning" style="color:#339e45;font-size: 48px;"></ion-icon></p>
+<p style="color: #000000; width: 100%; text-align: center; display: block; padding-top:5px; font-size:16px;font-weight:bold;">You have no bookings</p>
+</div>
 </ion-content>
 <ion-footer no-padding style="height: 76px;background:#FFFFFF;">
   <div class="plusicon">
