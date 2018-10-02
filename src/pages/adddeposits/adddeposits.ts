@@ -13,11 +13,16 @@ import { File } from '@ionic-native/file';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
 // @IonicPage()
 @Component({
   selector: 'page-adddeposits',
   templateUrl: 'adddeposits.html',
+  providers: [
+    File,
+    FileTransfer,
+    Camera]
 })
 export class AdddepositsPage {
 
@@ -52,6 +57,7 @@ constructor(
   public http:Http, 
   public loadingCtrl: LoadingController,
   private app: App, 
+  private transfer: FileTransfer, 
   private modalCtrl: ModalController
   ) 
 {
@@ -127,38 +133,75 @@ camerafn(){
   console.log("camera settings");
   const options: CameraOptions = {
     quality: 100,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: 1,
-    sourceType: 0
+    destinationType: this.camera.DestinationType.FILE_URI,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE,
+    sourceType: 0, //PHOTOLIBRARY : 0, CAMERA : 1, SAVEDPHOTOALBUM : 2
+    saveToPhotoAlbum: true
   }
-  this.camera.getPicture(options).then((imageData) => {
-    this.myimage = 'data:image/jpeg;base64,' + imageData;
-    console.log('this.imgurl', this.myimage);
-    this.stagegallery(this.myimage);
+  this.camera.getPicture(options).then((imagePath) => {
+    this.myimage = imagePath;
+      console.log('opengallery img :::::::',this.myimage);
+      this.uploadimg()
+    // this.myimage = 'data:image/jpeg;base64,' + imageData;
+    // console.log('this.imgurl', this.myimage);
+    // this.stagegallery(this.myimage);
   }, (err) => {
   });
 }
-stagegallery(uri){
-  console.log(uri);
-  // this.base64Image = 'data:image/jpeg;base64,' + uri;
-  this.imagebag64.push(uri);
-  this.base2imageV2(uri, '_img');
-}
-base2imageV2(base64Data, x){
-  //media scanner false will prevent u from seeing in gallery
-  console.log(x);
-  this.base64ToGallery.base64ToGallery(base64Data, {prefix: x, mediaScanner: true}).then(
-    res => this.stagecamera(res),
-    err => console.log('Error saving image to gallery ', err)
-  );
-}
-stagecamera(res){
-  console.log(res);
-  this.imagebag.push(res);
-  this.imagebagname.push(res.substring(res.lastIndexOf('/') + 1)); //grab name from path
-}
+// stagegallery(uri){
+//   console.log(uri);
+//   // this.base64Image = 'data:image/jpeg;base64,' + uri;
+//   this.imagebag64.push(uri);
+//   this.base2imageV2(uri, '_img');
+// }
+// base2imageV2(base64Data, x){
+//   //media scanner false will prevent u from seeing in gallery
+//   console.log(x);
+//   this.base64ToGallery.base64ToGallery(base64Data, {prefix: x, mediaScanner: true}).then(
+//     res => this.stagecamera(res),
+//     err => console.log('Error saving image to gallery ', err)
+//   );
+// }
+// stagecamera(res){
+//   console.log(res);
+//   this.imagebag.push(res);
+//   this.imagebagname.push(res.substring(res.lastIndexOf('/') + 1)); //grab name from path
+// }
 click_on_cancel_button(){
   this.navCtrl.pop();
+}
+uploadimg(){
+  console.log('upload img funtion');
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    let options: FileUploadOptions = {
+      fileKey: 'image-file',
+      fileName: "img11112",
+      chunkedMode: false,
+      mimeType: "image/jpeg",
+      headers: {}
+    }
+    console.log('this.imageURI ::: sadsd:',this.myimage);
+    console.log('options',options);
+    let urlProPic='http://staging.irisk.my/assets/uploads/deposit_files/deposit_receipts/hadd12';
+    console.log('this.imageURI ::::',urlProPic);
+    fileTransfer.upload(this.myimage, urlProPic, options)
+      .then((data) => {
+      let p_data = JSON.parse(data.response);
+      console.log('responseeesdadsaee:::: thenthen',p_data);
+      if(p_data.code==404){
+      console.log('responseeesdadsaee:::: ifif',p_data);
+      }
+      else{
+        console.log(p_data);
+        this.myimage='';
+        console.log('responseeesdadsaee:::: elseelse',p_data);
+      }
+    }, (err) => {
+      console.log(err);
+      console.log('The image cannot be uploaded. Please try again.',err);
+    });
+  // });
 }
 slideData = [{ image: "../../assets/imgs/1.jpg" },{ image: "../../assets/imgs/1.jpg" }] 
 }

@@ -16,7 +16,14 @@ export class LoginPage {
   public url:any;
   public headers:any;
   public noneresult:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController)
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public platform: Platform,
+    public alertCtrl: AlertController, 
+    public http:Http, 
+    public loadingCtrl: LoadingController,
+    private app: App,
+    private modalCtrl: ModalController)
   { 
       this.noneresult='';
     this.url='http://staging.irisk.my/api/v3/';
