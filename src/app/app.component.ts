@@ -24,7 +24,7 @@ import { VisitortabPage } from '../pages/visitortab/visitortab';
 import { MyprofilePage } from '../pages/myprofile/myprofile';
 import { BookingdetailPage } from '../pages/bookingdetail/bookingdetail';
 import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
-
+import { UpdatepasswordPage } from '../pages/updatepassword/updatepassword';
 
 
 @Component({
@@ -32,8 +32,8 @@ import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
 })
 export class MyApp {
   
-   rootPage:any = LoginPage;
-   //rootPage:any = ForgotpasswordPage;  
+ rootPage:any = LoginPage;
+  // rootPage:any = UpdatepasswordPage;  
  public url:any;
  public headers:any;
  public resident_id:any;

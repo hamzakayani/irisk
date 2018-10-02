@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController } from 'ionic-angular';
 import { Http} from '@angular/http';
 import {LoginPage} from '../login/login';
+import {UpdatepasswordPage} from '../updatepassword/updatepassword';
 @Component({
   selector: 'page-forgotpassword',
   templateUrl: 'forgotpassword.html'
@@ -37,6 +38,9 @@ export class ForgotpasswordPage {
             console.log(data.json());
             if(data.json().errorCode==0)
             {
+              this.navCtrl.push(UpdatepasswordPage,{
+                email:this.email
+              });
               this.show_error_alert(data.json().message);   
               loading.dismiss();
             }else if(data.json().errorCode==1){
