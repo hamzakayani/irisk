@@ -42,7 +42,7 @@ import { MyprofileinvitePage } from '../pages/myprofileinvite/myprofileinvite';
 import { MyprofilesosPage } from '../pages/myprofilesos/myprofilesos';
 import { MyprofileusermanagementPage } from '../pages/myprofileusermanagement/myprofileusermanagement';
 import { MyprofileuservehiclePage } from '../pages/myprofileuservehicle/myprofileuservehicle';
-
+import { UpdatepasswordPage } from '../pages/updatepassword/updatepassword';
 import { HttpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -102,7 +102,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     MyprofileusermanagementPage,
     MyprofileuservehiclePage,
     BookingdetailPage,
-    ForgotpasswordPage
+    ForgotpasswordPage,
+    UpdatepasswordPage
   ],
   imports: [
     BrowserModule,
@@ -154,7 +155,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     MyprofileusermanagementPage,
     MyprofileuservehiclePage,
     BookingdetailPage,
-    ForgotpasswordPage
+    ForgotpasswordPage,
+    UpdatepasswordPage
   ],
   providers: [
     StatusBar,

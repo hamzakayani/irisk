@@ -30,7 +30,7 @@ export class UnitsPage {
   public url:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController)
   {
-    console.log("depositst"+ window.localStorage.getItem('d_module'));   
+   
     this.modules_list=[];
     this.resident_id=window.localStorage.getItem('resident_id');
     this.key=window.localStorage.getItem('token');
@@ -41,113 +41,10 @@ export class UnitsPage {
     platform.ready().then(() => { 
      
       this.getUnits(); 
+      
     });
   }
 
-  getModules(){
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait'
-    });
-    loading.present();
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return new Promise(resolve=>{
-      this.http.get(this.url + 'get_condo_modules/'+ this.condo_id +'/'+this.key,{headers: this.headers}).subscribe(data=>{
-        console.log(data.json());
-        if(data.json().errorCode==0)
-        {
-         
-          this.modules_list=data.json().data;
-          for(let i=0;i<this.modules_list.length;i++){
-        
-            if(this.modules_list[i].name=='Bills & Payments'){
-        
-              window.localStorage.setItem('e_module',this.modules_list[i].name);
-              }
-              if(this.modules_list[i].name=='Facility Booking'){
-         
-              window.localStorage.setItem('b_module',this.modules_list[i].name);
-              }
-              if(this.modules_list[i].name=='Deposits'){
-          
-              window.localStorage.setItem('d_module',this.modules_list[i].name);
-              }
-              if(this.modules_list[i].name=='Noticeboard'){
-             
-              window.localStorage.setItem('n_module',this.modules_list[i].name);
-              }
-              if(this.modules_list[i].name=='Help Desk'){
-            
-              window.localStorage.setItem('h_module',this.modules_list[i].name);
-              }
-              if(this.modules_list[i].name=='Community Wall'){
-          
-              window.localStorage.setItem('c_module',this.modules_list[i].name);
-              }
-              if(this.modules_list[i].name=='Useful Info'){
-            
-              window.localStorage.setItem('u_module',this.modules_list[i].name);
-              }
-              if(this.modules_list[i].name=='Visitors & Deliveries'){
-             
-              window.localStorage.setItem('v_module',this.modules_list[i].name);
-              }
-              if(this.modules_list[i].name=='SOS'){
-          
-              window.localStorage.setItem('ss_module',this.modules_list[i].name);
-              }
-              if(this.modules_list[i].name=='Announcements'){
-          
-                window.localStorage.setItem('a_module',this.modules_list[i].name);
-                }
-                if(this.modules_list[i].name=='Services'){
-              
-                  window.localStorage.setItem('s_module',this.modules_list[i].name);
-                  }
-                  if(this.modules_list[i].name=='Offers & Promos'){
-              
-                    window.localStorage.setItem('o_module',this.modules_list[i].name);
-                    }
-                    if(this.modules_list[i].name=='Vehicles'){
-                
-                      window.localStorage.setItem('vv_module',this.modules_list[i].name);
-                      }
-                      if(this.modules_list[i].name=='Intercom'){
-                      
-                        window.localStorage.setItem('i_module',this.modules_list[i].name);
-                        }
-                        
-          }
-         
-         
-         
-          loading.dismiss();
-        }else if(data.json().errorCode==1){
-          console.log("FAILED");
-         
-          loading.dismiss();
-          console.log("No Data Found");
-        }
-        else if(data.json().errorCode==2){
-          loading.dismiss();
-          this.show_errorkey_alert("Invalid key");
-          console.log("ERROR IN SERVER");
-        
-        }
-       else
-       resolve(false);
-},
-        err=>{
- 
-       //console.log(err);
-       loading.dismiss();
-       this.show_error_alert("PLease check your internet connection");
-       console.log("ERROR IN SERVER");
-      
-       });
- 
-   });
-    }
   getUnits(){
     let loading = this.loadingCtrl.create({
       content: 'Please wait'
@@ -164,7 +61,6 @@ return new Promise(resolve=>{
       this.units_list=data.json().units_list;
       if(this.units_list.length==1){
         window.localStorage.setItem('is_valid_unit','No');
-        this.getModules();
         this.navCtrl.setRoot(DashboardPage);
       }
       window.localStorage.setItem('condo_name',data.json().condo_name);
@@ -243,7 +139,6 @@ show_errorkey_alert(des)
   go_to_dashboard(){
    
     window.localStorage.setItem('unit_id', this.unit_id);
-    this.getModules();
     this.navCtrl.setRoot(DashboardPage);
         }
 
@@ -252,6 +147,20 @@ show_errorkey_alert(des)
             window.localStorage.clear();
             this.navCtrl.setRoot(LoginPage); 
           }else{
+            window.localStorage.setItem('e_module',"");
+            window.localStorage.setItem('b_module',"");
+            window.localStorage.setItem('d_module',"");
+            window.localStorage.setItem('n_module',"");
+            window.localStorage.setItem('h_module',"");
+            window.localStorage.setItem('c_module',"");
+            window.localStorage.setItem('u_module',"");
+            window.localStorage.setItem('v_module',"");
+            window.localStorage.setItem('ss_module',"");
+            window.localStorage.setItem('a_module',"");
+            window.localStorage.setItem('s_module',"");
+            window.localStorage.setItem('o_module',"");
+            window.localStorage.setItem('vv_module',"");
+            window.localStorage.setItem('i_module',""); 
           this.navCtrl.push(CommunityPage);
           }
         }

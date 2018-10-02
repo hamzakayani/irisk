@@ -48,6 +48,13 @@ export class DashboardPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
   
+    
+    this.key=window.localStorage.getItem('token');
+    this.condo_id=window.localStorage.getItem('condo_id');
+    
+    this.adds_list=[];
+    this.url='http://staging.irisk.my/api/v3/';
+    platform.ready().then(() => {
       this.epay_module=window.localStorage.getItem('e_module');
       this.booking_module=window.localStorage.getItem('b_module');
       this.deposits_module=window.localStorage.getItem('d_module');
@@ -62,13 +69,7 @@ export class DashboardPage {
       this.offerspromos_module=window.localStorage.getItem('o_module');
       this.vehicles_module=window.localStorage.getItem('vv_module');
       this.intercom_module=window.localStorage.getItem('i_module');
-      console.log("depositst"+ this.deposits_module);     
-    this.key=window.localStorage.getItem('token');
-    this.condo_id=window.localStorage.getItem('condo_id');
-    
-    this.adds_list=[];
-    this.url='http://staging.irisk.my/api/v3/';
-    platform.ready().then(() => {
+      console.log("depositst"+ this.deposits_module); 
     this.getadimages();   
     this.getCommunitySettings();
     this.condo_name=window.localStorage.getItem('condo_name');
