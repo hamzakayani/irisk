@@ -58,6 +58,7 @@ import { File } from '@ionic-native/file';
 import { Base64 } from '@ionic-native/base64';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
 @NgModule({
   declarations: [
@@ -166,6 +167,9 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
     FilePath,
     File,
     Base64,
+    FileTransfer,
+    FileTransferObject,
+    File,
     Base64ToGallery,
     PhotoViewer
   ]

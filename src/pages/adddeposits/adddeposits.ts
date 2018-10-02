@@ -18,11 +18,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 // @IonicPage()
 @Component({
   selector: 'page-adddeposits',
-  templateUrl: 'adddeposits.html',
-  providers: [
-    File,
-    FileTransfer,
-    Camera]
+  templateUrl: 'adddeposits.html'
 })
 export class AdddepositsPage {
 
@@ -44,6 +40,9 @@ imagebagname = []; //for image name
 subscription: any;
 slotdates:any;
 content:any;
+userid:any='';
+urlpic:any='';
+showimg:any;
 constructor(
   public navCtrl: NavController, 
   public navParams: NavParams,
@@ -130,19 +129,21 @@ save_deposit(){
 
 }
 camerafn(){
+  
   console.log("camera settings");
   const options: CameraOptions = {
     quality: 100,
-    destinationType: this.camera.DestinationType.FILE_URI,
-    encodingType: this.camera.EncodingType.JPEG,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.PNG,
     mediaType: this.camera.MediaType.PICTURE,
-    sourceType: 0, //PHOTOLIBRARY : 0, CAMERA : 1, SAVEDPHOTOALBUM : 2
+    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY, //PHOTOLIBRARY : 0, CAMERA : 1, SAVEDPHOTOALBUM : 2
     saveToPhotoAlbum: true
   }
   this.camera.getPicture(options).then((imagePath) => {
     this.myimage = imagePath;
+    this.showimg=imagePath;
       console.log('opengallery img :::::::',this.myimage);
-      this.uploadimg()
+      this.uploadimg();
     // this.myimage = 'data:image/jpeg;base64,' + imageData;
     // console.log('this.imgurl', this.myimage);
     // this.stagegallery(this.myimage);
@@ -172,20 +173,22 @@ click_on_cancel_button(){
   this.navCtrl.pop();
 }
 uploadimg(){
-  console.log('upload img funtion');
+  this.userid=window.localStorage.getItem('token');
+  console.log('upload img funtion::::',this.userid);
     const fileTransfer: FileTransferObject = this.transfer.create();
     let options: FileUploadOptions = {
       fileKey: 'image-file',
-      fileName: "img11112",
+      fileName: this.userid+'.png',
       chunkedMode: false,
-      mimeType: "image/jpeg",
+      mimeType: "image/png",
       headers: {}
     }
     console.log('this.imageURI ::: sadsd:',this.myimage);
     console.log('options',options);
-    let urlProPic='http://staging.irisk.my/assets/uploads/deposit_files/deposit_receipts/hadd12';
-    console.log('this.imageURI ::::',urlProPic);
-    fileTransfer.upload(this.myimage, urlProPic, options)
+    this.urlpic='http://staging.irisk.my/assets/uploads/deposit_files/deposit_receipts/';
+    // +this.userid+'.png'
+    console.log('this.imageURI ::::',this.urlpic);
+    fileTransfer.upload(this.myimage, this.urlpic, options)
       .then((data) => {
       let p_data = JSON.parse(data.response);
       console.log('responseeesdadsaee:::: thenthen',p_data);

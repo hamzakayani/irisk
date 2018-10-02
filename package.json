@@ -28,7 +28,7 @@
     "@ionic-native/email-composer": "^4.14.0",
     "@ionic-native/file": "^4.15.0",
     "@ionic-native/file-path": "^4.15.0",
-    "@ionic-native/file-transfer": "^4.12.2",
+    "@ionic-native/file-transfer": "^4.15.0",
     "@ionic-native/image-picker": "^4.15.0",
     "@ionic-native/photo-viewer": "^4.15.0",
     "@ionic-native/splash-screen": "~4.12.0",
