@@ -156,7 +156,7 @@ adsdetail(title,description,image){
   });
 }
 dashboard(){
-  this.navCtrl.push(DashboardPage);
+  this.navCtrl.setRoot(DashboardPage);
 }
 epay(){
   this.navCtrl.push(EpaytabPage);

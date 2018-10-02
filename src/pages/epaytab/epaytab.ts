@@ -240,7 +240,7 @@ export class EpaytabPage {
     });
   }
   dashboard(){
-    this.navCtrl.push(DashboardPage);
+    this.navCtrl.setRoot(DashboardPage);
   }
   epay1(){
     this.navCtrl.push(EpaytabPage);

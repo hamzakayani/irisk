@@ -238,7 +238,7 @@ export class DashboardPage {
     this.navCtrl.push(VisitortabPage);
   }
   dashboard(){
-    this.navCtrl.push(DashboardPage);
+    this.navCtrl.setRoot(DashboardPage);
   }
   epay(){
     this.navCtrl.push(EpaytabPage);
