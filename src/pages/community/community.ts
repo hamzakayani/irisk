@@ -72,7 +72,7 @@ constructor(public navCtrl: NavController, public navParams: NavParams, public p
           this.condo_list=data.json().condos_list;
           if(this.condo_list.length==1){
             window.localStorage.setItem('is_valid_communities','No');
-            this.getModules();
+            this.getModules(window.localStorage.getItem('condo_id'));
            this.navCtrl.setRoot(UnitsPage);
           }
           this.noneresult = false;
@@ -147,8 +147,8 @@ constructor(public navCtrl: NavController, public navParams: NavParams, public p
        alert.present();
     
     }
-    getModules(){
-      this.condo_id=window.localStorage.getItem('condo_id');
+    getModules(condo_id){
+    this.condo_id=condo_id;
       let loading = this.loadingCtrl.create({
         content: 'Please wait'
       });
@@ -253,9 +253,10 @@ constructor(public navCtrl: NavController, public navParams: NavParams, public p
      });
       }
     getunits(){
-console.log(this.condo_id);
+
+this.getModules(this.condo_id);
+console.log("this is condo id i selected"+ this.condo_id);
 window.localStorage.setItem('condo_id', this.condo_id);
-this.getModules();
 this.navCtrl.setRoot(UnitsPage);
     }
 }

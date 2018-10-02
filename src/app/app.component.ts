@@ -117,6 +117,20 @@ export class MyApp {
   }
   gotoswitch(){
     this.menuCtrl.close();
+    window.localStorage.setItem('e_module',"");
+    window.localStorage.setItem('b_module',"");
+    window.localStorage.setItem('d_module',"");
+    window.localStorage.setItem('n_module',"");
+    window.localStorage.setItem('h_module',"");
+    window.localStorage.setItem('c_module',"");
+    window.localStorage.setItem('u_module',"");
+    window.localStorage.setItem('v_module',"");
+    window.localStorage.setItem('ss_module',"");
+    window.localStorage.setItem('a_module',"");
+    window.localStorage.setItem('s_module',"");
+    window.localStorage.setItem('o_module',"");
+    window.localStorage.setItem('vv_module',"");
+    window.localStorage.setItem('i_module',""); 
     this.app.getRootNav().setRoot(CommunityPage);
   }
   gotoaccount(){
