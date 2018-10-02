@@ -23,6 +23,7 @@ import { UsefulinfotabPage } from '../pages/usefulinfotab/usefulinfotab';
 import { VisitortabPage } from '../pages/visitortab/visitortab';
 import { MyprofilePage } from '../pages/myprofile/myprofile';
 import { BookingdetailPage } from '../pages/bookingdetail/bookingdetail';
+import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
 
 
 
@@ -32,7 +33,7 @@ import { BookingdetailPage } from '../pages/bookingdetail/bookingdetail';
 export class MyApp {
   
    rootPage:any = LoginPage;
-  // rootPage:any = BookingdetailPage;  
+   //rootPage:any = ForgotpasswordPage;  
  public url:any;
  public headers:any;
  public resident_id:any;

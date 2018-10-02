@@ -25,7 +25,10 @@
         <ion-list *ngSwitchCase="'contacts'" >
             <div class="currentout" *ngFor="let cont of contact_list;">
                 <div class="topshow" (click)="topclickbtn(cont.id)">
-                    <div class="textcircle bigtxt">
+                    <div *ngIf="cont.type=='Emergency'" class="textcircle bigtxt" style="background: red;">
+                        {{cont.name_alias}}
+                    </div>
+                    <div *ngIf="cont.type=='Normal'" class="textcircle bigtxt" style="background: #4a4848;">
                         {{cont.name_alias}}
                     </div>
                     <div class="personname">

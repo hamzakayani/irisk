@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
+import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
 import { AdddepositsPage } from '../pages/adddeposits/adddeposits';
 import { BookingPage } from '../pages/booking/booking';
 import { BookingaddPage } from '../pages/bookingadd/bookingadd';
@@ -99,7 +100,8 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
     MyprofilesosPage,
     MyprofileusermanagementPage,
     MyprofileuservehiclePage,
-    BookingdetailPage
+    BookingdetailPage,
+    ForgotpasswordPage
   ],
   imports: [
     BrowserModule,
@@ -150,7 +152,8 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
     MyprofilesosPage,
     MyprofileusermanagementPage,
     MyprofileuservehiclePage,
-    BookingdetailPage
+    BookingdetailPage,
+    ForgotpasswordPage
   ],
   providers: [
     StatusBar,
