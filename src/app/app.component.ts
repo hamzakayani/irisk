@@ -24,16 +24,19 @@ import { VisitortabPage } from '../pages/visitortab/visitortab';
 import { MyprofilePage } from '../pages/myprofile/myprofile';
 import { BookingdetailPage } from '../pages/bookingdetail/bookingdetail';
 import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
+import { MyprofiledetailPage } from '../pages/myprofiledetail/myprofiledetail';
+import { MyprofileinvitePage } from '../pages/myprofileinvite/myprofileinvite';
+import { MyprofilesosPage } from '../pages/myprofilesos/myprofilesos';
+import { MyprofileusermanagementPage } from '../pages/myprofileusermanagement/myprofileusermanagement';
+import { MyprofileuservehiclePage } from '../pages/myprofileuservehicle/myprofileuservehicle';
 import { UpdatepasswordPage } from '../pages/updatepassword/updatepassword';
-
-
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   
  rootPage:any = LoginPage;
-  // rootPage:any = UpdatepasswordPage;  
+  // rootPage:any = MyprofileuservehiclePage;  
  public url:any;
  public headers:any;
  public resident_id:any;

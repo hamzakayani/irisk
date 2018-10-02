@@ -14,12 +14,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'myprofileusermanagement.html',
 })
 export class MyprofileusermanagementPage {
-
+  public topclick:number=0;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyprofileusermanagementPage');
   }
-
+  topclickbtn(id){
+    if(this.topclick==0){
+      this.topclick=id;
+    }
+    else{
+      this.topclick=0;
+    }
+  }
 }
