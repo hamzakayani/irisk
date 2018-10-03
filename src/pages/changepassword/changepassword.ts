@@ -9,7 +9,7 @@ import { Http} from '@angular/http';
 })
 export class ChangepasswordPage {
   
-  public password:any;
+  public new_password:any;
   public re_password:any;
   public old_password:any;
   public resident_id:any;
