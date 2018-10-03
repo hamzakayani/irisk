@@ -8,7 +8,7 @@
         <img src="assets/imgs/ic_logo_menu_m.png">
         <p>Select community</p>
       </div>
-      <ion-select placeholder="Select" [(ngModel)]="condo_id" interface="popover">
+      <ion-select placeholder="Select" [(ngModel)]="condo_id"  interface="popover">
         <ion-option value="-1" selected="true">Select </ion-option>
         <ion-option  *ngFor="let item of condo_list; let i = index " value="{{item.condo_id}}" selected="i === 0">{{item.condo_name}}</ion-option>
       </ion-select>
