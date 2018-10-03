@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController } from 'ionic-angular';
+import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController,Events } from 'ionic-angular';
 import { Http} from '@angular/http';
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 
 import { RestProvider } from '../../providers/rest/rest';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { EpaytabPage } from '../epaytab/epaytab';
 import { BookingPage } from '../booking/booking';
@@ -45,16 +46,14 @@ export class DashboardPage {
   public offerspromos_module:any;
   public vehicles_module:any;
   public intercom_module:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
+  constructor(public navCtrl: NavController, public events: Events,private splashScreen: SplashScreen,public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
-  
-    
     this.key=window.localStorage.getItem('token');
     this.condo_id=window.localStorage.getItem('condo_id');
-    
     this.adds_list=[];
     this.url='http://staging.irisk.my/api/v3/';
     platform.ready().then(() => {
+      this.splashScreen.hide();
       this.epay_module=window.localStorage.getItem('e_module');
       this.booking_module=window.localStorage.getItem('b_module');
       this.deposits_module=window.localStorage.getItem('d_module');
@@ -73,7 +72,9 @@ export class DashboardPage {
     this.getadimages();   
     this.getCommunitySettings();
     this.condo_name=window.localStorage.getItem('condo_name');
-     
+    setTimeout(() => {                  
+      this.events.publish('user:login');
+        }, 500);
     });
    
   }

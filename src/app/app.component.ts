@@ -1,12 +1,14 @@
 
 import {Component} from '@angular/core';
-import {Platform,App} from 'ionic-angular';
+import {Platform,App,Events} from 'ionic-angular';
 import { MenuController } from 'ionic-angular';
 import { RestProvider } from '../providers/rest/rest';
 import { Http} from '@angular/http';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
+
 
 import { BookingPage } from '../pages/booking/booking';
 import { CommunityPage } from '../pages/community/community';
@@ -37,16 +39,57 @@ export class MyApp {
   
  rootPage:any = LoginPage;
   // rootPage:any = MyprofileuservehiclePage;  
- public url:any;
- public headers:any;
- public resident_id:any;
-  constructor(public platform: Platform,public menuCtrl: MenuController,public http:Http,private app: App, statusBar: StatusBar, splashScreen: SplashScreen) {
+  public url:any;
+  public headers:any;
+  public resident_id:any;
+  public epay_module:any;
+  public booking_module:any;
+  public deposits_module:any;
+  public noticeboard_module:any;
+  public helpdesk_module:any;
+  public community_wall_module:any;
+  public usefullink_module:any;
+  public visitors_module:any;
+  public sos_module:any;
+  public announcement_module:any;
+  public services_module:any;
+  public offerspromos_module:any;
+  public vehicles_module:any;
+  public intercom_module:any;
+  constructor(public platform: Platform,
+    public menuCtrl: MenuController,
+    public http:Http,
+    private app: App, 
+    private storage: Storage,
+    private statusBar: StatusBar, 
+    public events: Events,
+    private splashScreen: SplashScreen) {
     platform.ready().then(() => {
+      events.subscribe('user:login', () => {
+        this.moduleasign();
+        });
+        this.moduleasign();
       statusBar.styleDefault();
       this.url='http://staging.irisk.my/api/v3/';
       this.resident_id=window.localStorage.getItem('resident_id');
-      splashScreen.hide();
+      // splashScreen.hide();
     });
+  }
+  moduleasign(){
+    this.epay_module=window.localStorage.getItem('e_module');
+        this.booking_module=window.localStorage.getItem('b_module');
+        this.deposits_module=window.localStorage.getItem('d_module');
+        this.noticeboard_module=window.localStorage.getItem('n_module');
+        this.helpdesk_module=window.localStorage.getItem('h_module');
+        this.community_wall_module=window.localStorage.getItem('c_module'); 
+        this.usefullink_module=window.localStorage.getItem('u_module');
+        this.visitors_module=window.localStorage.getItem('v_module');
+        this.sos_module=window.localStorage.getItem('ss_module');
+        this.announcement_module=window.localStorage.getItem('a_module');
+        this.services_module=window.localStorage.getItem('s_module');
+        this.offerspromos_module=window.localStorage.getItem('o_module');
+        this.vehicles_module=window.localStorage.getItem('vv_module');
+        this.intercom_module=window.localStorage.getItem('i_module');
   }
   gotologout()
   {
@@ -58,9 +101,12 @@ export class MyApp {
           console.log(data.json());
            if(data.json().status=="success"){
             window.localStorage.clear();
+            this.storage.set('email', '');
+            this.storage.set('passwordd', '');
+            this.storage.set('condo_id', '');
+            this.storage.set('unit_id', '');
             this.menuCtrl.close();
             this.app.getRootNav().setRoot(LoginPage);
-            
            }
            else
            resolve(false);
@@ -134,6 +180,8 @@ export class MyApp {
     window.localStorage.setItem('o_module',"");
     window.localStorage.setItem('vv_module',"");
     window.localStorage.setItem('i_module',""); 
+    this.storage.set('condo_id', '');
+    this.storage.set('unit_id', '');
     this.app.getRootNav().setRoot(CommunityPage);
   }
   gotoaccount(){

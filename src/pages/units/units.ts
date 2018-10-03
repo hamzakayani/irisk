@@ -1,19 +1,14 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController } from 'ionic-angular';
+import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController, MenuController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import {DashboardPage} from '../dashboard/dashboard';
 import {CommunityPage} from '../community/community';
 import { LoginPage } from '../login/login';
 import { Http} from '@angular/http';
+import { Storage } from '@ionic/storage';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
-/**
- * Generated class for the UnitsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
-// @IonicPage()
 @Component({
   selector: 'page-units',
   templateUrl: 'units.html',
@@ -28,7 +23,17 @@ export class UnitsPage {
   public noneresult:any;
   public modules_list:any;
   public url:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController)
+  constructor(public navCtrl: NavController, 
+    private splashScreen: SplashScreen,
+    private storage: Storage,
+    public navParams: NavParams, 
+    public platform: Platform,
+    public alertCtrl: AlertController, 
+    public http:Http, 
+    public loadingCtrl: LoadingController,
+    private menu: MenuController,
+    private app: App, 
+    private modalCtrl: ModalController)
   {
    
     this.modules_list=[];
@@ -37,22 +42,36 @@ export class UnitsPage {
     this.condo_id=window.localStorage.getItem('condo_id');
     this.units_list=[];
     this.url='http://staging.irisk.my/api/v3/';
-   
     platform.ready().then(() => { 
-     
-      this.getUnits(); 
+      this.storage.get('unit_id').then((unit_id) => {
+        this.unit_id=unit_id;
+        console.log('unit_id::',this.unit_id);
+        if (this.unit_id == ''|| this.unit_id == null){
+          this.splashScreen.hide();
+          this.getUnits(); 
+        }
+        else{
+          this.getUnits(); 
+          this.go_to_dashboard();
+        }
+      });
       
     });
   }
-
+  ionViewDidEnter() {
+    this.menu.swipeEnable(false);
+  }
+  ionViewWillLeave() {
+    this.menu.swipeEnable(true);
+  }
   getUnits(){
     let loading = this.loadingCtrl.create({
-      content: 'Please wait'
-      });
-      loading.present();
-      this.headers = new Headers();
-      this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
-return new Promise(resolve=>{
+    content: 'Please wait'
+    });
+    loading.present();
+    this.headers = new Headers();
+    this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    return new Promise(resolve=>{
     this.http.get(this.url + 'get_user_units/'+ this.resident_id +'/'+ this.condo_id+'/'+ this.key,this.headers).subscribe(data=>{
     console.log(data.json());
     if(data.json().errorCode==0)
@@ -66,7 +85,8 @@ return new Promise(resolve=>{
       window.localStorage.setItem('condo_name',data.json().condo_name);
       this.noneresult = false;
       loading.dismiss();
-    }else if(data.json().errorCode==1){
+    }
+    else if(data.json().errorCode==1){
       console.log("FAILED");    
       this.noneresult = true;
       loading.dismiss();
@@ -80,48 +100,35 @@ return new Promise(resolve=>{
     }
    else
    resolve(false);
-},
+  },
     err=>{
-
    //console.log(err);
    loading.dismiss();
    this.show_error_alert("PLease check your internet connection");
    console.log("ERROR IN SERVER");
    this.noneresult = true;
    });
-
-});
-
+  });
 }
 show_error_alert(des)
 {
   let alert = this.alertCtrl.create({
-    
-    //subTitle: "PURPOSE OF DEPOSIT",
     message: des,
-  //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
     buttons: [
          {
            text: 'OK',
            handler: () => {
-
           this.navCtrl.setRoot(LoginPage);
-
            }
          }
        ]
-   });
-                 
+   });           
    alert.present();
-
 }
 show_errorkey_alert(des)
 {
   let alert = this.alertCtrl.create({
-    
-    //subTitle: "PURPOSE OF DEPOSIT",
     message: des,
-  //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
     buttons: [
          {
            text: 'ok',
@@ -131,37 +138,39 @@ show_errorkey_alert(des)
            }
          }
        ]
-   });
-                 
+   });          
    alert.present();
-
 }
-  go_to_dashboard(){
-   
+go_to_dashboard(){
+  setTimeout( () => {
+    console.log('hamza timeout start');
     window.localStorage.setItem('unit_id', this.unit_id);
+    this.storage.set('unit_id', this.unit_id);
     this.navCtrl.setRoot(DashboardPage);
-        }
-
-        go_back(){
-          if(window.localStorage.getItem('is_valid_communities')){
-            window.localStorage.clear();
-            this.navCtrl.setRoot(LoginPage); 
-          }else{
-            window.localStorage.setItem('e_module',"");
-            window.localStorage.setItem('b_module',"");
-            window.localStorage.setItem('d_module',"");
-            window.localStorage.setItem('n_module',"");
-            window.localStorage.setItem('h_module',"");
-            window.localStorage.setItem('c_module',"");
-            window.localStorage.setItem('u_module',"");
-            window.localStorage.setItem('v_module',"");
-            window.localStorage.setItem('ss_module',"");
-            window.localStorage.setItem('a_module',"");
-            window.localStorage.setItem('s_module',"");
-            window.localStorage.setItem('o_module',"");
-            window.localStorage.setItem('vv_module',"");
-            window.localStorage.setItem('i_module',""); 
-          this.navCtrl.push(CommunityPage);
-          }
-        }
+    console.log('hamza timeout end');
+  }, 2000);
+  
+}
+go_back(){
+  if(window.localStorage.getItem('is_valid_communities')){
+    window.localStorage.clear();
+    this.navCtrl.setRoot(LoginPage); 
+  }else{
+    window.localStorage.setItem('e_module',"");
+    window.localStorage.setItem('b_module',"");
+    window.localStorage.setItem('d_module',"");
+    window.localStorage.setItem('n_module',"");
+    window.localStorage.setItem('h_module',"");
+    window.localStorage.setItem('c_module',"");
+    window.localStorage.setItem('u_module',"");
+    window.localStorage.setItem('v_module',"");
+    window.localStorage.setItem('ss_module',"");
+    window.localStorage.setItem('a_module',"");
+    window.localStorage.setItem('s_module',"");
+    window.localStorage.setItem('o_module',"");
+    window.localStorage.setItem('vv_module',"");
+    window.localStorage.setItem('i_module',""); 
+  this.navCtrl.push(CommunityPage);
+  }
+}
 }
