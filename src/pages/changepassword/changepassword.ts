@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController } from 'ionic-angular';
 import {CommunityPage} from '../community/community';
 import { LoginPage } from '../login/login';
-//import { MyprofilePage } from '../myprofile/myprofile';
-import { ChangepasswordPage } from '../changepassword/changepassword';
 import { Http} from '@angular/http';
 @Component({
   selector: 'page-changepassword',
@@ -158,9 +156,6 @@ export class ChangepasswordPage {
            alert.present();
         
         }
-        go_to_forgot_password(){
-
-          this.navCtrl.push(ForgotpasswordPage);
-        }
+     
 }
 
