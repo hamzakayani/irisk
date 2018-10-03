@@ -60,6 +60,7 @@ constructor(public navCtrl: NavController,
     this.menu.swipeEnable(true);
   }
   getCondos(){
+<<<<<<< HEAD
     let loading = this.loadingCtrl.create({
       content: 'Please wait'
       });
@@ -77,6 +78,39 @@ constructor(public navCtrl: NavController,
           window.localStorage.setItem('is_valid_communities','No');
           this.getModules(window.localStorage.getItem('condo_id'));
           this.navCtrl.setRoot(UnitsPage);
+=======
+        let loading = this.loadingCtrl.create({
+          content: 'Please wait'
+          });
+          loading.present();
+          this.headers = new Headers();
+          this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    return new Promise(resolve=>{
+        this.http.get(this.url + 'get_user_condos/'+ this.resident_id +'/'+ this.key, this.headers).subscribe(data=>{
+        console.log(data.json());
+        if(data.json().errorCode==0)
+        {
+          console.log("SUCCESS");      
+          this.condo_list=data.json().condos_list;
+          if(this.condo_list.length==1){
+            window.localStorage.setItem('is_valid_communities','No');
+            this.getModules();
+          
+          }
+          this.noneresult = false;
+          loading.dismiss();
+        }else if(data.json().errorCode==1){
+          console.log("FAILED");    
+          this.noneresult = true;
+          loading.dismiss();
+          this.show_error_alert(data.json().message);
+        }
+        else if(data.json().errorCode==2){
+          loading.dismiss();
+          this.show_errorkey_alert("Invalid key");
+          console.log("ERROR IN SERVER");
+          this.noneresult = true;
+>>>>>>> 5506f3a7dac54172726917f70166e81b1bc8abe6
         }
         this.noneresult = false;
         loading.dismiss();
@@ -147,8 +181,8 @@ constructor(public navCtrl: NavController,
        alert.present();
     
     }
-    getModules(condo_id){
-    this.condo_id=condo_id;
+    getModules(){
+    this.condo_id=this.condo_id;
       let loading = this.loadingCtrl.create({
         content: 'Please wait'
       });
@@ -224,8 +258,9 @@ constructor(public navCtrl: NavController,
             }
            
            
-           
+            this.navCtrl.setRoot(UnitsPage);
             loading.dismiss();
+           
           }else if(data.json().errorCode==1){
             console.log("FAILED");
            
@@ -253,6 +288,7 @@ constructor(public navCtrl: NavController,
      });
       }
     getunits(){
+<<<<<<< HEAD
       this.getModules(this.condo_id);
       setTimeout( () => {
         console.log('hamza timeout start');
@@ -261,5 +297,10 @@ constructor(public navCtrl: NavController,
         this.navCtrl.setRoot(UnitsPage);
         console.log('hamza timeout end');
       }, 2000);
+=======
+   window.localStorage.setItem('condo_id', this.condo_id);
+this.getModules();
+
+>>>>>>> 5506f3a7dac54172726917f70166e81b1bc8abe6
     }
 }

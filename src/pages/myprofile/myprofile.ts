@@ -14,7 +14,14 @@ import { UpdatepasswordPage } from '../updatepassword/updatepassword';
   templateUrl: 'myprofile.html',
 })
 export class MyprofilePage {
+  public profile_image:any;
+  public resident_name:any;
+  public location:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+              this.profile_image=window.localStorage.getItem('image_url');
+              this.location=window.localStorage.getItem('mailing_address');
+              this.resident_name=window.localStorage.getItem('name');
+    
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyprofilePage');
