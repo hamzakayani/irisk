@@ -72,7 +72,7 @@ constructor(public navCtrl: NavController, public navParams: NavParams, public p
           this.condo_list=data.json().condos_list;
           if(this.condo_list.length==1){
             window.localStorage.setItem('is_valid_communities','No');
-            this.getModules(window.localStorage.getItem('condo_id'));
+            this.getModules();
           
           }
           this.noneresult = false;
@@ -158,7 +158,7 @@ constructor(public navCtrl: NavController, public navParams: NavParams, public p
       return new Promise(resolve=>{
         this.http.get(this.url + 'get_condo_modules/'+ this.condo_id +'/'+this.key,{headers: this.headers}).subscribe(data=>{
           console.log(data.json());
-          if(data.json().errorCode==0)
+          if(data.json().errorCoden==0)
           {
            
             this.modules_list=data.json().data;
@@ -255,7 +255,7 @@ constructor(public navCtrl: NavController, public navParams: NavParams, public p
       }
     getunits(){
    window.localStorage.setItem('condo_id', this.condo_id);
-this.getModules(this.condo_id);
+this.getModules();
 
     }
 }

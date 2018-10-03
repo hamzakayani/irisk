@@ -84,7 +84,7 @@ export class ChangepasswordPage {
            loading.dismiss();
            this.show_error_alert("ERROR IN SERVER");
            console.log("ERROR IN SERVER");
-           this.noneresult = true;
+          
            });
      
        });
