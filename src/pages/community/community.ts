@@ -158,7 +158,7 @@ constructor(public navCtrl: NavController, public navParams: NavParams, public p
       return new Promise(resolve=>{
         this.http.get(this.url + 'get_condo_modules/'+ this.condo_id +'/'+this.key,{headers: this.headers}).subscribe(data=>{
           console.log(data.json());
-          if(data.json().errorCoden==0)
+          if(data.json().errorCode==0)
           {
            
             this.modules_list=data.json().data;
