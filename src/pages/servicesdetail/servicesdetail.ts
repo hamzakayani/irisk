@@ -4,6 +4,7 @@ import { RestProvider } from '../../providers/rest/rest';
 import { Http} from '@angular/http';
 import { LoginPage } from '../login/login';
 import { ServicesdetailvendorPage } from '../servicesdetailvendor/servicesdetailvendor';
+import { Storage } from '@ionic/storage';
 
 // @IonicPage()
 @Component({
@@ -20,7 +21,9 @@ export class ServicesdetailPage {
   public service_items:any;
   public noneresult: any;
   public headers:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
+  constructor(public navCtrl: NavController,
+    private storage: Storage,
+    public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {  
     this.post_id=navParams.get('data');
     this.service_items=[];
@@ -92,7 +95,8 @@ show_error_alert(des)
          {
            text: 'Close',
            handler: () => {
-
+            window.localStorage.clear();
+            this.storage.clear();
           this.navCtrl.setRoot(LoginPage);
 
 
@@ -116,7 +120,8 @@ show_errorkey_alert(des)
            text: 'Close',
            handler: () => {
             window.localStorage.clear();
-            this.app.getRootNav().setRoot(LoginPage);
+            this.storage.clear();
+                        this.app.getRootNav().setRoot(LoginPage);
            }
          }
        ]

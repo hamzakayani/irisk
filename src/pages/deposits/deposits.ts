@@ -8,6 +8,9 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ServicesPage } from '../services/services';
 import { PromoPage } from '../promo/promo';
 import { Http} from '@angular/http';
+import { LoginPage } from '../login/login';
+import { Storage } from '@ionic/storage';
+
 
 /**
  * Generated class for the DepositsPage page.
@@ -33,7 +36,10 @@ export class DepositsPage {
   public bankinfo:any;
   public headers:any;
   public deplist1:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams, 
+     private storage: Storage,
+     public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
     this.bankinfo=window.localStorage.getItem('community_bank_info');
     this.currency=window.localStorage.getItem('currency');
@@ -78,25 +84,7 @@ export class DepositsPage {
         }	
        });
     }
-showdepositalert(des)
-{
-  let alert = this.alertCtrl.create({
-		
-    subTitle: "PURPOSE OF DEPOSIT",
-    message: des,
-  //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
-    buttons: [
-         {
-           text: 'Close',
-           handler: () => {
-           console.log('Disagree clicked');
-           }
-         }
-       ]
-   });
-                 
-   alert.present();
-}
+
     getdepList(){
    var headers = new Headers();
    headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -139,7 +127,7 @@ console.log(onerror["data"])
           }
           else if(data.json().errorCode==2){
             loading.dismiss();
-            // this.show_errorkey_alert("Invalid key");
+            this.show_errorkey_alert("Invalid key");
             console.log("ERROR IN SERVER");
             this.noneresult = true;
           }
@@ -150,12 +138,35 @@ console.log(onerror["data"])
    
          //console.log(err);
          loading.dismiss();
-        //  this.show_error_alert("ERROR IN SERVER");
+         this.show_errorkey_alert("Invalid key");
          console.log("ERROR IN SERVER");
          this.noneresult = true;
          });
    
      });
+      }
+      show_errorkey_alert(des)
+      {
+        let alert = this.alertCtrl.create({
+          
+          //subTitle: "PURPOSE OF DEPOSIT",
+          message: des,
+        //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
+          buttons: [
+               {
+                 text: 'Close',
+                 handler: () => {
+                  window.localStorage.clear();
+                  this.storage.clear();
+
+                  this.app.getRootNav().setRoot(LoginPage);
+                 }
+               }
+             ]
+         });
+                       
+         alert.present();
+      
       }
     gotoadd_deposit(){
       this.navCtrl.push(AdddepositsPage);

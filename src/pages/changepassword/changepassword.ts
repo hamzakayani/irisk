@@ -3,6 +3,8 @@ import { NavController, NavParams, Platform, AlertController, LoadingController,
 import {CommunityPage} from '../community/community';
 import { LoginPage } from '../login/login';
 import { Http} from '@angular/http';
+import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'page-changepassword',
   templateUrl: 'changepassword.html'
@@ -25,6 +27,7 @@ export class ChangepasswordPage {
     public http:Http, 
     public loadingCtrl: LoadingController,
     private app: App,
+    private storage: Storage,
     private modalCtrl: ModalController)
   { 
     this.new_password="";
@@ -125,6 +128,7 @@ export class ChangepasswordPage {
                    handler: () => {
     
                     window.localStorage.clear();
+                    this.storage.clear();
                     this.app.getRootNav().setRoot(LoginPage);
     
                    }

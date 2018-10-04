@@ -160,6 +160,8 @@ show_error_alert(des){
           {
             text: 'OK',
             handler: () => {
+              window.localStorage.clear();
+              this.storage.clear();
             this.navCtrl.setRoot(LoginPage);
             }
           }
@@ -174,7 +176,8 @@ show_errorkey_alert(des){
           {
             text: 'ok',
             handler: () => {
-            window.localStorage.clear();
+              window.localStorage.clear();
+              this.storage.clear();
             this.app.getRootNav().setRoot(LoginPage);
             }
           }

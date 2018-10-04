@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, AlertController, LoadingController, App, ModalController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { Http} from '@angular/http';
+import { LoginPage } from '../login/login';
+import { DashboardPage } from '../dashboard/dashboard';
+import { Storage } from '@ionic/storage';
+
 /**
  * Generated class for the DepositedetailPage page.
  *
@@ -29,7 +33,9 @@ export class DepositedetailPage
   public headers:any;
   public deposits_deail:any;
   public post_id:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController)
+  constructor(public navCtrl: NavController,
+    private storage: Storage,
+    public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController)
   {
     this.deposits_deail=[];
     this.post_id=navParams.get('data');
@@ -60,16 +66,21 @@ export class DepositedetailPage
     return new Promise(resolve=>{
       this.http.get(this.url + 'view_deposit_receipt/'+ this.resident_id+'/'+ this.condo_id+'/'+this.unit_id+'/'+this.post_id+'/'+this.key,{headers: this.headers}).subscribe(data=>{
         console.log(data.json());
-        if(data.json().status=='success')
+        if(data.json().errorCode==0)
         {
           console.log("SUCCESS");
           this.deposits_deail=data.json().data;
           loading.dismiss();
-        }else if(data.json().status=='failed'){
+        }else if(data.json().errorCode==1){
           console.log("FAILED");
-          console.log(data.json().data);
+          this.noneresult = true;
           loading.dismiss();
           console.log("No Data Found");
+        }
+        else if(data.json().errorCode==2){
+          loading.dismiss();
+          this.show_errorkey_alert("Invalid key");
+          console.log("ERROR IN SERVER");
         }
        else
        resolve(false);
@@ -95,7 +106,32 @@ export class DepositedetailPage
              {
                text: 'Close',
                handler: () => {
-              this.navCtrl.pop();
+                window.localStorage.clear();
+                this.storage.clear();
+              this.navCtrl.setRoot(LoginPage);
+
+               }
+             }
+           ]
+       });
+                     
+       alert.present();
+    
+    }
+    show_errorkey_alert(des)
+    {
+      let alert = this.alertCtrl.create({
+        
+        //subTitle: "PURPOSE OF DEPOSIT",
+        message: des,
+      //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
+        buttons: [
+             {
+               text: 'Close',
+               handler: () => {
+                window.localStorage.clear();
+            this.storage.clear();
+                this.app.getRootNav().setRoot(LoginPage);
                }
              }
            ]

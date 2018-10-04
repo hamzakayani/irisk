@@ -76,7 +76,7 @@ export class MyApp {
     });
   }
   moduleasign(){
-    this.epay_module=window.localStorage.getItem('e_module');
+        this.epay_module=window.localStorage.getItem('e_module');
         this.booking_module=window.localStorage.getItem('b_module');
         this.deposits_module=window.localStorage.getItem('d_module');
         this.noticeboard_module=window.localStorage.getItem('n_module');
@@ -101,12 +101,15 @@ export class MyApp {
           console.log(data.json());
            if(data.json().status=="success"){
             window.localStorage.clear();
+            this.storage.clear();
             this.storage.set('email', '');
             this.storage.set('passwordd', '');
             this.storage.set('condo_id', '');
             this.storage.set('unit_id', '');
             this.menuCtrl.close();
+            this.storage.clear();
             this.app.getRootNav().setRoot(LoginPage);
+            
            }
            else
            resolve(false);

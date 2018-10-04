@@ -115,7 +115,8 @@ constructor(public navCtrl: NavController,
              {
                text: 'OK',
                handler: () => {
-
+                window.localStorage.clear();
+                this.storage.clear();
               this.navCtrl.setRoot(LoginPage);
 
                }
@@ -138,6 +139,7 @@ constructor(public navCtrl: NavController,
                text: 'ok',
                handler: () => {
                 window.localStorage.clear();
+                this.storage.clear();
                 this.app.getRootNav().setRoot(LoginPage);
                }
              }

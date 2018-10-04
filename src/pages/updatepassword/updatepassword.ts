@@ -4,6 +4,7 @@ import {CommunityPage} from '../community/community';
 import {ForgotpasswordPage} from '../forgotpassword/forgotpassword';
 import {LoginPage} from '../login/login';
 import { Http} from '@angular/http';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-updatepassword',
@@ -26,6 +27,8 @@ export class UpdatepasswordPage {
     public http:Http, 
     public loadingCtrl: LoadingController,
     private app: App,
+    private storage: Storage,
+
     private modalCtrl: ModalController)
   { 
     this.email=navParams.get('email');
@@ -135,7 +138,8 @@ show_error_alert(des)
          {
            text: 'OK',
            handler: () => {
-
+            window.localStorage.clear();
+            this.storage.clear();
         //  this.navCtrl.setRoot(LoginPage);
 
            }
@@ -157,7 +161,8 @@ show_success_alert(des)
          {
            text: 'OK',
            handler: () => {
-
+            window.localStorage.clear();
+            this.storage.clear();
          this.navCtrl.setRoot(LoginPage);
 
            }

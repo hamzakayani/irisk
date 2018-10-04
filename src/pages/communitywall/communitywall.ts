@@ -7,6 +7,7 @@ import { HelpdestmytckPage } from '../helpdestmytck/helpdestmytck';
 import { NoticboardPage } from '../noticboard/noticboard';
 import { CommunitywallpostPage } from '../communitywallpost/communitywallpost';
 import { LoginPage } from '../login/login';
+import { Storage } from '@ionic/storage';
 
 import { EpaytabPage } from '../epaytab/epaytab';
 import { DashboardPage } from '../dashboard/dashboard';
@@ -34,7 +35,9 @@ export class CommunitywallPage {
   public headers:any;
   public comment_name:any;
   public post_id:any;
-  constructor(private formBuilder: FormBuilder,public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
+  constructor(private formBuilder: FormBuilder,
+    private storage: Storage,
+    public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
     this.todo = this.formBuilder.group({
       comment_name: ['', Validators.required],
@@ -182,7 +185,8 @@ show_error_alert(des)
          {
            text: 'Close',
            handler: () => {
-
+            window.localStorage.clear();
+            this.storage.clear();
           this.navCtrl.setRoot(LoginPage);
 
 
@@ -206,6 +210,8 @@ show_errorkey_alert(des)
            text: 'Close',
            handler: () => {
             window.localStorage.clear();
+            this.storage.clear();
+
             this.app.getRootNav().setRoot(LoginPage);
            }
          }

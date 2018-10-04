@@ -4,6 +4,7 @@ import { RestProvider } from '../../providers/rest/rest';
 import { Http} from '@angular/http';
 import { LoginPage } from '../login/login';
 import { DashboardPage } from '../dashboard/dashboard';
+import { Storage } from '@ionic/storage';
 
 // @IonicPage()
 @Component({
@@ -22,7 +23,9 @@ export class EpayinvoicedetailPage {
   
   public item_deail:any;
   public post_id:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController)
+  constructor(public navCtrl: NavController, 
+    private storage: Storage,
+    public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController)
   {
    this.invoice_deail=[];
    this.item_deail=[];
@@ -93,6 +96,8 @@ export class EpayinvoicedetailPage {
              {
                text: 'Close',
                handler: () => {
+                window.localStorage.clear();
+                this.storage.clear();
               this.navCtrl.setRoot(LoginPage);
                }
              }
@@ -114,6 +119,7 @@ export class EpayinvoicedetailPage {
                text: 'Close',
                handler: () => {
                 window.localStorage.clear();
+                this.storage.clear();
                 this.app.getRootNav().setRoot(LoginPage);
                }
              }

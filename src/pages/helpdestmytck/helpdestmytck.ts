@@ -9,6 +9,7 @@ import { EpaytabPage } from '../epaytab/epaytab';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ServicesPage } from '../services/services';
 import { PromoPage } from '../promo/promo';
+import { Storage } from '@ionic/storage';
 
 // @IonicPage()
 @Component({
@@ -28,7 +29,9 @@ export class HelpdestmytckPage {
    public headers:any;
    public noneresult:any;
    public mystatus:any;
-   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
+   constructor(public navCtrl: NavController, 
+    private storage: Storage,
+    public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
    {
     this.noneresult='';
     this.condo_name=window.localStorage.getItem('condo_name');
@@ -135,7 +138,8 @@ export class HelpdestmytckPage {
                {
                  text: 'Close',
                  handler: () => {
-  
+                  window.localStorage.clear();
+                  this.storage.clear();
                 this.navCtrl.setRoot(LoginPage);
   
                  }
@@ -158,7 +162,8 @@ export class HelpdestmytckPage {
                  text: 'Close',
                  handler: () => {
                   window.localStorage.clear();
-                  this.app.getRootNav().setRoot(LoginPage);
+                  this.storage.clear();               
+                     this.app.getRootNav().setRoot(LoginPage);
                  }
                }
              ]

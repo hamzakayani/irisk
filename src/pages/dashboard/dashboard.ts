@@ -3,6 +3,7 @@ import { NavController, NavParams, Platform, AlertController, LoadingController,
 import { Http} from '@angular/http';
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 import { RestProvider } from '../../providers/rest/rest';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -46,7 +47,9 @@ export class DashboardPage {
   public offerspromos_module:any;
   public vehicles_module:any;
   public intercom_module:any;
-  constructor(public navCtrl: NavController, public events: Events,private splashScreen: SplashScreen,public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
+  constructor(public navCtrl: NavController, 
+    private storage: Storage,
+    public events: Events,private splashScreen: SplashScreen,public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
     this.key=window.localStorage.getItem('token');
     this.condo_id=window.localStorage.getItem('condo_id');
@@ -180,7 +183,8 @@ export class DashboardPage {
              {
                text: 'Close',
                handler: () => {
-
+                window.localStorage.clear();
+                this.storage.clear();
               this.navCtrl.setRoot(LoginPage);
 
 
@@ -204,6 +208,8 @@ export class DashboardPage {
                text: 'Close',
                handler: () => {
                 window.localStorage.clear();
+                this.storage.clear();
+
                 this.app.getRootNav().setRoot(LoginPage);
                }
              }

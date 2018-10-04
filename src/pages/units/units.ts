@@ -118,6 +118,8 @@ show_error_alert(des)
          {
            text: 'OK',
            handler: () => {
+            window.localStorage.clear();
+            this.storage.clear();
           this.navCtrl.setRoot(LoginPage);
            }
          }
@@ -134,6 +136,7 @@ show_errorkey_alert(des)
            text: 'ok',
            handler: () => {
             window.localStorage.clear();
+            this.storage.clear();
             this.app.getRootNav().setRoot(LoginPage);
            }
          }
@@ -148,7 +151,7 @@ go_to_dashboard(){
     this.storage.set('unit_id', this.unit_id);
     this.navCtrl.setRoot(DashboardPage);
     console.log('hamza timeout end');
-  }, 2000);
+  }, 1000);
   
 }
 go_back(){

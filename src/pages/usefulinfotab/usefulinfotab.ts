@@ -7,6 +7,7 @@ import { EpaytabPage } from '../epaytab/epaytab';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ServicesPage } from '../services/services';
 import { PromoPage } from '../promo/promo';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-usefulinfotab',
@@ -25,7 +26,9 @@ export class UsefulinfotabPage {
   usefulinfo:string='contacts';
   public noneresult: any;
   public headers:any;
-  constructor(public navCtrl: NavController,public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
+  constructor(public navCtrl: NavController,
+    private storage: Storage,
+    public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
     this.condo_id=window.localStorage.getItem('condo_id');
     this.resident_id=window.localStorage.getItem('resident_id');
@@ -140,7 +143,8 @@ show_error_alert(des)
          {
            text: 'Close',
            handler: () => {
-
+            window.localStorage.clear();
+            this.storage.clear();
           this.navCtrl.setRoot(LoginPage);
 
 
@@ -164,6 +168,7 @@ show_errorkey_alert(des)
            text: 'Close',
            handler: () => {
             window.localStorage.clear();
+            this.storage.clear();
             this.app.getRootNav().setRoot(LoginPage);
            }
          }
@@ -174,12 +179,9 @@ show_errorkey_alert(des)
 
 }
 topclickbtn(id){
-  if(this.topclick==0){
+
     this.topclick=id;
-  }
-  else{
-    this.topclick=0;
-  }
+  
 }
 dashboard(){
   this.navCtrl.setRoot(DashboardPage);

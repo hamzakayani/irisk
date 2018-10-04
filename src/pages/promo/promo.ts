@@ -8,6 +8,7 @@ import { ServicesPage } from '../services/services';
 import { EpaytabPage } from '../epaytab/epaytab';
 import { DashboardPage } from '../dashboard/dashboard';
 import { PromodetailPage } from '../promodetail/promodetail';
+import { Storage } from '@ionic/storage';
 
 
 // @IonicPage()
@@ -24,7 +25,9 @@ export class PromoPage {
   public path:any;
   public noneresult: any;
   public headers:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
+  constructor(public navCtrl: NavController,
+    private storage: Storage,
+    public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {  
     this.normal_list=[];
     this.featured_list=[];
@@ -123,6 +126,8 @@ show_error_alert(des)
          {
            text: 'Close',
            handler: () => {
+            window.localStorage.clear();
+            this.storage.clear();
             this.navCtrl.setRoot(LoginPage);
            }
          }
@@ -139,7 +144,8 @@ show_errorkey_alert(des)
            text: 'Close',
            handler: () => {
             window.localStorage.clear();
-            this.app.getRootNav().setRoot(LoginPage);
+            this.storage.clear();
+                        this.app.getRootNav().setRoot(LoginPage);
            }
          }
        ]

@@ -26,7 +26,7 @@
             <ion-row *ngFor="let dep of deposits_list;" >
                 <ion-col>
                     <div class="descinfo">
-                        <p class="info" (click)="showdepositalert(dep.description)">
+                        <p class="info"  (click)="depositedetail(dep.id)">
                             {{dep.description}}
                         </p>
                         <p style="width: 30%;float: left;text-align: right;margin: 0px;margin-top: 5px; "> <span style="float: right;font-size: 14px;color: #339e45;font-weight: bolder;margin-top: 0px;">{{currency}} {{dep.deposit_amount}}</span></p>
