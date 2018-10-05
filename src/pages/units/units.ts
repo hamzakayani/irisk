@@ -5,7 +5,6 @@ import {DashboardPage} from '../dashboard/dashboard';
 import {CommunityPage} from '../community/community';
 import { LoginPage } from '../login/login';
 import { Http} from '@angular/http';
-import { Storage } from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 
@@ -25,7 +24,6 @@ export class UnitsPage {
   public url:any;
   constructor(public navCtrl: NavController, 
     private splashScreen: SplashScreen,
-    private storage: Storage,
     public navParams: NavParams, 
     public platform: Platform,
     public alertCtrl: AlertController, 
@@ -43,18 +41,7 @@ export class UnitsPage {
     this.units_list=[];
     this.url='http://staging.irisk.my/api/v3/';
     platform.ready().then(() => { 
-      this.storage.get('unit_id').then((unit_id) => {
-        this.unit_id=unit_id;
-        console.log('unit_id::',this.unit_id);
-        if (this.unit_id == ''|| this.unit_id == null){
-          this.splashScreen.hide();
-          this.getUnits(); 
-        }
-        else{
-          this.getUnits(); 
-          this.go_to_dashboard();
-        }
-      });
+      this.getUnits(); 
       
     });
   }
@@ -79,6 +66,7 @@ export class UnitsPage {
       console.log("SUCCESS");      
       this.units_list=data.json().units_list;
       if(this.units_list.length==1){
+        window.localStorage.setItem('condo_name',data.json().condo_name);
         window.localStorage.setItem('is_valid_unit','No');
         this.navCtrl.setRoot(DashboardPage);
       }
@@ -119,7 +107,6 @@ show_error_alert(des)
            text: 'OK',
            handler: () => {
             window.localStorage.clear();
-            this.storage.clear();
           this.navCtrl.setRoot(LoginPage);
            }
          }
@@ -136,7 +123,6 @@ show_errorkey_alert(des)
            text: 'ok',
            handler: () => {
             window.localStorage.clear();
-            this.storage.clear();
             this.app.getRootNav().setRoot(LoginPage);
            }
          }
@@ -145,13 +131,8 @@ show_errorkey_alert(des)
    alert.present();
 }
 go_to_dashboard(){
-  setTimeout( () => {
-    console.log('hamza timeout start');
-    window.localStorage.setItem('unit_id', this.unit_id);
-    this.storage.set('unit_id', this.unit_id);
-    this.navCtrl.setRoot(DashboardPage);
-    console.log('hamza timeout end');
-  }, 1000);
+  window.localStorage.setItem('unit_id', this.unit_id);
+  this.navCtrl.setRoot(DashboardPage);
   
 }
 go_back(){

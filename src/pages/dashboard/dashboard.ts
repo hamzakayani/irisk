@@ -3,11 +3,8 @@ import { NavController, NavParams, Platform, AlertController, LoadingController,
 import { Http} from '@angular/http';
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
-
 import { RestProvider } from '../../providers/rest/rest';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { EpaytabPage } from '../epaytab/epaytab';
 import { BookingPage } from '../booking/booking';
 import { DepositsPage } from '../deposits/deposits';
@@ -47,8 +44,7 @@ export class DashboardPage {
   public offerspromos_module:any;
   public vehicles_module:any;
   public intercom_module:any;
-  constructor(public navCtrl: NavController, 
-    private storage: Storage,
+  constructor(public navCtrl: NavController,
     public events: Events,private splashScreen: SplashScreen,public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
     this.key=window.localStorage.getItem('token');
@@ -56,6 +52,7 @@ export class DashboardPage {
     this.adds_list=[];
     this.url='http://staging.irisk.my/api/v3/';
     platform.ready().then(() => {
+      window.localStorage.setItem('is_login',"yes");
       this.splashScreen.hide();
       this.epay_module=window.localStorage.getItem('e_module');
       this.booking_module=window.localStorage.getItem('b_module');
@@ -71,13 +68,10 @@ export class DashboardPage {
       this.offerspromos_module=window.localStorage.getItem('o_module');
       this.vehicles_module=window.localStorage.getItem('vv_module');
       this.intercom_module=window.localStorage.getItem('i_module');
-      console.log("depositst"+ this.deposits_module); 
+      this.condo_name=window.localStorage.getItem('condo_name');
     this.getadimages();   
     this.getCommunitySettings();
-    this.condo_name=window.localStorage.getItem('condo_name');
-    setTimeout(() => {                  
-      this.events.publish('user:login');
-        }, 500);
+  
     });
    
   }
@@ -131,10 +125,10 @@ export class DashboardPage {
      });
       }
       getadimages(){
-        let loading = this.loadingCtrl.create({
-          content: 'Loading data ...'
-        });
-        loading.present();
+        //let loading = this.loadingCtrl.create({
+         // content: 'Loading data ...'
+      //  });
+      //  loading.present();
         var headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return new Promise(resolve=>{
@@ -145,15 +139,15 @@ export class DashboardPage {
               console.log(data.json().images_list);
               this.adds_list=data.json().images_list;
               this.noneresult = false;
-              loading.dismiss();
+            //  loading.dismiss();
             }else if(data.json().errorCode==1){
               console.log("FAILED");
               this.noneresult = true;
-              loading.dismiss();
+             // loading.dismiss();
               console.log("No Data Found");
             }
             else if(data.json().errorCode==2){
-              loading.dismiss();
+             // loading.dismiss();
               this.show_errorkey_alert("Invalid key");
               console.log("ERROR IN SERVER");
               this.noneresult = true;
@@ -164,7 +158,7 @@ export class DashboardPage {
             err=>{
      
            //console.log(err);
-           loading.dismiss();
+          // loading.dismiss();
            this.show_error_alert("PLease check your internet connection");
            console.log("ERROR IN SERVER");
            this.noneresult = true;
@@ -184,7 +178,7 @@ export class DashboardPage {
                text: 'Close',
                handler: () => {
                 window.localStorage.clear();
-                this.storage.clear();
+              
               this.navCtrl.setRoot(LoginPage);
 
 
@@ -208,8 +202,6 @@ export class DashboardPage {
                text: 'Close',
                handler: () => {
                 window.localStorage.clear();
-                this.storage.clear();
-
                 this.app.getRootNav().setRoot(LoginPage);
                }
              }
