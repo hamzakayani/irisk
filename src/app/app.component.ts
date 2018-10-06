@@ -100,13 +100,6 @@ this.app.getRootNav().setRoot(DashboardPage);
           console.log(data.json());
            if(data.json().status=="success"){
             window.localStorage.clear();
-<<<<<<< HEAD
-            this.storage.set('email', '');
-            this.storage.set('passwordd', '');
-            this.storage.set('condo_id', '');
-            this.storage.set('unit_id', '');
-=======
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
             this.menuCtrl.close();
             this.app.getRootNav().setRoot(LoginPage);
            }

@@ -41,4 +41,8 @@ export class MyprofilePage {
   userinvite(){
     this.navCtrl.push(MyprofileinvitePage);    
   }
+  usersos(){
+    this.navCtrl.push(MyprofilesosPage);    
+
+  }
 }
