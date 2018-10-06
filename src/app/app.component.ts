@@ -7,7 +7,7 @@ import { Http} from '@angular/http';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Storage } from '@ionic/storage';
+
 
 
 import { BookingPage } from '../pages/booking/booking';
@@ -60,19 +60,18 @@ export class MyApp {
     public menuCtrl: MenuController,
     public http:Http,
     private app: App, 
-    private storage: Storage,
+   
     private statusBar: StatusBar, 
     public events: Events,
     private splashScreen: SplashScreen) {
     platform.ready().then(() => {
-      events.subscribe('user:login', () => {
-        this.moduleasign();
-        });
-        this.moduleasign();
       statusBar.styleDefault();
       this.url='http://staging.irisk.my/api/v3/';
-      this.resident_id=window.localStorage.getItem('resident_id');
-      // splashScreen.hide();
+      if(window.localStorage.getItem('is_login')=="yes"){
+        this.splashScreen.hide();
+
+this.app.getRootNav().setRoot(DashboardPage);
+      }
     });
   }
   moduleasign(){
@@ -101,10 +100,13 @@ export class MyApp {
           console.log(data.json());
            if(data.json().status=="success"){
             window.localStorage.clear();
+<<<<<<< HEAD
             this.storage.set('email', '');
             this.storage.set('passwordd', '');
             this.storage.set('condo_id', '');
             this.storage.set('unit_id', '');
+=======
+>>>>>>> a36c0030a10e87278a79916124e4f3b549736590
             this.menuCtrl.close();
             this.app.getRootNav().setRoot(LoginPage);
            }
@@ -180,8 +182,7 @@ export class MyApp {
     window.localStorage.setItem('o_module',"");
     window.localStorage.setItem('vv_module',"");
     window.localStorage.setItem('i_module',""); 
-    this.storage.set('condo_id', '');
-    this.storage.set('unit_id', '');
+    window.localStorage.setItem('is_switch',"yes");
     this.app.getRootNav().setRoot(CommunityPage);
   }
   gotoaccount(){

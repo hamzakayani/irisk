@@ -32,10 +32,10 @@ page-units {
         font-size: 18px;
         font-weight: 500;
     }
-    .next_btn{
+    .next_btn , .next_btn:hover{
         text-transform: none;
         font-size: 15px;
         border-radius: 5px;
-        background-color: #d9544f;
+        background-color: #d9544f !important;
     }
 }

@@ -46,6 +46,10 @@ export class LoginPage {
     private modalCtrl: ModalController)
   { 
     platform.ready().then(() => {
+      if(window.localStorage.getItem('is_login')=="yes"){
+        this.splashScreen.hide();
+this.navCtrl.setRoot(DashboardPage);
+      }else{
       window.localStorage.setItem('e_module',"");
       window.localStorage.setItem('b_module',"");
       window.localStorage.setItem('d_module',"");
@@ -63,6 +67,7 @@ export class LoginPage {
       this.noneresult='';
       this.url='http://staging.irisk.my/api/v3/';
       this.response=[];
+<<<<<<< HEAD
       this.storage.get('email').then((email) => {
         this.storage.get('passwordd').then((passwordd) => {
           this.storage.get('condo_id').then((condo_id) => {
@@ -85,6 +90,9 @@ export class LoginPage {
           });
         });
       });
+=======
+      }
+>>>>>>> a36c0030a10e87278a79916124e4f3b549736590
     });
   }
   ionViewDidEnter() {
@@ -112,8 +120,6 @@ sendPostRequest(){
         this.response=data.json();
         this.response=this.response.data[0];
         console.log('this.response',this.response); 
-        this.storage.set('email', this.email);
-        this.storage.set('passwordd', this.password);
         window.localStorage.setItem('resident_id', this.response.resident_id);
         window.localStorage.setItem('condo_id', this.response.condo_id);
         window.localStorage.setItem('condo_name', this.response.condo_name);
@@ -124,10 +130,11 @@ sendPostRequest(){
         window.localStorage.setItem('next_step', this.response.next_step);
         window.localStorage.setItem('next_step_selection', this.response.next_step_selection);
         window.localStorage.setItem('phone_number', this.response.phone_number);
-        window.localStorage.setItem('resident_id', this.response.resident_id);
         window.localStorage.setItem('token', this.response.token);
         window.localStorage.setItem('type', this.response.type);
         window.localStorage.setItem('unit_id', this.response.unit_id);
+        window.localStorage.setItem('is_switch',"");
+        window.localStorage.setItem('is_login',"");
         this.noneresult = false;
         loading.dismiss();
         this.navCtrl.setRoot(CommunityPage);
@@ -163,10 +170,14 @@ show_error_alert(des){
             text: 'OK',
             handler: () => {
               window.localStorage.clear();
+<<<<<<< HEAD
               this.storage.set('email', '');
               this.storage.set('passwordd', '');
               this.storage.set('condo_id', '');
               this.storage.set('unit_id', '');
+=======
+           
+>>>>>>> a36c0030a10e87278a79916124e4f3b549736590
             this.navCtrl.setRoot(LoginPage);
             }
           }
@@ -182,10 +193,14 @@ show_errorkey_alert(des){
             text: 'ok',
             handler: () => {
               window.localStorage.clear();
+<<<<<<< HEAD
               this.storage.set('email', '');
               this.storage.set('passwordd', '');
               this.storage.set('condo_id', '');
               this.storage.set('unit_id', '');
+=======
+          
+>>>>>>> a36c0030a10e87278a79916124e4f3b549736590
             this.app.getRootNav().setRoot(LoginPage);
             }
           }

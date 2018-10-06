@@ -97,5 +97,9 @@
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
+<<<<<<< HEAD
+=======
+    <plugin name="cordova-plugin-document-viewer" spec="^0.9.10" />
+>>>>>>> a36c0030a10e87278a79916124e4f3b549736590
     <engine name="android" spec="7.0.0" />
 </widget>

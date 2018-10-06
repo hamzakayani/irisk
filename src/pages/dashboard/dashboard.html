@@ -5,7 +5,7 @@
           <img src="assets/icon/side-menu.png" style="width: 50%;">
       </button>
         </ion-buttons>
-        <ion-title color="white" text-center>{{this.condo_name}}</ion-title>
+        <ion-title color="white" text-center class="mytitle" >{{this.condo_name}}</ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content style="background:#C0C0C0;">
@@ -40,7 +40,7 @@
                 </ion-col>
                 <ion-col class="box" text-center (click)="gotoDeposits()" col-4 *ngIf="this.deposits_module!=null && this.deposits_module!=''">
                     <div>
-                        <img src="assets/imgs/7.png" style="width: 50px;text-align: center;">
+                        <img src="assets/imgs/deposits.png" style="width: 50px;text-align: center;">
                         <p>Deposits</p>
                     </div>
                 </ion-col>

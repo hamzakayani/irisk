@@ -4,6 +4,9 @@ page-helpdestind {
         height: 32%;
         background:url('assets/imgs/2.png');
     }
+    .mytitle{
+        margin-left:22%;
+    }
     .box{
         background-color:white;
         border-radius: 5px;
@@ -196,7 +199,7 @@ page-helpdestind {
         height: 40px;
         text-align: center;
         display: table-cell;
-        background: #339e45;
+        background: #09a546;
         vertical-align: middle;
         border-radius: 50px;
     }
@@ -221,7 +224,7 @@ page-helpdestind {
         line-height: 27px;
     }
     .segment_tab ion-segment .segment-button.segment-activated {
-        background: #108223 !important;
+        background: #09a546 !important;
         color: white !important;
     }
 }

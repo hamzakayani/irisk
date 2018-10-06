@@ -4,8 +4,7 @@ import { RestProvider } from '../../providers/rest/rest';
 import { Http} from '@angular/http';
 import {UnitsPage} from '../units/units';
 import { LoginPage } from '../login/login';
-import { Storage } from '@ionic/storage';
-import { SplashScreen } from '@ionic-native/splash-screen';
+
 
 // @IonicPage()
 @Component({
@@ -23,6 +22,7 @@ public headers:any;
 public noneresult:any;
 public modules_list:any;
 public qp : any;
+public is_switch:any;
 constructor(public navCtrl: NavController, 
   public navParams: NavParams, 
   public platform: Platform,
@@ -30,17 +30,34 @@ constructor(public navCtrl: NavController,
   public http:Http, 
   public loadingCtrl: LoadingController,
   private app: App, 
-  private storage: Storage,
+
   private menu: MenuController,
-  private splashScreen: SplashScreen,
+
   private modalCtrl: ModalController){    
     this.modules_list=[];
-    this.resident_id=window.localStorage.getItem('resident_id');
-    this.key=window.localStorage.getItem('token');
     this.condo_list=[];
     this.url='http://staging.irisk.my/api/v3/';
     platform.ready().then(() => {  
+      this.resident_id=window.localStorage.getItem('resident_id');
+     
+      this.key=window.localStorage.getItem('token');
+      this.is_switch=window.localStorage.getItem('is_switch');
+      window.localStorage.setItem('e_module',"");
+      window.localStorage.setItem('b_module',"");
+      window.localStorage.setItem('d_module',"");
+      window.localStorage.setItem('n_module',"");
+      window.localStorage.setItem('h_module',"");
+      window.localStorage.setItem('c_module',"");
+      window.localStorage.setItem('u_module',"");
+      window.localStorage.setItem('v_module',"");
+      window.localStorage.setItem('ss_module',"");
+      window.localStorage.setItem('a_module',"");
+      window.localStorage.setItem('s_module',"");
+      window.localStorage.setItem('o_module',"");
+      window.localStorage.setItem('vv_module',"");
+      window.localStorage.setItem('i_module',"");
       this.getCondos(); 
+<<<<<<< HEAD
       this.storage.get('condo_id').then((condo_id) => {
         setTimeout( () => {
           console.log('hamza timeout start community pageeee');
@@ -54,6 +71,9 @@ constructor(public navCtrl: NavController,
           }
         }, 1000);
       });
+=======
+
+>>>>>>> a36c0030a10e87278a79916124e4f3b549736590
       });
   }
   ionViewDidEnter() {
@@ -77,11 +97,18 @@ constructor(public navCtrl: NavController,
         console.log("SUCCESS");      
         this.condo_list=data.json().condos_list;
         if(this.condo_list.length==1){
+<<<<<<< HEAD
           this.storage.set('condo_id', this.condo_id);
           window.localStorage.setItem('is_valid_communities','No');
           this.getModules(window.localStorage.getItem('condo_id'));
           console.log('hamza timeout start community pageeee');
           this.navCtrl.setRoot(UnitsPage);
+=======
+          this.condo_id=window.localStorage.getItem('condo_id');
+          window.localStorage.setItem('is_valid_communities','No');
+          this.getModules();
+         
+>>>>>>> a36c0030a10e87278a79916124e4f3b549736590
         }
         this.noneresult = false;
         loading.dismiss();
@@ -119,11 +146,17 @@ constructor(public navCtrl: NavController,
                text: 'OK',
                handler: () => {
                 window.localStorage.clear();
+<<<<<<< HEAD
                 this.storage.set('email', '');
                 this.storage.set('passwordd', '');
                 this.storage.set('condo_id', '');
                 this.storage.set('unit_id', '');
                 this.navCtrl.setRoot(LoginPage);
+=======
+              
+              this.navCtrl.setRoot(LoginPage);
+
+>>>>>>> a36c0030a10e87278a79916124e4f3b549736590
                }
              }
            ]
@@ -138,10 +171,14 @@ constructor(public navCtrl: NavController,
                text: 'ok',
                handler: () => {
                 window.localStorage.clear();
+<<<<<<< HEAD
                 this.storage.set('email', '');
                 this.storage.set('passwordd', '');
                 this.storage.set('condo_id', '');
                 this.storage.set('unit_id', '');
+=======
+              
+>>>>>>> a36c0030a10e87278a79916124e4f3b549736590
                 this.app.getRootNav().setRoot(LoginPage);
                }
              }
@@ -149,12 +186,12 @@ constructor(public navCtrl: NavController,
        });       
        alert.present();
     }
-    getModules(condo_id){
+    getModules(){
     this.condo_id=this.condo_id;
-      let loading = this.loadingCtrl.create({
-        content: 'Please wait'
-      });
-      loading.present();
+    //  let loading = this.loadingCtrl.create({
+       // content: 'Please wait'
+     // });
+     // loading.present();
       var headers = new Headers();
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
       return new Promise(resolve=>{
@@ -226,27 +263,42 @@ constructor(public navCtrl: NavController,
            
            
             this.navCtrl.setRoot(UnitsPage);
-            loading.dismiss();
+            //loading.dismiss();
            
+<<<<<<< HEAD
           }
           else if(data.json().errorCode==1){
             loading.dismiss();
+=======
+          }else if(data.json().errorCode==1){
+            console.log("FAILED");
+           
+           // loading.dismiss();
+            console.log("No Data Found");
+>>>>>>> a36c0030a10e87278a79916124e4f3b549736590
           }
           else if(data.json().errorCode==2){
-            loading.dismiss();
+          //  loading.dismiss();
             this.show_errorkey_alert("Invalid key");
           }
          else
          resolve(false);
   },
           err=>{
+<<<<<<< HEAD
          loading.dismiss();
+=======
+   
+         //console.log(err);
+        // loading.dismiss();
+>>>>>>> a36c0030a10e87278a79916124e4f3b549736590
          this.show_error_alert("PLease check your internet connection");
          console.log("ERROR IN SERVER");
          });
      });
       }
     getunits(){
+<<<<<<< HEAD
       this.getModules(this.condo_id);
       window.localStorage.setItem('condo_id', this.condo_id);
       this.storage.set('condo_id', this.condo_id);
@@ -254,5 +306,18 @@ constructor(public navCtrl: NavController,
         console.log('hamza timeout start community page');
         this.navCtrl.setRoot(UnitsPage);
       }, 1000);
+=======
+      window.localStorage.setItem('is_switch',"");
+      window.localStorage.setItem('condo_id',this.condo_id);
+      this.getModules();
+      this.navCtrl.setRoot(UnitsPage);
     }
+    go_back(){
+        window.localStorage.clear();
+        this.navCtrl.setRoot(LoginPage); 
+>>>>>>> a36c0030a10e87278a79916124e4f3b549736590
+    }
+
+
+
 }

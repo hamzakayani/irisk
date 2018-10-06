@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar color="dark">
-        <ion-title color="white" text-center>Ticket Detail</ion-title>
+        <ion-title color="white" class="mytitle">Ticket Detail</ion-title>
     </ion-navbar>
     
   </ion-header>
@@ -42,7 +42,7 @@
             <div class="notidd">
                 <div class="notidetail">
                     <div  [innerHtml]="detail_ticket.description"></div> 
-                    <p>
+                    <p *ngIf="images_list">
                         Attachments:
                     </p>
                     <ion-row >
