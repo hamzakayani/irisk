@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'myprofilesos.html',
 })
 export class MyprofilesosPage {
-
+  sos: string = "phone";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

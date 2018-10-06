@@ -139,7 +139,10 @@ show_error_alert(des)
            text: 'OK',
            handler: () => {
             window.localStorage.clear();
-            this.storage.clear();
+            this.storage.set('email', '');
+            this.storage.set('passwordd', '');
+            this.storage.set('condo_id', '');
+            this.storage.set('unit_id', '');
         //  this.navCtrl.setRoot(LoginPage);
 
            }
@@ -162,7 +165,10 @@ show_success_alert(des)
            text: 'OK',
            handler: () => {
             window.localStorage.clear();
-            this.storage.clear();
+            this.storage.set('email', '');
+            this.storage.set('passwordd', '');
+            this.storage.set('condo_id', '');
+            this.storage.set('unit_id', '');
          this.navCtrl.setRoot(LoginPage);
 
            }

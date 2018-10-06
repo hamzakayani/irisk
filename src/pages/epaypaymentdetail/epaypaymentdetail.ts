@@ -110,9 +110,11 @@ export class EpaypaymentdetailPage {
                text: 'Close',
                handler: () => {
                 window.localStorage.clear();
-                this.storage.clear();
-              this.navCtrl.setRoot(LoginPage);
-
+                this.storage.set('email', '');
+                this.storage.set('passwordd', '');
+                this.storage.set('condo_id', '');
+                this.storage.set('unit_id', '');
+                this.navCtrl.setRoot(LoginPage);
                }
              }
            ]
@@ -133,7 +135,10 @@ export class EpaypaymentdetailPage {
                text: 'Close',
                handler: () => {
                 window.localStorage.clear();
-                this.storage.clear();
+                this.storage.set('email', '');
+                this.storage.set('passwordd', '');
+                this.storage.set('condo_id', '');
+                this.storage.set('unit_id', '');
                 this.app.getRootNav().setRoot(LoginPage);
                }
              }

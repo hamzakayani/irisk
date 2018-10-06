@@ -35,7 +35,6 @@ export class UnitsPage {
     private app: App, 
     private modalCtrl: ModalController)
   {
-   
     this.modules_list=[];
     this.resident_id=window.localStorage.getItem('resident_id');
     this.key=window.localStorage.getItem('token');
@@ -45,17 +44,18 @@ export class UnitsPage {
     platform.ready().then(() => { 
       this.storage.get('unit_id').then((unit_id) => {
         this.unit_id=unit_id;
-        console.log('unit_id::',this.unit_id);
         if (this.unit_id == ''|| this.unit_id == null){
+          this.getUnits();
           this.splashScreen.hide();
-          this.getUnits(); 
         }
         else{
-          this.getUnits(); 
-          this.go_to_dashboard();
+          this.getUnits();
+          setTimeout( () => {
+            this.go_to_dashboard(); 
+          },2000);
+          
         }
       });
-      
     });
   }
   ionViewDidEnter() {
@@ -79,8 +79,11 @@ export class UnitsPage {
       console.log("SUCCESS");      
       this.units_list=data.json().units_list;
       if(this.units_list.length==1){
-        window.localStorage.setItem('is_valid_unit','No');
-        this.navCtrl.setRoot(DashboardPage);
+        setTimeout ( () =>{
+          window.localStorage.setItem('is_valid_unit','No');
+          this.storage.set('unit_id', 'No');
+          this.navCtrl.setRoot(DashboardPage);
+        },1000);
       }
       window.localStorage.setItem('condo_name',data.json().condo_name);
       this.noneresult = false;
@@ -119,7 +122,10 @@ show_error_alert(des)
            text: 'OK',
            handler: () => {
             window.localStorage.clear();
-            this.storage.clear();
+            this.storage.set('email', '');
+            this.storage.set('passwordd', '');
+            this.storage.set('condo_id', '');
+            this.storage.set('unit_id', '');
           this.navCtrl.setRoot(LoginPage);
            }
          }
@@ -136,7 +142,10 @@ show_errorkey_alert(des)
            text: 'ok',
            handler: () => {
             window.localStorage.clear();
-            this.storage.clear();
+            this.storage.set('email', '');
+            this.storage.set('passwordd', '');
+            this.storage.set('condo_id', '');
+            this.storage.set('unit_id', '');
             this.app.getRootNav().setRoot(LoginPage);
            }
          }
@@ -145,14 +154,9 @@ show_errorkey_alert(des)
    alert.present();
 }
 go_to_dashboard(){
-  setTimeout( () => {
-    console.log('hamza timeout start');
     window.localStorage.setItem('unit_id', this.unit_id);
     this.storage.set('unit_id', this.unit_id);
     this.navCtrl.setRoot(DashboardPage);
-    console.log('hamza timeout end');
-  }, 1000);
-  
 }
 go_back(){
   if(window.localStorage.getItem('is_valid_communities')){

@@ -41,16 +41,19 @@ constructor(public navCtrl: NavController,
     this.url='http://staging.irisk.my/api/v3/';
     platform.ready().then(() => {  
       this.getCondos(); 
-          this.storage.get('condo_id').then((condo_id) => {
-              this.condo_id=condo_id;
-              console.log('condo_id::',this.condo_id);
-              if (this.condo_id == ''|| this.condo_id == null){
-                this.splashScreen.hide();
-              }
-              else{
-                this.getunits();
-              }
-          });
+      this.storage.get('condo_id').then((condo_id) => {
+        setTimeout( () => {
+          console.log('hamza timeout start community pageeee');
+          this.condo_id=condo_id;
+          console.log('condo_id::',this.condo_id);
+          if (this.condo_id == ''|| this.condo_id == null){
+            this.splashScreen.hide();
+          }
+          else{
+              this.getunits();
+          }
+        }, 1000);
+      });
       });
   }
   ionViewDidEnter() {
@@ -74,13 +77,16 @@ constructor(public navCtrl: NavController,
         console.log("SUCCESS");      
         this.condo_list=data.json().condos_list;
         if(this.condo_list.length==1){
+          this.storage.set('condo_id', this.condo_id);
           window.localStorage.setItem('is_valid_communities','No');
           this.getModules(window.localStorage.getItem('condo_id'));
+          console.log('hamza timeout start community pageeee');
           this.navCtrl.setRoot(UnitsPage);
         }
         this.noneresult = false;
         loading.dismiss();
-      }else if(data.json().errorCode==1){
+      }
+      else if(data.json().errorCode==1){
         console.log("FAILED");    
         this.noneresult = true;
         loading.dismiss();
@@ -107,47 +113,41 @@ constructor(public navCtrl: NavController,
     show_error_alert(des)
     {
       let alert = this.alertCtrl.create({
-        
-        //subTitle: "PURPOSE OF DEPOSIT",
         message: des,
-      //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
         buttons: [
              {
                text: 'OK',
                handler: () => {
                 window.localStorage.clear();
-                this.storage.clear();
-              this.navCtrl.setRoot(LoginPage);
-
+                this.storage.set('email', '');
+                this.storage.set('passwordd', '');
+                this.storage.set('condo_id', '');
+                this.storage.set('unit_id', '');
+                this.navCtrl.setRoot(LoginPage);
                }
              }
            ]
-       });
-                     
+       });       
        alert.present();
-    
     }
-    show_errorkey_alert(des)
-    {
+    show_errorkey_alert(des){
       let alert = this.alertCtrl.create({
-        
-        //subTitle: "PURPOSE OF DEPOSIT",
         message: des,
-      //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
         buttons: [
              {
                text: 'ok',
                handler: () => {
                 window.localStorage.clear();
-                this.storage.clear();
+                this.storage.set('email', '');
+                this.storage.set('passwordd', '');
+                this.storage.set('condo_id', '');
+                this.storage.set('unit_id', '');
                 this.app.getRootNav().setRoot(LoginPage);
                }
              }
            ]
-       });
-                     
+       });       
        alert.present();
-    
     }
     getModules(condo_id){
     this.condo_id=this.condo_id;
@@ -162,7 +162,6 @@ constructor(public navCtrl: NavController,
           console.log(data.json());
           if(data.json().errorCode==0)
           {
-           
             this.modules_list=data.json().data;
             for(let i=0;i<this.modules_list.length;i++){
           
@@ -229,40 +228,31 @@ constructor(public navCtrl: NavController,
             this.navCtrl.setRoot(UnitsPage);
             loading.dismiss();
            
-          }else if(data.json().errorCode==1){
-            console.log("FAILED");
-           
+          }
+          else if(data.json().errorCode==1){
             loading.dismiss();
-            console.log("No Data Found");
           }
           else if(data.json().errorCode==2){
             loading.dismiss();
             this.show_errorkey_alert("Invalid key");
-            console.log("ERROR IN SERVER");
-          
           }
          else
          resolve(false);
   },
           err=>{
-   
-         //console.log(err);
          loading.dismiss();
          this.show_error_alert("PLease check your internet connection");
          console.log("ERROR IN SERVER");
-        
          });
-   
      });
       }
     getunits(){
       this.getModules(this.condo_id);
+      window.localStorage.setItem('condo_id', this.condo_id);
+      this.storage.set('condo_id', this.condo_id);
       setTimeout( () => {
-        console.log('hamza timeout start');
-        window.localStorage.setItem('condo_id', this.condo_id);
-        this.storage.set('condo_id', this.condo_id);
+        console.log('hamza timeout start community page');
         this.navCtrl.setRoot(UnitsPage);
-        console.log('hamza timeout end');
-      }, 2000);
+      }, 1000);
     }
 }

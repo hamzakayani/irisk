@@ -38,4 +38,7 @@ export class MyprofilePage {
   usermanagement(){
     this.navCtrl.push(MyprofileusermanagementPage);    
   }
+  userinvite(){
+    this.navCtrl.push(MyprofileinvitePage);    
+  }
 }

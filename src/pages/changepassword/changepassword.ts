@@ -118,39 +118,36 @@ export class ChangepasswordPage {
         show_success_alert(des)
         {
           let alert = this.alertCtrl.create({
-            
-            //subTitle: "PURPOSE OF DEPOSIT",
-            message: des,
-          //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
-            buttons: [
+          message: des,
+          buttons: [
                  {
                    text: 'OK',
                    handler: () => {
-    
                     window.localStorage.clear();
-                    this.storage.clear();
+                    this.storage.set('email', '');
+                    this.storage.set('passwordd', '');
+                    this.storage.set('condo_id', '');
+                    this.storage.set('unit_id', '');
                     this.app.getRootNav().setRoot(LoginPage);
-    
                    }
                  }
                ]
-           });
-                         
+           });        
            alert.present();
-        
         }
         show_errorkey_alert(des)
         {
           let alert = this.alertCtrl.create({
-            
-            //subTitle: "PURPOSE OF DEPOSIT",
             message: des,
-          //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
             buttons: [
                  {
                    text: 'ok',
                    handler: () => {
                     window.localStorage.clear();
+                    this.storage.set('email', '');
+                    this.storage.set('passwordd', '');
+                    this.storage.set('condo_id', '');
+                    this.storage.set('unit_id', '');
                     this.app.getRootNav().setRoot(LoginPage);
                    }
                  }

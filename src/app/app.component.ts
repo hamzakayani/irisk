@@ -37,8 +37,8 @@ import { UpdatepasswordPage } from '../pages/updatepassword/updatepassword';
 })
 export class MyApp {
   
- rootPage:any = LoginPage;
-  // rootPage:any = MyprofileuservehiclePage;  
+//  rootPage:any = LoginPage;
+  rootPage:any = MyprofilesosPage;  
   public url:any;
   public headers:any;
   public resident_id:any;
@@ -101,15 +101,12 @@ export class MyApp {
           console.log(data.json());
            if(data.json().status=="success"){
             window.localStorage.clear();
-            this.storage.clear();
             this.storage.set('email', '');
             this.storage.set('passwordd', '');
             this.storage.set('condo_id', '');
             this.storage.set('unit_id', '');
             this.menuCtrl.close();
-            this.storage.clear();
             this.app.getRootNav().setRoot(LoginPage);
-            
            }
            else
            resolve(false);

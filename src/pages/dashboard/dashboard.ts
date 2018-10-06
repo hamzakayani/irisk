@@ -51,37 +51,41 @@ export class DashboardPage {
     private storage: Storage,
     public events: Events,private splashScreen: SplashScreen,public navParams: NavParams, public platform: Platform,public alertCtrl: AlertController, public http:Http, public loadingCtrl: LoadingController,private app: App, private modalCtrl: ModalController) 
   {
+
     this.key=window.localStorage.getItem('token');
     this.condo_id=window.localStorage.getItem('condo_id');
     this.adds_list=[];
     this.url='http://staging.irisk.my/api/v3/';
     platform.ready().then(() => {
-      this.splashScreen.hide();
-      this.epay_module=window.localStorage.getItem('e_module');
-      this.booking_module=window.localStorage.getItem('b_module');
-      this.deposits_module=window.localStorage.getItem('d_module');
-      this.noticeboard_module=window.localStorage.getItem('n_module');
-      this.helpdesk_module=window.localStorage.getItem('h_module');
-      this.community_wall_module=window.localStorage.getItem('c_module'); 
-      this.usefullink_module=window.localStorage.getItem('u_module');
-      this.visitors_module=window.localStorage.getItem('v_module');
-      this.sos_module=window.localStorage.getItem('ss_module');
-      this.announcement_module=window.localStorage.getItem('a_module');
-      this.services_module=window.localStorage.getItem('s_module');
-      this.offerspromos_module=window.localStorage.getItem('o_module');
-      this.vehicles_module=window.localStorage.getItem('vv_module');
-      this.intercom_module=window.localStorage.getItem('i_module');
-      console.log("depositst"+ this.deposits_module); 
-    this.getadimages();   
-    this.getCommunitySettings();
-    this.condo_name=window.localStorage.getItem('condo_name');
+      setTimeout(() => {   
+        this.epay_module=window.localStorage.getItem('e_module');
+        this.booking_module=window.localStorage.getItem('b_module');
+        this.deposits_module=window.localStorage.getItem('d_module');
+        this.noticeboard_module=window.localStorage.getItem('n_module');
+        this.helpdesk_module=window.localStorage.getItem('h_module');
+        this.community_wall_module=window.localStorage.getItem('c_module'); 
+        this.usefullink_module=window.localStorage.getItem('u_module');
+        this.visitors_module=window.localStorage.getItem('v_module');
+        this.sos_module=window.localStorage.getItem('ss_module');
+        this.announcement_module=window.localStorage.getItem('a_module');
+        this.services_module=window.localStorage.getItem('s_module');
+        this.offerspromos_module=window.localStorage.getItem('o_module');
+        this.vehicles_module=window.localStorage.getItem('vv_module');
+        this.intercom_module=window.localStorage.getItem('i_module');
+        console.log("depositst"+ this.deposits_module);                
+        this.getadimages();
+        this.getCommunitySettings();
+        this.condo_name=window.localStorage.getItem('condo_name');
+        this.splashScreen.hide();  
+          }, 500);
+      
+    
     setTimeout(() => {                  
       this.events.publish('user:login');
         }, 500);
+        
     });
-   
   }
- 
     getCommunitySettings(){
       let loading = this.loadingCtrl.create({
         content: 'Loading data ...'
@@ -175,49 +179,42 @@ export class DashboardPage {
     show_error_alert(des)
     {
       let alert = this.alertCtrl.create({
-        
-        //subTitle: "PURPOSE OF DEPOSIT",
         message: des,
-      //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
-        buttons: [
+       buttons: [
              {
                text: 'Close',
                handler: () => {
                 window.localStorage.clear();
-                this.storage.clear();
-              this.navCtrl.setRoot(LoginPage);
-
-
+                this.storage.set('email', '');
+                this.storage.set('passwordd', '');
+                this.storage.set('condo_id', '');
+                this.storage.set('unit_id', '');
+                this.navCtrl.setRoot(LoginPage);
                }
              }
            ]
-       });
-                     
+       });         
        alert.present();
-    
     }
     show_errorkey_alert(des)
     {
       let alert = this.alertCtrl.create({
-        
-        //subTitle: "PURPOSE OF DEPOSIT",
         message: des,
-      //  message: "<ion-item><p style='overflow:auto;white-space:normal;'>Test</p> <button ion-button outline item-right icon-left (click)='itemSelected()'><ion-icon name='eye'></ion-icon>View</button>",
         buttons: [
              {
                text: 'Close',
                handler: () => {
                 window.localStorage.clear();
-                this.storage.clear();
-
+                this.storage.set('email', '');
+                this.storage.set('passwordd', '');
+                this.storage.set('condo_id', '');
+                this.storage.set('unit_id', '');
                 this.app.getRootNav().setRoot(LoginPage);
                }
              }
            ]
-       });
-                     
+       });           
        alert.present();
-    
     }
  
   gotoepay(){
