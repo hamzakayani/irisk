@@ -5,6 +5,7 @@ import { Http} from '@angular/http';
 import { LoginPage } from '../login/login';
 import { DashboardPage } from '../dashboard/dashboard';
 import { Storage } from '@ionic/storage';
+import { DocumentViewer ,DocumentViewerOptions} from '@ionic-native/document-viewer';
 
 // @IonicPage()
 @Component({
@@ -20,6 +21,7 @@ export class EpayinvoicedetailPage {
   public url:any;
   public headers:any;
   public invoice_deail:any;
+  private document: DocumentViewer
   
   public item_deail:any;
   public post_id:any;
@@ -128,5 +130,12 @@ export class EpayinvoicedetailPage {
                      
        alert.present();
     
+    }
+    view_pdf(path){
+      const options: DocumentViewerOptions = {
+        title: 'Invoice'
+      }
+      
+      this.document.viewDocument('../../assets/imgs/123.pdf', 'application/pdf', options)
     }
 }

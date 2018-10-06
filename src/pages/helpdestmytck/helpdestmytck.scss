@@ -5,7 +5,9 @@ page-helpdestmytck {
         background:url('assets/imgs/2.png');
         margin-bottom: 10px;
         }
-        
+        .mytitle{
+            margin-left:8%;
+        }
         .box{
         background-color:white;
         width: 122px;
@@ -36,7 +38,7 @@ page-helpdestmytck {
         .add-favicon{
             margin-left: 392%;
             margin-top: 576%;
-            background-color: #2ec95c;
+            background-color: #09a546;
         }
         .plusicon {
             position: absolute;
@@ -47,7 +49,7 @@ page-helpdestmytck {
             padding: 5px;
             text-align: center;
             display: table-cell;
-            background: #108223;
+            background: #09a546;
             vertical-align: middle;
             border-radius: 50px;
         }
@@ -69,7 +71,7 @@ page-helpdestmytck {
         }
         ion-content ion-row ion-col p.info span{
             float: right;
-            color: #339e45;
+            color: #09a546;
             // letter-spacing: -2px;
             font-weight: 300;
         }
