@@ -142,69 +142,47 @@ camerafn(){
   this.camera.getPicture(options).then((imagePath) => {
     this.myimage = imagePath;
     this.showimg=imagePath;
-      console.log('opengallery img :::::::',this.myimage);
-      this.uploadimg();
-    // this.myimage = 'data:image/jpeg;base64,' + imageData;
-    // console.log('this.imgurl', this.myimage);
-    // this.stagegallery(this.myimage);
+    this.myimage = 'data:image/jpeg;base64,' + imagePath;
+    console.log('this.imgurl', this.myimage);
   }, (err) => {
   });
 }
-// stagegallery(uri){
-//   console.log(uri);
-//   // this.base64Image = 'data:image/jpeg;base64,' + uri;
-//   this.imagebag64.push(uri);
-//   this.base2imageV2(uri, '_img');
-// }
-// base2imageV2(base64Data, x){
-//   //media scanner false will prevent u from seeing in gallery
-//   console.log(x);
-//   this.base64ToGallery.base64ToGallery(base64Data, {prefix: x, mediaScanner: true}).then(
-//     res => this.stagecamera(res),
-//     err => console.log('Error saving image to gallery ', err)
-//   );
-// }
-// stagecamera(res){
-//   console.log(res);
-//   this.imagebag.push(res);
-//   this.imagebagname.push(res.substring(res.lastIndexOf('/') + 1)); //grab name from path
-// }
 click_on_cancel_button(){
   this.navCtrl.pop();
 }
-uploadimg(){
-  this.userid=window.localStorage.getItem('token');
-  console.log('upload img funtion::::',this.userid);
-    const fileTransfer: FileTransferObject = this.transfer.create();
-    let options: FileUploadOptions = {
-      fileKey: 'image-file',
-      fileName: this.userid+'.png',
-      chunkedMode: false,
-      mimeType: "image/png",
-      headers: {}
-    }
-    console.log('this.imageURI ::: sadsd:',this.myimage);
-    console.log('options',options);
-    this.urlpic='http://staging.irisk.my/assets/uploads/deposit_files/deposit_receipts/';
-    // +this.userid+'.png'
-    console.log('this.imageURI ::::',this.urlpic);
-    fileTransfer.upload(this.myimage, this.urlpic, options)
-      .then((data) => {
-      let p_data = JSON.parse(data.response);
-      console.log('responseeesdadsaee:::: thenthen',p_data);
-      if(p_data.code==404){
-      console.log('responseeesdadsaee:::: ifif',p_data);
-      }
-      else{
-        console.log(p_data);
-        this.myimage='';
-        console.log('responseeesdadsaee:::: elseelse',p_data);
-      }
-    }, (err) => {
-      console.log(err);
-      console.log('The image cannot be uploaded. Please try again.',err);
-    });
-  // });
-}
+// uploadimg(){
+//   this.userid=window.localStorage.getItem('token');
+//   console.log('upload img funtion::::',this.userid);
+//     const fileTransfer: FileTransferObject = this.transfer.create();
+//     let options: FileUploadOptions = {
+//       fileKey: 'image-file',
+//       fileName: this.userid+'.png',
+//       chunkedMode: false,
+//       mimeType: "image/png",
+//       headers: {}
+//     }
+//     console.log('this.imageURI ::: sadsd:',this.myimage);
+//     console.log('options',options);
+//     this.urlpic='http://staging.irisk.my/assets/uploads/deposit_files/deposit_receipts/';
+//     // +this.userid+'.png'
+//     console.log('this.imageURI ::::',this.urlpic);
+//     fileTransfer.upload(this.myimage, this.urlpic, options)
+//       .then((data) => {
+//       let p_data = JSON.parse(data.response);
+//       console.log('responseeesdadsaee:::: thenthen',p_data);
+//       if(p_data.code==404){
+//       console.log('responseeesdadsaee:::: ifif',p_data);
+//       }
+//       else{
+//         console.log(p_data);
+//         this.myimage='';
+//         console.log('responseeesdadsaee:::: elseelse',p_data);
+//       }
+//     }, (err) => {
+//       console.log(err);
+//       console.log('The image cannot be uploaded. Please try again.',err);
+//     });
+//   // });
+// }
 slideData = [{ image: "../../assets/imgs/1.jpg" },{ image: "../../assets/imgs/1.jpg" }] 
 }

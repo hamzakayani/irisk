@@ -54,7 +54,7 @@ export class DashboardPage {
     this.url='http://staging.irisk.my/api/v3/';
     platform.ready().then(() => {
       window.localStorage.setItem('is_login',"yes");
-      this.splashScreen.hide();
+      
       this.epay_module=window.localStorage.getItem('e_module');
       this.booking_module=window.localStorage.getItem('b_module');
       this.deposits_module=window.localStorage.getItem('d_module');
@@ -72,6 +72,7 @@ export class DashboardPage {
       this.condo_name=window.localStorage.getItem('condo_name');
     this.getadimages();   
     this.getCommunitySettings();
+    this.splashScreen.hide();
   
     });
   }

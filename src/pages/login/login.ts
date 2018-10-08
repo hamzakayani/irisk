@@ -47,9 +47,9 @@ export class LoginPage {
   { 
     platform.ready().then(() => {
       if(window.localStorage.getItem('is_login')=="yes"){
-        this.splashScreen.hide();
-this.navCtrl.setRoot(DashboardPage);
+        this.navCtrl.setRoot(DashboardPage);
       }else{
+        this.splashScreen.hide();
       window.localStorage.setItem('e_module',"");
       window.localStorage.setItem('b_module',"");
       window.localStorage.setItem('d_module',"");

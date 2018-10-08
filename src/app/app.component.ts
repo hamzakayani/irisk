@@ -37,8 +37,8 @@ import { UpdatepasswordPage } from '../pages/updatepassword/updatepassword';
 })
 export class MyApp {
   
-//  rootPage:any = LoginPage;
-  rootPage:any = MyprofilesosPage;  
+ rootPage:any = LoginPage;
+  // rootPage:any = MyprofilesosPage;  
   public url:any;
   public headers:any;
   public resident_id:any;
@@ -68,9 +68,8 @@ export class MyApp {
       statusBar.styleDefault();
       this.url='http://staging.irisk.my/api/v3/';
       if(window.localStorage.getItem('is_login')=="yes"){
-        this.splashScreen.hide();
-
-this.app.getRootNav().setRoot(DashboardPage);
+        // this.splashScreen.hide();
+        this.app.getRootNav().setRoot(DashboardPage);
       }
     });
   }
