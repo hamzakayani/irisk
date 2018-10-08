@@ -53,35 +53,6 @@ export class DashboardPage {
     this.adds_list=[];
     this.url='http://staging.irisk.my/api/v3/';
     platform.ready().then(() => {
-<<<<<<< HEAD
-      setTimeout(() => {   
-        this.epay_module=window.localStorage.getItem('e_module');
-        this.booking_module=window.localStorage.getItem('b_module');
-        this.deposits_module=window.localStorage.getItem('d_module');
-        this.noticeboard_module=window.localStorage.getItem('n_module');
-        this.helpdesk_module=window.localStorage.getItem('h_module');
-        this.community_wall_module=window.localStorage.getItem('c_module'); 
-        this.usefullink_module=window.localStorage.getItem('u_module');
-        this.visitors_module=window.localStorage.getItem('v_module');
-        this.sos_module=window.localStorage.getItem('ss_module');
-        this.announcement_module=window.localStorage.getItem('a_module');
-        this.services_module=window.localStorage.getItem('s_module');
-        this.offerspromos_module=window.localStorage.getItem('o_module');
-        this.vehicles_module=window.localStorage.getItem('vv_module');
-        this.intercom_module=window.localStorage.getItem('i_module');
-        console.log("depositst"+ this.deposits_module);                
-        this.getadimages();
-        this.getCommunitySettings();
-        this.condo_name=window.localStorage.getItem('condo_name');
-        this.splashScreen.hide();  
-          }, 500);
-      
-    
-    setTimeout(() => {                  
-      this.events.publish('user:login');
-        }, 500);
-        
-=======
       window.localStorage.setItem('is_login',"yes");
       this.splashScreen.hide();
       this.epay_module=window.localStorage.getItem('e_module');
@@ -102,7 +73,6 @@ export class DashboardPage {
     this.getadimages();   
     this.getCommunitySettings();
   
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
     });
   }
     getCommunitySettings(){
@@ -204,18 +174,10 @@ export class DashboardPage {
                text: 'Close',
                handler: () => {
                 window.localStorage.clear();
-<<<<<<< HEAD
-                this.storage.set('email', '');
-                this.storage.set('passwordd', '');
-                this.storage.set('condo_id', '');
-                this.storage.set('unit_id', '');
-                this.navCtrl.setRoot(LoginPage);
-=======
               
               this.navCtrl.setRoot(LoginPage);
 
 
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
                }
              }
            ]
@@ -231,13 +193,6 @@ export class DashboardPage {
                text: 'Close',
                handler: () => {
                 window.localStorage.clear();
-<<<<<<< HEAD
-                this.storage.set('email', '');
-                this.storage.set('passwordd', '');
-                this.storage.set('condo_id', '');
-                this.storage.set('unit_id', '');
-=======
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
                 this.app.getRootNav().setRoot(LoginPage);
                }
              }

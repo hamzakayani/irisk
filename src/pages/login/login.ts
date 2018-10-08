@@ -67,32 +67,7 @@ this.navCtrl.setRoot(DashboardPage);
       this.noneresult='';
       this.url='http://staging.irisk.my/api/v3/';
       this.response=[];
-<<<<<<< HEAD
-      this.storage.get('email').then((email) => {
-        this.storage.get('passwordd').then((passwordd) => {
-          this.storage.get('condo_id').then((condo_id) => {
-            this.storage.get('unit_id').then((unit_id) => {
-              this.email= email;
-              this.password=passwordd;
-              this.condo_id=condo_id;
-              this.unit_id=unit_id;
-              console.log('email::',this.email,'password',this.password,'condo_id::',this.condo_id,'unit_id',this.unit_id,);
-              if (this.email == '' || this.password == ''|| this.email == null ||this.password == null){
-                this.splashScreen.hide();
-              }
-              else{
-                this.community=1;
-                setTimeout( () => {
-                  this.sendPostRequest();
-                }, 500);
-              }
-            });
-          });
-        });
-      });
-=======
       }
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
     });
   }
   ionViewDidEnter() {
@@ -170,14 +145,7 @@ show_error_alert(des){
             text: 'OK',
             handler: () => {
               window.localStorage.clear();
-<<<<<<< HEAD
-              this.storage.set('email', '');
-              this.storage.set('passwordd', '');
-              this.storage.set('condo_id', '');
-              this.storage.set('unit_id', '');
-=======
            
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
             this.navCtrl.setRoot(LoginPage);
             }
           }
@@ -193,14 +161,7 @@ show_errorkey_alert(des){
             text: 'ok',
             handler: () => {
               window.localStorage.clear();
-<<<<<<< HEAD
-              this.storage.set('email', '');
-              this.storage.set('passwordd', '');
-              this.storage.set('condo_id', '');
-              this.storage.set('unit_id', '');
-=======
           
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
             this.app.getRootNav().setRoot(LoginPage);
             }
           }

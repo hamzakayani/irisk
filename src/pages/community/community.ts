@@ -57,23 +57,6 @@ constructor(public navCtrl: NavController,
       window.localStorage.setItem('vv_module',"");
       window.localStorage.setItem('i_module',"");
       this.getCondos(); 
-<<<<<<< HEAD
-      this.storage.get('condo_id').then((condo_id) => {
-        setTimeout( () => {
-          console.log('hamza timeout start community pageeee');
-          this.condo_id=condo_id;
-          console.log('condo_id::',this.condo_id);
-          if (this.condo_id == ''|| this.condo_id == null){
-            this.splashScreen.hide();
-          }
-          else{
-              this.getunits();
-          }
-        }, 1000);
-      });
-=======
-
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
       });
   }
   ionViewDidEnter() {
@@ -97,18 +80,10 @@ constructor(public navCtrl: NavController,
         console.log("SUCCESS");      
         this.condo_list=data.json().condos_list;
         if(this.condo_list.length==1){
-<<<<<<< HEAD
-          this.storage.set('condo_id', this.condo_id);
-          window.localStorage.setItem('is_valid_communities','No');
-          this.getModules(window.localStorage.getItem('condo_id'));
-          console.log('hamza timeout start community pageeee');
-          this.navCtrl.setRoot(UnitsPage);
-=======
           this.condo_id=window.localStorage.getItem('condo_id');
           window.localStorage.setItem('is_valid_communities','No');
           this.getModules();
          
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
         }
         this.noneresult = false;
         loading.dismiss();
@@ -146,17 +121,9 @@ constructor(public navCtrl: NavController,
                text: 'OK',
                handler: () => {
                 window.localStorage.clear();
-<<<<<<< HEAD
-                this.storage.set('email', '');
-                this.storage.set('passwordd', '');
-                this.storage.set('condo_id', '');
-                this.storage.set('unit_id', '');
-                this.navCtrl.setRoot(LoginPage);
-=======
               
               this.navCtrl.setRoot(LoginPage);
 
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
                }
              }
            ]
@@ -171,14 +138,7 @@ constructor(public navCtrl: NavController,
                text: 'ok',
                handler: () => {
                 window.localStorage.clear();
-<<<<<<< HEAD
-                this.storage.set('email', '');
-                this.storage.set('passwordd', '');
-                this.storage.set('condo_id', '');
-                this.storage.set('unit_id', '');
-=======
               
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
                 this.app.getRootNav().setRoot(LoginPage);
                }
              }
@@ -265,17 +225,11 @@ constructor(public navCtrl: NavController,
             this.navCtrl.setRoot(UnitsPage);
             //loading.dismiss();
            
-<<<<<<< HEAD
-          }
-          else if(data.json().errorCode==1){
-            loading.dismiss();
-=======
           }else if(data.json().errorCode==1){
             console.log("FAILED");
            
            // loading.dismiss();
             console.log("No Data Found");
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
           }
           else if(data.json().errorCode==2){
           //  loading.dismiss();
@@ -285,28 +239,15 @@ constructor(public navCtrl: NavController,
          resolve(false);
   },
           err=>{
-<<<<<<< HEAD
-         loading.dismiss();
-=======
    
          //console.log(err);
         // loading.dismiss();
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
          this.show_error_alert("PLease check your internet connection");
          console.log("ERROR IN SERVER");
          });
      });
       }
     getunits(){
-<<<<<<< HEAD
-      this.getModules(this.condo_id);
-      window.localStorage.setItem('condo_id', this.condo_id);
-      this.storage.set('condo_id', this.condo_id);
-      setTimeout( () => {
-        console.log('hamza timeout start community page');
-        this.navCtrl.setRoot(UnitsPage);
-      }, 1000);
-=======
       window.localStorage.setItem('is_switch',"");
       window.localStorage.setItem('condo_id',this.condo_id);
       this.getModules();
@@ -315,7 +256,6 @@ constructor(public navCtrl: NavController,
     go_back(){
         window.localStorage.clear();
         this.navCtrl.setRoot(LoginPage); 
->>>>>>> a36c0030a10e87278a79916124e4f3b549736590
     }
 
 
